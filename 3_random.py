@@ -17,9 +17,9 @@ guess_num = 0
 while guess_num != ran_num:
     guess_num = int(input("guess a number between 1 and 100: "))
     if guess_num > ran_num:
-        print('too high')
+        print('too high, go lower')
     elif guess_num < ran_num:
-        print('too low')
+        print('too low, go higher')
     else:
         print('you got it!')
 
