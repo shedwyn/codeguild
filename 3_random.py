@@ -21,7 +21,7 @@ while guess_num != ran_num:
     elif guess_num < ran_num:
         print('too low, go higher')
     else:
-        print('you got it!')
+        print('you got it! Now go away!')
 
 
 
