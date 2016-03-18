@@ -17,10 +17,20 @@ english_word = input('Insert a word (all lower, no punc): ')
 
 english_word_list = list(english_word)
 
-english_word_list.append(english_word_list.pop(0))
-english_word_list.append('ay')
+vowels_list = ['a', 'e', 'i', 'o', 'u']
+
+if english_word_list[0] not in vowels_list and english_word_list[1] not in vowels_list:
+    english_word_list.append(english_word_list.pop(0))
+    english_word_list.append(english_word_list.pop(0))
+    english_word_list.append('ay')
+
+elif english_word_list[0] in vowels_list:
+    english_word_list.append('yay')
+
+else:
+    english_word_list.append(english_word_list.pop(0))
+    english_word_list.append('ay')
 
 pig_latin_word = ''.join(english_word_list)
-
 
 print(pig_latin_word)
