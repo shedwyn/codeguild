@@ -11,26 +11,56 @@
 
 #'cat' - 'atcay'
 
-english_word = input('Insert a word (all lower, no punc): ')
-
-#slice first letter
-
-english_word_list = list(english_word)
-
 vowels_list = ['a', 'e', 'i', 'o', 'u']
 
-if english_word_list[0] not in vowels_list and english_word_list[1] not in vowels_list:
-    english_word_list.append(english_word_list.pop(0))
-    english_word_list.append(english_word_list.pop(0))
-    english_word_list.append('ay')
+english_sentence = input('Insert a sentence: ')
 
-elif english_word_list[0] in vowels_list:
-    english_word_list.append('yay')
+english_sentence_list = english_sentence.split()
 
-else:
-    english_word_list.append(english_word_list.pop(0))
-    english_word_list.append('ay')
+pig_latin_sentence_list = []
 
-pig_latin_word = ''.join(english_word_list)
+#print('testing', english_sentence_list)
+#print('testing', pig_latin_sentence_list)
 
-print(pig_latin_word)
+print('*-' * 20)
+
+for word in english_sentence_list:
+
+    english_word_list = list(word)
+    #print('testing', english_word_list)
+
+    if english_word_list[0:0] != True:
+        if english_word_list[0] not in vowels_list and english_word_list[1] not in vowels_list:
+            english_word_list.append(english_word_list.pop(0))
+            english_word_list.append(english_word_list.pop(0))
+            english_word_list.append('ay')
+        #print('testing', english_word_list)
+
+        elif english_word_list[0] in vowels_list:
+            english_word_list.append('yay')
+        #print('testing', english_word_list)
+
+        else:
+            english_word_list.append(english_word_list.pop(0))
+            english_word_list.append('ay')
+        #print('testing', english_word_list)
+    
+    else:
+        if english_word_list[0] in vowels_list:
+            english_word_list.append('yay')
+        #print('testing', english_word_list)
+
+        else:
+            english_word_list.append(english_word_list.pop(0))
+            english_word_list.append('ay')
+        #print('testing', english_word_list)
+
+
+    pig_latin_word = ''.join(english_word_list)
+    #print('testing', pig_latin_word)
+    pig_latin_sentence_list.append(pig_latin_word)
+    #print('testing', pig_latin_sentence_list)
+
+pig_latin_sentence = ' '.join(pig_latin_sentence_list)
+
+print('Here is your sentence in pig latin:', pig_latin_sentence)
