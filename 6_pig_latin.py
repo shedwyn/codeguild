@@ -12,6 +12,7 @@
 #'cat' - 'atcay'
 
 vowels_list = ['a', 'e', 'i', 'o', 'u']
+punctuation_list = ['!', '?', '.', ';', ':', '\'', '"', '_', '-']
 
 english_sentence = input('Insert a sentence: ')
 
@@ -22,42 +23,45 @@ pig_latin_sentence_list = []
 #print('testing', english_sentence_list)
 #print('testing', pig_latin_sentence_list)
 
-print('*-' * 20)
+print('*-' * 5)
 
 for word in english_sentence_list:
 
-    english_word_list = list(word)
-    #print('testing', english_word_list)
+    word_final_punctuation = ""
 
-    if english_word_list[0:0] != True:
+    english_word_list = list(word)
+
+    if english_word_list[-1] in punctuation_list:
+    	word_final_punctuation = english_word_list.pop(-1)
+
+    if len(english_word_list) > 1:
+
         if english_word_list[0] not in vowels_list and english_word_list[1] not in vowels_list:
             english_word_list.append(english_word_list.pop(0))
             english_word_list.append(english_word_list.pop(0))
             english_word_list.append('ay')
-        #print('testing', english_word_list)
 
         elif english_word_list[0] in vowels_list:
             english_word_list.append('yay')
-        #print('testing', english_word_list)
 
         else:
             english_word_list.append(english_word_list.pop(0))
             english_word_list.append('ay')
-        #print('testing', english_word_list)
     
     else:
         if english_word_list[0] in vowels_list:
             english_word_list.append('yay')
-        #print('testing', english_word_list)
 
         else:
             english_word_list.append(english_word_list.pop(0))
             english_word_list.append('ay')
-        #print('testing', english_word_list)
-
 
     pig_latin_word = ''.join(english_word_list)
-    #print('testing', pig_latin_word)
+
+
+    pig_latin_word += word_final_punctuation    	
+
+   
     pig_latin_sentence_list.append(pig_latin_word)
     #print('testing', pig_latin_sentence_list)
 
