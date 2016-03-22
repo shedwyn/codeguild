@@ -11,6 +11,61 @@
 #edit button
 #search field
 
+
+def prompt_user_for_task():
+    """initial prompt to start program, asking user which task they wish to begin \
+        returns that response."""
+
+    return task_to_do
+
+####next function is probably multiple functions, not one
+def process_task():
+    """take in task_to_do response and run appropriate function/method on response"""
+
+
+
+
+    return answer
+
+#########################
+
+def prompt_user_for_name():
+    """ask user for name to add/find/change.  return that name"""
+
+    return name
+
+def prompt_user_for_number():
+    """ask user for number to add/change.  return that number"""
+
+    return number
+
+def add_name_to_phone_book():
+    """take in name and insert into list of records.  return new phone book \
+    collection."""
+
+    return phone_book
+
+def add_number_to_phone_book():
+    """take in name and number and insert into phone book.  return new phone \
+    book collection."""
+
+    return phone_book
+
+def find_record_in_phone_book():
+    """take in name.  find in phone_book.  return answer."""
+
+    return records
+
+def no_name_error_message():
+    """triggered when the name is not in the phone book.  returns \
+    prompt_user_for_name"""
+
+def print_record_to_screen():
+    """take in complete phone book record.  print record to screen"""
+
+    print(record)
+
+
 phone_book = {}
 task_counter = 0
 
