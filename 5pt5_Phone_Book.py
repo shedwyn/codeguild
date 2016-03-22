@@ -7,32 +7,21 @@
     #the interface to allow \
     #adding multiple numbers and removing specific numbers.
 
-#add button
-#edit button
-#search field
-
 
 def prompt_user_for_task():
     """initial prompt to start program, asking user which task they wish to begin \
         returns that response."""
-
-    return task_to_do
-
-####next function is probably multiple functions, not one
-def process_task():
-    """take in task_to_do response and run appropriate function/method on response"""
-
-
-
-
-    return answer
-
-#########################
+    print('\nWould you like to: add, change, lookup, print*, or quit? \n')
+    task_selection_input = input('\nWould you like to ADD (a new name record), \
+        CHANGE (an existing record), SEARCH (for an existing record - use to print),\
+        or QUIT (the phone book program)?\n')
+    return task_selection_input
 
 def prompt_user_for_name():
     """ask user for name to add/find/change.  return that name"""
+    input('\nWhat is the name of the person to add/change/find?\n')
 
-    return name
+    return phone_book_name
 
 def prompt_user_for_number():
     """ask user for number to add/change.  return that number"""
@@ -40,33 +29,96 @@ def prompt_user_for_number():
     return number
 
 def add_name_to_phone_book():
-    """take in name and insert into list of records.  return new phone book \
+    """take in name and insert as a new key into phone book.  return new phone book \
     collection."""
 
     return phone_book
 
 def add_number_to_phone_book():
-    """take in name and number and insert into phone book.  return new phone \
-    book collection."""
+    """take in number and phone book number list and add number to list."""
 
     return phone_book
 
 def find_record_in_phone_book():
-    """take in name.  find in phone_book.  return answer."""
+    """take in name.  find key name and phone number list.  return both key name 
+    and phone number list."""
 
     return records
 
-def no_name_error_message():
-    """triggered when the name is not in the phone book.  returns \
-    prompt_user_for_name"""
+def verify_name_in_phone_book():
+    """takes in the name user gave and checks to see if the name is in the phone \
+    book.  returns message if it is not, or returns name if it is."""
+    if name not in phone_book:
+        print('name not in phone book.  Try another name')
+        ###how will the user exit if they choose###
+    else:
+        return name
+
+def return_list_of_numbers():
+    """takes in a name, finds it in the phone book, returns the list of numbers for that name."""
+
+    return phone_book_number_list
+
+def remove_number_from_phone_book():
+    """takes in a phone book list of numbers and a number.  removes the number from the list.  
+    returns the new list."""
+
+    return phone_book_number_list
 
 def print_record_to_screen():
     """take in complete phone book record.  print record to screen"""
 
     print(record)
 
+def process_task_request():
+    """take in task_to_do and loop through tasks until user quits.  return quit answer when done"""
 
-phone_book = {}
+    return quit_answer
+
+##BODY OF CODE#################################
+###############################################
+###############################################
+
+task_to_do = ''
+
+print('Welcome\n')
+
+#do I want to make the add process a function, the change process a function and the lookup\
+#process a function?
+
+while task_to_do != 'QUIT':
+
+    task_to_do = prompt_user_for_task().upper
+
+    phone_book_task_list = ['ADD', 'CHANGE', 'LOOKUP', 'QUIT']
+
+    if task_to_do in phone_book_task_list:
+
+    phone_book = {}
+
+    phone_book_name = prompt_user_for_name().upper
+
+        while phone_book_name in phone_book:
+
+            if task_to_do == 'ADD':
+                prompt_user_for_name()
+
+            elif task_to_do == 'CHANGE':
+
+            elif task_to_do == 'LOOKUP':
+
+        print('That name is not in the phone_book, please try again.\n')
+
+    print('I\'m sorry, that task is not recognized, please try again')
+
+
+print('Goodbye')
+
+
+if process_task_request() != exit:
+
+
+
 task_counter = 0
 
 while task_counter == 0:
