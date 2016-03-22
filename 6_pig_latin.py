@@ -1,6 +1,9 @@
 #Pig Latin translator
 
 ##consider adding an if statement for line break if len(pig_latin_word_list) > int(x)
+##consider converting all intial sentence words into lower case as default for processing.
+##consider using pig latin word list indexes to take [0] and capitalize.  What about "I"?\
+##could do an if statement.  if word == 'i' put in upper case
 
 def prompt_user_for_sentence():
     """prompt the user to enter a sentence as a string.  return the sentence."""
