@@ -19,6 +19,17 @@ import random
 
 print('Let\'s play Farkle!')
 
+def roll_function():
+    """"roll die.  return value""""
+
+def store_roll_scores(value):
+    """take in value from roll_function and move to \
+    list or dict record.  return appended list or dict"""
+
+def determine_roll_points_earned(value_list):
+
+
+
 number_of_dice = 5
 number_of_rolls = 0
 results_list = []
