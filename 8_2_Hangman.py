@@ -27,7 +27,8 @@ def prompt_user_letter_guess():
 def print_updated_score_board(
     correctly_guessed_letters, 
     wrongly_guessed_letters, 
-    guesses_left
+    wrong_guesses_left,
+    correct_letters_left
     ):
     """takes in all variables that belong to the scoreboard and prints"""
     
@@ -39,11 +40,12 @@ def print_updated_score_board(
     print(
     'correct guesses:', correctly_guessed_letters, 
     '\nwrong guesses:', wrongly_guessed_letters, 
-    '\nguesses remaining:', guesses_left
+    '\nguesses remaining:', wrong_guesses_left,
+    '\ncorrect letters left:', correct_letters_left
     )
 
 def print_correct_guess_list(secret_word, all_guesses):
-    """makes a list for secret word, tests guessedleters against, assigns as letter or dash
+    """makes a list for secret word, tests guessed letters against, assigns as letter or dash
     and prints out the resulting string of letters or dashes"""
     secret_word_letters_list = list(secret_word)
     
@@ -52,55 +54,55 @@ def print_correct_guess_list(secret_word, all_guesses):
             secret_word.replace(letter, ' __ ')
     print(secret_word)
 
-def create_wrong_guess_list(all_guesses, secret_word):
-    """takes in guessed letters and secret_word.  returns list of wrong_guesses"""
+    # def create_wrong_guess_list(all_guesses, secret_word):
+    #     """takes in guessed letters and secret_word.  returns list of wrong_guesses"""
    
 
 
-def update_wrongly_guessed_letters(all_guesses, guessed_letter):
+def update_wrongly_guessed_letters(wrongly_guessed_letters, guessed_letter):
     print ("nope, not it!")
-    wrongly_guessed_letters = wrongly_guessed_letters.append(guessed_letter)
+    wrongly_guessed_letters = wrongly_guessed_letters.add(guessed_letter)
     return wrongly_guessed_letters
 
 def update_correctly_guessed_letters(correctly_guessed_letters, guessed_letter):
     print ('yes!')
-    correctly_guessed_letters = correctly_guessed_letters.append(guessed_letter)
+    correctly_guessed_letters = correctly_guessed_letters.add(guessed_letter)
     return correctly_guessed_letters
     
-print_correct_guess_list('DRAIN', ['A', 'B', 'D', 'H'])
+#print_correct_guess_list('DRAIN', ['A', 'B', 'D', 'H'])
 
 # play_prompt = input('Would you like to play hangman?  Yes or No: ').upper
 
 # if play_prompt == 'YES':
     
-secret_word_list = ['DRAIN', 'CLUB', 'APPLE', 'BEAR', 'ECHO', 'FARM', 'GOAT', 'HAZARD']
+#secret_word_list = ['DRAIN', 'CLUB', 'APPLE', 'BEAR', 'ECHO', 'FARM', 'GOAT', 'HAZARD']
 
 secret_word = select_secret_word()
 
-correctly_guessed_letters = []
+correctly_guessed_letters = set()
 
-wrongly_guessed_letters = []
+wrongly_guessed_letters = set()
 
-all_guesses = correctly_guessed_letters + wrongly_guessed_letters
+wrong_guesses_left = 6
 
-guesses_left = 6
+correct_letters_left = len(secret_word) - len(correctly_guessed_letters)
 
-while guesses_left > 0:
+while wrong_guesses_left > 0 and correct_letters_left > 0:
 
     guessed_letter = prompt_user_letter_guess().upper()
 
     if guessed_letter in list(secret_word):
         update_correctly_guessed_letters(correctly_guessed_letters, 
             guessed_letter)
-        
+        correct_letters_left = len(secret_word) - len(correctly_guessed_letters)
 
     else:
         update_wrongly_guessed_letters(wrongly_guessed_letters, guessed_letter)
-        guesses_left -= 1
+        wrong_guesses_left -= 1
         
     
     print_updated_score_board(correctly_guessed_letters, 
-        wrongly_guessed_letters, guesses_left)
+        wrongly_guessed_letters, wrong_guesses_left, correct_letters_left)
         
 
 print("-*" * 10)
