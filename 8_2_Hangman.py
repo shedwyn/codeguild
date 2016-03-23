@@ -87,6 +87,16 @@ wrong_guesses_left = 6
 
 correct_letters_left = len(secret_word) - len(correctly_guessed_letters)
 
+secret_word_list = list(secret_word)
+
+secret_word2 = secret_word
+
+for item in secret_word2:
+    secret_word2.replace(' __ ')
+
+print(secret_word2)
+
+
 while wrong_guesses_left > 0 and correct_letters_left > 0:
 
     guessed_letter = prompt_user_letter_guess().upper()
