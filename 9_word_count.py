@@ -24,7 +24,6 @@
 
 def strip_punctuation(book_as_lines):
     """takes in the book_as_lines and strips end and fore punctuation.  returns book_as_lines."""
-    book_as_lines.remove('\n')
     for line in book_as_lines:
         line.strip('.')
         line.strip('\n')
@@ -71,9 +70,19 @@ def convert_word_strings_into_counting_dict(book_as_lines):
     return unique_word_counts
 
 
+def get_top_ten_popular_words(unique_word_counts):
+    #random_list = []
+    for word in unique_word_counts:
+        count = unique_word_counts(word)
+        #tuple_pair = (word, count)
+        #random_list = random_list.append(#tuple_pair)
+    #random_list.sorted(tuple_pair[1]) - sort by second element in tuple pair (count)
 
-def tally_up_subfunction():
-    """  """
+    top_ten_list = #random_list(:11)
+
+    word_counts_keys = list(unique_word_counts))
+    
+
 
 
 
@@ -85,6 +94,7 @@ with open('A_Modest_Proposal_stripped.txt') as raw_book_file:
 
 unique_word_counts = convert_word_strings_into_counting_dict(book_as_lines)
 
+print(other_random_function(book_as_lines))
 
 
 
@@ -103,5 +113,15 @@ unique_word_counts = convert_word_strings_into_counting_dict(book_as_lines)
 #             #name, number = line_string.split()
 #     return unique_word_counts
 
+#def other_random_function(book_as_lines):
+#     """    """
 
+#     book_list_without_punc = strip_punctuation(book_as_lines)
+#     book_list_without_creturns = remove_carriage_return_lines(book_list_without_punc)
+#     book_list_as_words = convert_line_strings_into_dict(book_list_without_creturns)
+#     #print(book_list_as_words)
+#     unique_word_counts = {}
+#     for word in book_list_as_words:
+#         words_count = book_list_as_words.count(word)
+#         word_set = tuple(word,words_count)
 
