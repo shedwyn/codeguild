@@ -68,20 +68,33 @@ def convert_word_strings_into_counting_dict(book_as_lines):
             unique_word_counts[word] += 1
             #name, number = line_string.split()
     return unique_word_counts
-
-
-def get_top_ten_popular_words(unique_word_counts):
-    #random_list = []
-    for word in unique_word_counts:
-        count = unique_word_counts(word)
-        #tuple_pair = (word, count)
-        #random_list = random_list.append(#tuple_pair)
-    #random_list.sorted(tuple_pair[1]) - sort by second element in tuple pair (count)
-
-    top_ten_list = #random_list(:11)
-
-    word_counts_keys = list(unique_word_counts))
     
+
+def create_rank_word_val_list(unique_word_counts):
+    """ returns create_rank_word_val_list """
+    max_tally = 10 #could make this an input
+    rank = 1
+    combined_rank_word_val = []
+    while max_tally > 0:
+        for word in unique_word_counts:
+            max_word = max(unique_word_counts)
+            max_word_value = unique_word_counts[max_word]
+            unique_word_counts[max_word] = 0
+            comb_word_value_sentence = '# {} - {} with {} appearances'.format(rank, max_word, max_word_value)
+            combined_rank_word_val.append(comb_word_value_sentence)
+            rank += 1
+            max_tally -= 1          
+    return combined_rank_word_val
+    print(combined_rank_word_val)
+    
+def print_ranking_strings_list(ranked_word_val_list):
+    """returns formatted strings list of rankings"""
+    print(ranked_word_val_list)
+
+
+    #top_ten_list = #random_list(:11)
+
+    #word_counts_keys = list(unique_word_counts))
 
 
 
@@ -94,7 +107,8 @@ with open('A_Modest_Proposal_stripped.txt') as raw_book_file:
 
 unique_word_counts = convert_word_strings_into_counting_dict(book_as_lines)
 
-print(other_random_function(book_as_lines))
+ranked_word_val_list = create_rank_word_val_list(unique_word_counts)
+print_ranking_strings_list(ranked_word_val_list)
 
 
 
