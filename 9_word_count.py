@@ -92,7 +92,6 @@ def create_ranking_sentences_list(unique_word_counts):
         ranked_sentence = uppercase_word + ' is ranked ' + str(ranking) + ' with ' + str(word_count) + ' occurances.'
         ranked_sentences_list.append(ranked_sentence)
         ranking += 1
-    print(ranked_sentences_list)
     return ranked_sentences_list
   
 def print_ranking_strings_list(ranked_sentences_list):
@@ -102,13 +101,13 @@ def print_ranking_strings_list(ranked_sentences_list):
         #'How many top rankings do you want?'
         #'(10 for Top Ten, 25, for Top Twenty-five, etc): '
         #))
+    rank_index = 0
     while number_of_rankings != 0:
-
-    for ranked_sentence in ranked_sentences_list:
         print(
-            ' --**' * 5, '\n',
-            ranked_sentence
-            )
+        '* ' , ranked_sentences_list[rank_index]
+        )
+        rank_index += 1
+        number_of_rankings -= 1
 
 
 ###################CODE##############################
@@ -117,13 +116,13 @@ with open('A_Modest_Proposal_stripped.txt') as raw_book_file:
     book_as_lines = raw_book_file.readlines()
 
 
-#unique_word_counts = convert_word_strings_into_counting_dict(book_as_lines)
+unique_word_counts = convert_word_strings_into_counting_dict(book_as_lines)
 
-unique_word_counts = {
-    'a':20, 'the': 25, 'an':14, 'of':28, 'duck':10, 
-    'go':16, 'he':20, 'she':4, 'eel':5, 'Weird Al': 8,
-    'goat':15, 'xylophone':1
-    }
+# unique_word_counts = {
+#     'a':20, 'the': 25, 'an':14, 'of':28, 'duck':10, 
+#     'go':16, 'he':20, 'she':4, 'eel':5, 'Weird Al': 8,
+#     'goat':15, 'xylophone':1
+#     }
 
 ranked_sentences_list = create_ranking_sentences_list(unique_word_counts)
 
