@@ -1,8 +1,10 @@
 #9_word_count
 #find a book on projectgutenberg.org - need to be on local drive or have file name relative to folder I am working.  
     #download book into correct folder or use the full path
-#1 count how often each unique word is used, then print the most frequent top 10 out with their counts
-#2 count how often each unique pair of words is used, then print the most frequent top 10 out with their counts.
+#1 count how often each unique word is used, then print the most frequent top \
+    #10 out with their counts
+#2 count how often each unique pair of words is used, then print the most frequent top \
+    #10 out with their counts.
     #the cat slept on the couch
     #the cat, cat slept, slept on
 #3 & 4 redo 1 & 2, print out the probability of each of those words or pairs happening
@@ -66,37 +68,47 @@ def convert_word_strings_into_counting_dict(book_as_lines):
             unique_word_counts[word] = 1
         elif word in unique_word_counts:
             unique_word_counts[word] += 1
-            #name, number = line_string.split()
-    return unique_word_counts
-    
+            #name, number = line_string.split()        
+    return unique_word_counts    
 
-def create_rank_word_val_list(unique_word_counts):
-    """ returns create_rank_word_val_list """
-    max_tally = 10 #could make this an input
-    rank = 1
-    combined_rank_word_val = []
-    while max_tally > 0:
-        for word in unique_word_counts:
-            max_word = max(unique_word_counts)
-            max_word_value = unique_word_counts[max_word]
-            unique_word_counts[max_word] = 0
-            comb_word_value_sentence = '# {} - {} with {} appearances'.format(rank, max_word, max_word_value)
-            combined_rank_word_val.append(comb_word_value_sentence)
-            rank += 1
-            max_tally -= 1          
-    return combined_rank_word_val
-    print(combined_rank_word_val)
-    
-def print_ranking_strings_list(ranked_word_val_list):
+def create_ranking_sentences_list(unique_word_counts):
+    """returns list of sentences with rank and counts"""
+    ranking = 1
+    # number_of_rankings = int(
+    #     input(
+    #     'How many top rankings do you want?'
+    #     '(10 for Top Ten, 25, for Top Twenty-five, etc): '
+    #     ))
+    ranked_sentences_list = []
+    unique_words_sorted = sorted(
+        unique_word_counts, 
+        key=unique_word_counts.get, 
+        reverse=True
+        )
+    #while ranking >= 1:
+    for word in unique_words_sorted:
+        word_count = unique_word_counts[word]
+        uppercase_word = word.upper()
+        ranked_sentence = uppercase_word + ' is ranked ' + str(ranking) + ' with ' + str(word_count) + ' occurances.'
+        ranked_sentences_list.append(ranked_sentence)
+        ranking += 1
+    print(ranked_sentences_list)
+    return ranked_sentences_list
+  
+def print_ranking_strings_list(ranked_sentences_list):
     """returns formatted strings list of rankings"""
-    print(ranked_word_val_list)
+    number_of_rankings = 10 #int(
+        #input(
+        #'How many top rankings do you want?'
+        #'(10 for Top Ten, 25, for Top Twenty-five, etc): '
+        #))
+    while number_of_rankings != 0:
 
-
-    #top_ten_list = #random_list(:11)
-
-    #word_counts_keys = list(unique_word_counts))
-
-
+    for ranked_sentence in ranked_sentences_list:
+        print(
+            ' --**' * 5, '\n',
+            ranked_sentence
+            )
 
 
 ###################CODE##############################
@@ -105,15 +117,85 @@ with open('A_Modest_Proposal_stripped.txt') as raw_book_file:
     book_as_lines = raw_book_file.readlines()
 
 
-unique_word_counts = convert_word_strings_into_counting_dict(book_as_lines)
+#unique_word_counts = convert_word_strings_into_counting_dict(book_as_lines)
 
-ranked_word_val_list = create_rank_word_val_list(unique_word_counts)
-print_ranking_strings_list(ranked_word_val_list)
+unique_word_counts = {
+    'a':20, 'the': 25, 'an':14, 'of':28, 'duck':10, 
+    'go':16, 'he':20, 'she':4, 'eel':5, 'Weird Al': 8,
+    'goat':15, 'xylophone':1
+    }
+
+ranked_sentences_list = create_ranking_sentences_list(unique_word_counts)
+
+print_ranking_strings_list(ranked_sentences_list)
+
+
+# max_word = max(unique_word_counts, key=unique_word_counts.get)
+# max_word_value = unique_word_counts[max_word]
+# combined_word_val_sentence = 'rank' + '  ' + 'is' + max_word + 'at' + str(max_word_value)
+
+
+
+# unique_word_counts_pairs = sorted(unique_word_counts.items())
+# for value in unique_word_counts_pairs:
+#     #reverse appearance from word, count to count, word
+#     print(value.slice[1])
+# unique_word_counts_pairs['a']
+
+# print(unique_word_counts_pairs)
+
+#combined_rank_val_list = create_combined_rank_word_val_list(unique_word_counts)
+   
+
+#print(combined_rank_val_list)
+
 
 
 
 
 ################removed experiements#####################
+
+# def create_rank_word_val_sentence(max_word, max_word_value, ranking):
+#     """ returns sentence """
+#     combined_word_val_sentence = '# {} - {} with {} appearances'.format(ranking, max_word, max_word_value)
+#     return combined_word_val_sentence
+
+# def find_next_max_word_count_on_max_key(unique_word_counts, max_word):
+#     """takes in most recent max_word and sets new value to 0.  returns new dict"""
+#     max_word = max(unique_word_counts, key=unique_word_counts.get)
+#     return max_word
+
+# def change_max_val_in_unique_word_counts(unique_word_counts, max_word):
+#     unique_word_counts[max_word] = 0
+#     return unique_word_counts
+
+# def create_combined_rank_word_val_list(unique_word_counts):
+#     ranking = 1
+#     ranking_tally = 10 #could make this an input
+#     combined_rank_word_val = []
+#     true_max_word = max(unique_word_counts, key=unique_word_counts.get)
+#     max_word = true_max_word
+#     while ranking_tally > 0:
+#         unique_word_counts = change_max_val_in_unique_word_counts(unique_word_counts)
+#         max_word_value = unique_word_counts[max_word]#printing correctly
+#         combined_word_val_sentence = create_rank_word_val_sentence(
+#             max_word, 
+#             max_word_value, 
+#             ranking, 
+#             )
+#         #because max_word not chaninging, this is wrong
+#         combined_rank_word_val.append(combined_word_val_sentence)
+#         #wrong
+#         unique_word_counts = change_max_val_in_unique_word_counts(unique_word_counts, max_word)
+#         max_word = find_next_max_word_count_on_max_key(unique_word_counts, max_word)#try returning \
+#             #word instead of list here
+#         print(unique_word_counts)#this updated only first item
+#         ranking_tally -= 1
+#         ranking += 1
+#     return combined_rank_word_val
+
+
+
 
 # def convert_word_strings_into_counting_dict(book_as_words):
 #     """take in list of words, make dict where keyvalue = unique word and
