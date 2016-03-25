@@ -17,59 +17,125 @@
 #open file and readlines
 
 ####################CODE LOGIC NOTES###############################
+####################CODE LOGIC NOTES###############################
+####################CODE LOGIC NOTES###############################
+####################CODE LOGIC NOTES###############################
+####################CODE LOGIC NOTES###############################
 
 #for word in book_words:
     #if word not in unique_words_with_count:
         #unique_words_with_count = unique_words_with_count
 
 ###################FUNCTIONS#######################################
+###################FUNCTIONS#######################################
+###################FUNCTIONS#######################################
+###################FUNCTIONS#######################################
+###################FUNCTIONS#######################################
 
-def strip_punctuation(book_as_lines):
-    """takes in the book_as_lines and strips end and fore punctuation.  returns book_as_lines."""
-    for line in book_as_lines:
-        line.strip('.')
-        line.strip('\n')
-        line.strip('!')
-        line.strip(',')
-        line.strip(':')
-    book_list_without_punc = book_as_lines
-    return book_list_without_punc
+def dwnld_book_into_text_lines_list(entry):#could be made input so to limit the number scanned
+    with open('A_Modest_Proposal_stripped.txt') as raw_book_file:
+        text_lines_list = raw_book_file.readlines(entry)
+    return text_lines_list
 
-def remove_carriage_return_lines(book_list_without_punc):
-    """takes in book, strips elements that are stand alone carriage returns.  returns
-    book_as_lines"""
 
-    count_of_returns = book_list_without_punc.count('\n')
-    while count_of_returns > 0:
-        book_list_without_punc.remove('\n')
-        count_of_returns -= 1
-    book_list_without_creturns = book_list_without_punc
 
-    return book_list_without_creturns
-
-def convert_line_strings_into_dict(book_list_without_creturns):
+def convert_lines_into_single_words(text_lines_list):
     """takes in corrected book as list of lines, and returns as a list of words"""
-    book_as_word_string = ' '.join(book_list_without_creturns)
-    book_as_words = list(book_as_word_string.split())
+    #book_as_word_string = ' '.join(book_list_without_creturns).upper()
+    text_as_single_string = ' '.join(text_lines_list)
+    text_as_single_words_list = text_as_single_string.split() #for word in text_words_raw
 
-    return book_as_words
+    list_of_text_words_without_punctuation = clean_unneccesary_non_alpha_char(text_as_single_words_list)
 
-def convert_word_strings_into_counting_dict(book_as_lines):
+
+    list_of_text_words = list_of_text_words_without_punctuation
+
+
+    #list_of_text_words = clean_unneccesary_non_alpha_char(text_words_raw_list)
+    return list_of_text_words
+
+
+#lookup zip()
+
+def clean_unneccesary_non_alpha_char(text_as_single_words_list):
+    """takes in book, strips elements that are stand alone carriage returns.  returns
+    list_of_text_words_without_non_alpha_char"""
+
+    list_of_text_words_without_end_punct = remove_word_punctuation_loop(text_as_single_words_list)
+
+    count_of_returns = list_of_text_words_without_end_punct.count('\n')
+
+    while count_of_returns > 0:
+
+        list_of_text_words_without_end_punct.remove('\n')
+        count_of_returns -= 1
+
+    list_of_text_words_without_non_alpha_char = list_of_text_words_without_end_punct
+
+
+
+    return list_of_text_words_without_non_alpha_char
+
+
+def strip_specific_char_from_word(text_word):
+    """takes in the text_word and strips end and fore punctuation.  returns word_without_punc."""
+    word_without_punc = text_word.strip('.!,:;?_-')
+    return word_without_punc
+    
+def remove_word_punctuation_loop(text_as_single_words_list):
+    """takes in the list of words, strips punctuation from front and end.  returns
+    new list"""
+    list_of_text_words_without_end_punct = []
+    for word_with_punct in text_as_single_words_list:
+        word_without_punct = strip_specific_char_from_word(word_with_punct)
+        list_of_text_words_without_end_punct.append(word_without_punct)
+    
+    return list_of_text_words_without_end_punct
+
+
+def create_paired_word_strings(list_of_text_words):
+
+    front_index = 0
+    back_index = 1
+    paired_word_strings_list = []
+
+
+    while back_index < len(list_of_text_words):
+
+        paired_words = " ".join(list_of_text_words[front_index:back_index]).upper().split()
+        #paired_word_strings_list.append(paired_words)
+        front_index += 1
+        back_index += 1
+    print(paired_word_strings_list)
+    return paired_word_strings_list
+
+#Here - List Comprehension probably would be fantastic!
+
+def convert_word_strings_into_counting_dict(list_of_text_words):
     """take in list of words, make dict where keyvalue = unique word and
     valueofkey = tally of keys"""
 
-    book_list_without_punc = strip_punctuation(book_as_lines)
-    book_list_without_creturns = remove_carriage_return_lines(book_list_without_punc)
-    book_list_as_words = convert_line_strings_into_dict(book_list_without_creturns)
-    #print(book_list_as_words)
+    text_words_without_punctuation = strip_specific_char_from_word(text_lines_list)
+    book_list_without_creturns = clean_unneccesary_non-alpha_char(text_words_without_punctuation)
+    list_of_text_words = convert_lines_into_single_words(book_list_without_creturns)
+    #print(list_of_text_words)
+
+    #if answer to question is single letter - run 
+
+   
+    #Could this have been list comprehension?
+
+def create_counting_dictionary(list_of_text_words): #with user input, 
+    #would need to accept result from function that takes that input
+    #and converts into appropriate list - pairs, single, phrases, whatever
     unique_word_counts = {}
-    for word in book_list_as_words:
+    for word in list_of_text_words:
         if word not in unique_word_counts:
             unique_word_counts[word] = 1
         elif word in unique_word_counts:
             unique_word_counts[word] += 1
             #name, number = line_string.split()        
-    return unique_word_counts    
+    return unique_word_counts 
 
 def create_ranking_sentences_list(unique_word_counts):
     """returns list of sentences with rank and counts"""
@@ -85,6 +151,7 @@ def create_ranking_sentences_list(unique_word_counts):
         key=unique_word_counts.get, 
         reverse=True
         )
+    print(unique_words_sorted) #working fine until this point
     #while ranking >= 1:
     for word in unique_words_sorted:
         word_count = unique_word_counts[word]
@@ -94,7 +161,7 @@ def create_ranking_sentences_list(unique_word_counts):
         ranking += 1
     return ranked_sentences_list
   
-def print_ranking_strings_list(ranked_sentences_list):
+def print_final_ranking(ranked_sentences_list):
     """returns formatted strings list of rankings"""
     number_of_rankings = 10 #int(
         #input(
@@ -109,24 +176,54 @@ def print_ranking_strings_list(ranked_sentences_list):
         rank_index += 1
         number_of_rankings -= 1
 
-
+###################CODE##############################
+###################CODE##############################
+###################CODE##############################
+###################CODE##############################
 ###################CODE##############################
 
-with open('A_Modest_Proposal_stripped.txt') as raw_book_file:
-    book_as_lines = raw_book_file.readlines()
+testing_text = 'I will type out a set of sentences. This will help divide us into a list.  I should store \
+this somewhere as a module.  A module of variables.  That might be a good idea.  I am not sure.  I will just \
+keep typing until I have enough.  This is annoying?'
+
+testing_single_word = strip_specific_char_from_word('!beladona,')
+
+testing_words_list = ['module.', '!elevator.', 'good', 'annoying?']
+
+text_lines_list = dwnld_book_into_text_lines_list(500)
+
+list_of_text_words = convert_lines_into_single_words(text_lines_list)
+
+dict_word_to_count = create_counting_dictionary(list_of_text_words)
+
+list_of_ranking_sentences = create_ranking_sentences_list(dict_word_to_count)
 
 
-unique_word_counts = convert_word_strings_into_counting_dict(book_as_lines)
 
-# unique_word_counts = {
-#     'a':20, 'the': 25, 'an':14, 'of':28, 'duck':10, 
-#     'go':16, 'he':20, 'she':4, 'eel':5, 'Weird Al': 8,
-#     'goat':15, 'xylophone':1
-#     }
+print(list_of_ranking_sentences)
 
-ranked_sentences_list = create_ranking_sentences_list(unique_word_counts)
 
-print_ranking_strings_list(ranked_sentences_list)
+
+# text_words_without_punctuation = strip_specific_char_from_word(text_lines_list)
+# book_list_without_creturns = clean_unneccesary_non-alpha_char(text_words_without_punctuation)
+# list_of_text_words = convert_lines_into_single_words(book_list_without_creturns)
+
+#unique_word_counts = convert_word_strings_into_counting_dict(text_lines_list)
+
+# ranked_sentences_list = create_ranking_sentences_list(unique_word_counts)
+
+# print_final_ranking(ranked_sentences_list)
+
+
+
+################removed experiements#####################
+################removed experiements#####################
+################removed experiements#####################
+################removed experiements#####################
+################removed experiements#####################
+################removed experiements#####################
+################removed experiements#####################
+################removed experiements#####################
 
 
 # max_word = max(unique_word_counts, key=unique_word_counts.get)
@@ -152,7 +249,6 @@ print_ranking_strings_list(ranked_sentences_list)
 
 
 
-################removed experiements#####################
 
 # def create_rank_word_val_sentence(max_word, max_word_value, ranking):
 #     """ returns sentence """
@@ -196,11 +292,11 @@ print_ranking_strings_list(ranked_sentences_list)
 
 
 
-# def convert_word_strings_into_counting_dict(book_as_words):
+# def convert_word_strings_into_counting_dict(list_of_text_words):
 #     """take in list of words, make dict where keyvalue = unique word and
 #     valueofkey = tally of keys"""
 #     unique_word_counts = {}
-#     for word in book_as_words:
+#     for word in list_of_text_words:
 #         if word not in unique_word_counts:
 #             unique_word_counts[word] = 1
 #         elif word in unique_word_counts:
@@ -208,15 +304,15 @@ print_ranking_strings_list(ranked_sentences_list)
 #             #name, number = line_string.split()
 #     return unique_word_counts
 
-#def other_random_function(book_as_lines):
+#def other_random_function(text_lines_list):
 #     """    """
 
-#     book_list_without_punc = strip_punctuation(book_as_lines)
-#     book_list_without_creturns = remove_carriage_return_lines(book_list_without_punc)
-#     book_list_as_words = convert_line_strings_into_dict(book_list_without_creturns)
-#     #print(book_list_as_words)
+#     text_words_without_punctuation = strip_specific_char_from_word(text_lines_list)
+#     book_list_without_creturns = clean_unneccesary_non-alpha_char(text_words_without_punctuation)
+#     list_of_text_words = convert_lines_into_single_words(book_list_without_creturns)
+#     #print(list_of_text_words)
 #     unique_word_counts = {}
-#     for word in book_list_as_words:
-#         words_count = book_list_as_words.count(word)
+#     for word in list_of_text_words:
+#         words_count = list_of_text_words.count(word)
 #         word_set = tuple(word,words_count)
 
