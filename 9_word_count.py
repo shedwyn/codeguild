@@ -5,21 +5,14 @@
     #10 out with their counts
 #2 count how often each unique pair of words is used, then print the most frequent top \
     #10 out with their counts.
-    #the cat slept on the couch
-    #the cat, cat slept, slept on
+   
 #3 & 4 redo 1 & 2, print out the probability of each of those words or pairs happening
     #frequency of word/total words (cat appears 100 times, total words = 25,000)
 #5 use unique pair probabilities to generate text from the book
 
-
-#We will spend an hour on this tomorrow
-
 #open file and readlines
 
-####################CODE LOGIC NOTES###############################
-####################CODE LOGIC NOTES###############################
-####################CODE LOGIC NOTES###############################
-####################CODE LOGIC NOTES###############################
+
 ####################CODE LOGIC NOTES###############################
 
 #for word in book_words:
@@ -27,10 +20,8 @@
         #unique_words_with_count = unique_words_with_count
 
 ###################FUNCTIONS#######################################
-###################FUNCTIONS#######################################
-###################FUNCTIONS#######################################
-###################FUNCTIONS#######################################
-###################FUNCTIONS#######################################
+
+
 def prompt_for_task_direction():#NOT IN USE
     """asks user which Word Count task they wish to do.  returns answer"""
     task_to_do = input('Would you like to \n\
