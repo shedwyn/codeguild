@@ -113,4 +113,5 @@ overall_schematic()
     #so it can process year as well?
 #How could this program change to make it more functional for a user?
     #ie allowing user to indicate date or year to pull data
-
+#Try breaking list of lists into dict with values as list of 
+    #daytotals and year as key.
