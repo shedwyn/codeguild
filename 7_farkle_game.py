@@ -20,7 +20,9 @@ import random
 print('Let\'s play Farkle!')
 
 def roll_function():
-    """"roll die.  return value""""
+    """roll die.  return value"""
+
+    return value
 
 def store_roll_scores(value):
     """take in value from roll_function and move to \
