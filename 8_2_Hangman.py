@@ -47,7 +47,7 @@ def print_updated_score_board(
 def print_correct_guess_list(secret_word, all_guesses):
     """makes a list for secret word, tests guessed letters against, assigns as letter or dash
     and prints out the resulting string of letters or dashes"""
-    secret_word_letters_list = list(secret_word)
+    secret_word_letters_list = list(secret_word) 
     
     for letter in secret_word_letters_list:
         if letter not in all_guesses:
@@ -56,11 +56,9 @@ def print_correct_guess_list(secret_word, all_guesses):
 
     # def create_wrong_guess_list(all_guesses, secret_word):
     #     """takes in guessed letters and secret_word.  returns list of wrong_guesses"""
-   
-
 
 def update_wrongly_guessed_letters(wrongly_guessed_letters, guessed_letter):
-    print ("nope, not it!")
+    print ("nope, not it!") 
     wrongly_guessed_letters = wrongly_guessed_letters.add(guessed_letter)
     return wrongly_guessed_letters
 
@@ -77,6 +75,15 @@ def update_correctly_guessed_letters(correctly_guessed_letters, guessed_letter):
     
 #secret_word_list = ['DRAIN', 'CLUB', 'APPLE', 'BEAR', 'ECHO', 'FARM', 'GOAT', 'HAZARD']
 
+# secret_word_list = list(secret_word)
+
+# secret_word2 = secret_word
+
+# for item in secret_word2:
+#     secret_word2.replace(' __ ')
+
+# print(secret_word2)
+
 secret_word = select_secret_word()
 
 correctly_guessed_letters = set()
@@ -86,16 +93,6 @@ wrongly_guessed_letters = set()
 wrong_guesses_left = 6
 
 correct_letters_left = len(secret_word) - len(correctly_guessed_letters)
-
-secret_word_list = list(secret_word)
-
-secret_word2 = secret_word
-
-for item in secret_word2:
-    secret_word2.replace(' __ ')
-
-print(secret_word2)
-
 
 while wrong_guesses_left > 0 and correct_letters_left > 0:
 
@@ -113,18 +110,13 @@ while wrong_guesses_left > 0 and correct_letters_left > 0:
     
     print_updated_score_board(correctly_guessed_letters, 
         wrongly_guessed_letters, wrong_guesses_left, correct_letters_left)
-        
-
+        # note from Kyle user_correct_guess = secret_word_blank_line_string[:index_of_guessed_letter], \
+        # + guessed_letter + secret_word_blank_line_string[(index_of_guessed_letter +1):]
 print("-*" * 10)
 print('The word was', secret_word)
 print ('Game Over')
 
 #print ('Goodbye')
-
-
-        
-
-
 
 
     #sub functions for wrong guesses and correct guesses
