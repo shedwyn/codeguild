@@ -79,7 +79,7 @@ def process_task_request():
 ###############################################
 ###############################################
 
-task_to_do = ''
+task_to_do = None
 
 print('Welcome\n')
 
@@ -90,7 +90,12 @@ while task_to_do != 'QUIT':
 
     task_to_do = prompt_user_for_task().upper
 
-    phone_book_task_list = ['ADD', 'CHANGE', 'LOOKUP', 'QUIT']
+    phone_book_task_list = [
+    'ADD', 
+    'CHANGE', 
+    'LOOKUP', 
+    'QUIT'
+    ]
 
     if task_to_do in phone_book_task_list:
 
