@@ -80,6 +80,7 @@ def launch_programs_or_return(task_to_do):#NOT IN USE
     return task_to_do
 
 #lookup zip()
+#change minimal
 
 def dwnld_book_into_text_lines_list():#could be made input so to limit the number scanned
     with open('A_Modest_Proposal_stripped.txt') as raw_book_file:
