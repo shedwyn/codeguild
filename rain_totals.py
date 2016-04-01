@@ -68,30 +68,43 @@ def create_list_days_with_daytotals(rain_date_lines):
     date_raintotal_pairs = [transform_line_to_pair(line) for line in rain_date_lines[12:]]
     return date_raintotal_pairs
 
-def create_new_index_for_sort_pair_onMMMDD():
-    
+def create_dict(dates):
+    print(pair) 
 
-    return None 
+    dictionarykey = '-'.join(pair[0].split('-')[0:2])
+    print(dictionarykey)
+    dict_value = pair[1]
+    print(dict_value)
+    dictionary = {dictionarykey:dict_value}
 
-def sort_pair_onMMMDD(pair):
-    """take in pair, sort into new list by pair[0][new index].
-    return new list"""
+
+    return dictionary
 
 
-    return None
-
-def sort_dates_with_totals_by_MMMDD(dates_with_daytotals):
+def create_monthday_to_daytotals(dates_with_daytotals):
     """takes in list of pairs, sorts on pair[0] split by '-'.  
     returns new list"""
-    #dates_with_daytotals = dates_with_daytotals
-    # dates_only = [date_rain_pairs[0].split('-') for date_rain_pairs in dates_with_daytotals]
-    # daytotals_only = [date_rain_pairs[1] for date_rain_pairs in dates_with_daytotals]
     
-    monthday_to_daytotals = {'-'.join(pair[0].split('-')[0:2]): pair[1] for pair in dates_with_daytotals}
+dict.setdefault() and collections.defaultdict
     
+    #monthdaykey = ['-'.join(pair[0].split('-')[0:2]) for pair in dates_with_daytotals]
+    
+    # monthday_to_daytotals = {'-'.join(pair[0].split('-')[0:2]).append(pair[1]) if '-'.join(pair[0].split('-')[0:2]) in monthday_to_daytotals else '-'.join(pair[0].split('-')[0:2]):pair[1] for pair in dates_with_daytotals}
 
-    # for pair in dates_with_daytotals:
-    #     dates_to_daytotals[pair[0]] = pair[1]
+    monthday_to_daytotals = {}
+
+
+    for pair in dates_with_daytotals:
+        
+        monthdaykey = '-'.join(pair[0].split('-')[0:2])
+
+        
+        if monthdaykey not in monthday_to_daytotals:
+            monthday_to_daytotals[monthdaykey] = [pair[1]]
+
+        else:
+            monthday_to_daytotals[monthdaykey].append(pair[1])
+
     
 
     return monthday_to_daytotals
@@ -145,10 +158,11 @@ def overall_schematic():
     rain_date_lines = download_sunnyside_record()
     dates_with_daytotals = create_list_days_with_daytotals(rain_date_lines)
     dates_to_daytotals = create_dates_to_daytotals(dates_with_daytotals)
+    years_to_yeartotals = create_years_to_yeartotals(dates_with_daytotals)
     
+    monthday_to_daytotals = create_monthday_to_daytotals(dates_with_daytotals)
+    print(monthday_to_daytotals)
 
-    years_to_yeartotals = sort_dates_with_totals_by_MMMDD(dates_with_daytotals[:25])
-    print(years_to_yeartotals, '\n\n\n')
     
 
     date_with_max_rain = find_date_with_max_rain(dates_to_daytotals)
@@ -174,3 +188,18 @@ overall_schematic()
     #ie allowing user to indicate date or year to pull data
 #Try breaking list of lists into dict with values as list of 
     #daytotals and year as key.
+
+
+    #dates_with_daytotals = dates_with_daytotals
+    # dates_only = [date_rain_pairs[0].split('-') for date_rain_pairs in dates_with_daytotals]
+    # daytotals_only = [date_rain_pairs[1] for date_rain_pairs in dates_with_daytotals]
+
+        # if pair[0].split('-')[0:2] not in monthday_to_daytotals:
+        #     monthday_to_daytotals[pair[0].split('-')[0:2]] = []
+        #     monthday_to_daytotals
+        # else:
+        #     monthday_to_daytotals[monthday_to_daytotals[pair[0].split('-')[0:2]]].append(pair1)
+
+
+    #REALLY NICE PIECE OF CODE:
+    #monthday_to_daytotals = {'-'.join(pair[0].split('-')[0:2]): [pair[1]] for pair in dates_with_daytotals}
