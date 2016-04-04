@@ -27,7 +27,6 @@ class BankAccount:
         BankAccount.acct_setup(acct_name, new_dep)
         return acct_name.bal
 
-
     def lookup_balance(acct_name):
         """takes in acct_name, returns account balance"""
         print('The account balance is $', acct_name.bal)
@@ -107,10 +106,7 @@ class BankAccount:
 
             BankAccount.process_interest(acct_name)
 
-        exit_name = acct_name.name
-        print(exit_name)
-
-        return exit_name
+        return None
 
     def update_account_balance(acct_name, new_bal):
         """takes in new_bal, updates account bal, returns bal"""
@@ -134,22 +130,24 @@ def prompt_for_retype(acct_dbase):
 
     return acct_name
 
-def pull_balance_from_record(acct_name, acct_dbase):
+def pull_balance_from_record(user_name, acct_dbase):
     """takes name, gets balance from dictionary.  returns bal"""
 
-    acct_bal = acct_dbase[acct_name]
+    acct_bal = acct_dbase[user_name]
 
     return acct_bal
 
-def check_for_acct(acct_name, acct_dbase):
-    """take in name, redirect appropriately, return None."""
-    if acct_name in acct_dbase:
-        acct_bal = pull_balance_from_record(acct_name, acct_dbase)
-        acct_name = name + '_acct'
+def check_for_acct(user_name, acct_dbase):#does this belong in the class
+    """take in user_name, redirect appropriately, return None."""
+    
+    acct_name = user_name + '_acct'
+
+    if user_name in acct_dbase:
+        acct_bal = pull_balance_from_record(user_name, acct_dbase)
         acct_name = BankAccount()
         BankAccount.acct_setup(acct_name, acct_bal)
         
-    elif acct_name not in acct_dbase:
+    elif user_name not in acct_dbase:
         print(
             'Is this a new account?  Or did you mistype?'
         )
@@ -160,15 +158,11 @@ def check_for_acct(acct_name, acct_dbase):
         else:
             prompt_for_retype(acct_dbase)
 
-
     return acct_name   
-
 
 
 def update_acct_dbase(name, bal, acct_dbase):
     """takes in name and bal, replaces existing bal.  returns acct_dbase"""
-    
-
     acct_dbase[name] = bal
     return acct_dbase
 
@@ -183,24 +177,25 @@ def exit_program(name, bal, acct_dbase):
 
     return None
 
-  
 def overall_schematic():
     """takes in nothing, just collects classes & functions"""
     acct_dbase = {'erin':500.00, 'glenn':400.00, 'ralph':600.00, 'arta': 250.00}
 
     print('\n\n\nWelcome to Your Bloodsucking Bank.\n\n\n')
 
-    name = prompt_user_for_name()
+    user_name = prompt_user_for_name()
 
-    acct_name = name + '_acct'
+    #acct_name = user_name + '_acct'
   
-    acct_name = check_for_acct(name, acct_dbase)
+    acct_name = check_for_acct(user_name, acct_dbase)
     
     BankAccount.prompt_for_selection(acct_name)
 
 
     #return to program here
-    exit_program(name, acct_name.bal, acct_dbase)
+
+    exit_program(user_name, acct_name.bal, acct_dbase)
+    print('Name:', user_name.capitalize(), 'AcctBal:', acct_name.bal, 'Dbase:', acct_dbase)
 
 
     print('\nGoodbye!\n')
