@@ -85,7 +85,23 @@ def create_monthday_to_daytotals(dates_with_daytotals):
     """takes in list of pairs, sorts on pair[0] split by '-'.  
     returns new list"""
     
-dict.setdefault() and collections.defaultdict
+        # dict.setdefault() and collections.defaultdict
+
+
+        # 16
+        # down vote
+        # You can use setdefault.
+
+        # for line in list:  
+        #     d.setdefault(year, []).append(value)
+        # This works because setdefault returns the list as well as setting it on the dictionary, and because a list is mutable, appending to the version returned by setdefault is the same as appending it to the version inside the dictionary itself. If that makes any sense.
+
+        # shareimprove this answer
+        # answered Jul 7 '10 at 22:00
+
+        # Daniel Roseman
+        # 291k22357447
+
     
     #monthdaykey = ['-'.join(pair[0].split('-')[0:2]) for pair in dates_with_daytotals]
     
@@ -161,9 +177,7 @@ def overall_schematic():
     years_to_yeartotals = create_years_to_yeartotals(dates_with_daytotals)
     
     monthday_to_daytotals = create_monthday_to_daytotals(dates_with_daytotals)
-    print(monthday_to_daytotals)
-
-    
+    # print(monthday_to_daytotals)
 
     date_with_max_rain = find_date_with_max_rain(dates_to_daytotals)
     year_with_max_rain = find_date_with_max_rain(years_to_yeartotals)
