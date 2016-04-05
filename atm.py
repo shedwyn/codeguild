@@ -1,132 +1,147 @@
-#ATM
+import random
 
-# import random
 
 class BankAccount:
     
-    # def create_account(bank_records):
+    def acct_setup(self, bal, user_name):
+        self.bal = bal
+        self.name = str(user_name).capitalize()
 
-    # """takes in bank_records, generates new ID and creates blank
-    # bank_record for new customer"""
-    # #bank_records = bank_records
-    # max_keyval_in_bank_rec = 1001 + 10
-
-    # account_id = max_keyval_in_bank_rec
-
-    # print(account_id)
-    # return account_id
-    def acct_setup(acct_name, bal):
-        acct_name.bal = bal
-        acct_name.name = str(acct_name).capitalize()
-
-    
-    def create_acct(acct_name):
-        """takes in acct_name, sets up account, returns bal"""
+    def create_acct(self, user_name):
+        """takes in self, sets up account, returns bal"""
         print('How much is the initial deposit?\n')
         new_dep = input('Amount: $')
-        BankAccount.acct_setup(acct_name, new_dep)
-        return acct_name.bal
+        BankAccount.acct_setup(self, new_dep, user_name)
+        return self.bal
 
-    def lookup_balance(acct_name):
-        """takes in acct_name, returns account balance"""
-        print('The account balance is $', acct_name.bal)
-        BankAccount.prompt_for_selection(acct_name)
-        return acct_name.bal
+    def lookup_balance(self):
+        """takes in self, returns account balance"""
+        print('The account balance is $', self.bal)
+        BankAccount.prompt_for_selection(self)
+        return self.bal
 
-    def increase_balance(acct_name):
-        """takes in acct_name, asks for deposit amt, adds to current bal.
+    def increase_balance(self):
+        """takes in self, asks for deposit amt, adds to current bal.
         returns new bal"""
-        print('The balance of your account is ${}'.format(acct_name.bal))
+        print('The balance of your account is ${}'.format(self.bal))
         print('How much would you like to deposit?\n')
         deposit = int(input('Amount:  '))
-        new_bal = acct_name.bal + deposit
-        BankAccount.update_account_balance(acct_name, new_bal)
-        BankAccount.lookup_balance(acct_name)
-        return acct_name.bal
+        fee = BankAccount.charge_fee(self)
+        new_bal = self.bal + deposit - fee
+        self.bal = new_bal
+        #  BankAccount.update_account_balance(self, new_bal, self.name)
+        BankAccount.lookup_balance(self)
+        return self.bal
 
-    def check_funds(acct_name, withdrawal):
-        """takes in acct_name and withdrawal, compares to balance, returns
-        answer"""
-        if withdrawal > acct_name.bal:
+    def check_funds(self, withdrawal):
+        """takes in self and withdrawal, compares to balance, returns
+        None"""
+        if withdrawal > self.bal:
             print('Sorry, you have insufficient funds for this transaction.')
-            BankAccount.decrease_balance(acct_name)
+            BankAccount.decrease_balance(self)
         
         return None
 
-    def decrease_balance(acct_name):
-        """takes in acct_name, asks for withdraw amt, adds to current bal.
+    def decrease_balance(self):
+        """takes in self, asks for withdraw amt, adds to current bal.
         returns new bal"""
         print(
-            'Your current balance is ${}.'.format(acct_name.bal), 
+            'Your current balance is ${}.'.format(self.bal), 
             'How much would you like to withdraw?\n'
         )
         withdrawal = int(input('Amount:  '))
 
-        if withdrawal > acct_name.bal:
+        if withdrawal > self.bal:
             print('Sorry, you have insufficient funds for this transaction.')
-            BankAccount.decrease_balance(acct_name)
+            BankAccount.decrease_balance(self)
 
-        #BankAccount.check_funds(acct_name, withdrawal)
-        new_bal = acct_name.bal - withdrawal
-        BankAccount.update_account_balance(acct_name, new_bal)
-        BankAccount.lookup_balance(acct_name)
-        return acct_name.bal
+        fee = BankAccount.charge_fee(self)
+        new_bal = self.bal - withdrawal - fee
+        self.bal = new_bal
+        #  BankAccount.update_account_balance(self, new_bal, self.name)
+        BankAccount.lookup_balance(self)
+        return self.bal
 
-    def process_interest(acct_name):
-        """takes in acct_name, calculates interest & adds to bal, 
+    def process_interest(self):
+        """takes in self, calculates interest & adds to bal, 
         returns new bal"""
-        print('The balance of this account is ${}'.format(acct_name.bal))
-        new_bal = acct_name.bal * 1.05
-        BankAccount.update_account_balance(acct_name, new_bal)
-        BankAccount.lookup_balance(acct_name)
+        print('The balance of this account is ${}'.format(self.bal))
+        new_bal = self.bal * 1.05
+        self.bal = new_bal
+        #  BankAccount.update_account_balance(self, new_bal)
+        BankAccount.lookup_balance(self)
 
-        return acct_name.bal
+        return self.bal
 
-    def prompt_for_selection(acct_name):
+    def get_standing(self):
+        standing = self.bal >= 1000
+        return standing   
+
+    def charge_fee(self):
+        if BankAccount.get_standing(self):
+            
+            fee = 0
+            
+        else:
+            fee = 5 
+            print(
+                'As your account balance is under $1000, you have been' + 
+                ' charged a ${} fee for this transaction'.format(fee)
+            )        
+        return fee
+
+    def prompt_for_selection(self):
         """take name, give options, redirect to appropriate menu.  return name"""
         print(
-            'Choose from these options by number.',
-            '1 = BALANCE, 2 = DEPOSIT, 3 = WITHDRAWAL, 4 = INTEREST, or ' + 
-            '5 = EXIT'
+            'Choose from these options by number:',
+            '\n1 = BALANCE', 
+            '\n2 = DEPOSIT', 
+            '\n3 = WITHDRAWAL', 
+            '\n4 = INTEREST', 
+            '\n5 = EXIT'
         )
         selection = int(input('Your selection:'))
         if selection == 1:
 
-            BankAccount.lookup_balance(acct_name)
+            BankAccount.lookup_balance(self)
 
         elif selection == 2:
 
-            BankAccount.increase_balance(acct_name)
+            BankAccount.increase_balance(self)
 
         elif selection == 3:
 
-            BankAccount.decrease_balance(acct_name)
+            BankAccount.decrease_balance(self)
 
         elif selection == 4:
 
-            BankAccount.process_interest(acct_name)
+            BankAccount.process_interest(self)
+
+        elif selection == 5:
+
+            BankAccount.get_standing(self)
 
         return None
 
-    def update_account_balance(acct_name, new_bal):
+    def update_account_balance(self, new_bal, user_name):
         """takes in new_bal, updates account bal, returns bal"""
         
-        BankAccount.acct_setup(acct_name, new_bal)
+        BankAccount.acct_setup(self, new_bal)
 
         return None
 
 
 def prompt_user_for_name():
     print('Please enter the name you want to look up:\n')
-    acct_name = input('Name:  ').lower()
-    print('\n')
-    return acct_name  
+    user_name = input('Name:  ').lower()
+    print()
+    return user_name  
 
 def prompt_for_retype(acct_dbase):
     """takes nothing.  asks for user to re-enter name.  returns name"""
     print('Please enter the name again.')
-    acct_name = input('Name:  ').lower()
-    check_for_acct(acct_name, acct_dbase)
+    user_name = input('Name:  ').lower()
+    check_for_acct(user_name, acct_dbase)
 
     return acct_name
 
@@ -145,7 +160,7 @@ def check_for_acct(user_name, acct_dbase):#does this belong in the class
     if user_name in acct_dbase:
         acct_bal = pull_balance_from_record(user_name, acct_dbase)
         acct_name = BankAccount()
-        BankAccount.acct_setup(acct_name, acct_bal)
+        BankAccount.acct_setup(acct_name, acct_bal, user_name)
         
     elif user_name not in acct_dbase:
         print(
@@ -153,13 +168,12 @@ def check_for_acct(user_name, acct_dbase):#does this belong in the class
         )
         retype_ans = input('Type "new" or "error":  ').lower()
         if retype_ans == 'new':
-            BankAccount.create_acct(acct_name)
+            BankAccount.create_acct(acct_name, user_name)
 
         else:
             prompt_for_retype(acct_dbase)
 
     return acct_name   
-
 
 def update_acct_dbase(name, bal, acct_dbase):
     """takes in name and bal, replaces existing bal.  returns acct_dbase"""
@@ -168,130 +182,51 @@ def update_acct_dbase(name, bal, acct_dbase):
 
 def exit_program(name, bal, acct_dbase):
     """takes in nothing, exists program.  returns None"""
-    print(acct_dbase)
     update_acct_dbase(name, bal, acct_dbase)
-
-    print(acct_dbase)
 
     print('\nGoodbye!\n')
 
     return None
+
+fetch_acct_file
+
+def create_acct_dbase(acct_file):
+    """takes in acct_file, formats into key:val dict, returns dict"""
+
+
+
+
+    return acct_dbase
+
+def fetch_acct_data():
+    """takes in nothing, gets acct data, returns file as formated dict"""
+
+
+    create_acct_dbase(acct_file)
+
+
+
+    return acct_file
 
 def overall_schematic():
     """takes in nothing, just collects classes & functions"""
-    acct_dbase = {'erin':500.00, 'glenn':400.00, 'ralph':600.00, 'arta': 250.00}
 
+    acct_dbase = {'erin':500.00, 'glenn':400.00, 'ralph':600.00, 'arta': 250.00}
+    #  acct_dbase = fetch_acct_data
     print('\n\n\nWelcome to Your Bloodsucking Bank.\n\n\n')
 
+    
     user_name = prompt_user_for_name()
 
-    #acct_name = user_name + '_acct'
-  
-    acct_name = check_for_acct(user_name, acct_dbase)
     
+
+    check_for_acct(account, user_name, acct_dbase)
     BankAccount.prompt_for_selection(acct_name)
-
-
     #return to program here
-
     exit_program(user_name, acct_name.bal, acct_dbase)
     print('Name:', user_name.capitalize(), 'AcctBal:', acct_name.bal, 'Dbase:', acct_dbase)
 
-
-    print('\nGoodbye!\n')
-
     return None
 
-#********************  run code area **********************************
 
 overall_schematic()
-
-
-
-#output = transaction(s) this instance, balance for account
-
-#****************ADVANCED********************ADVANCED*********************
-
-#Add randomizer that prints different messages when you deposit or 
-        #withdraw from a list of possible messages
-
-
-    # pat = BankAccount()
-    # pat.acct_setup(578)
-    # gloria = BankAccount()
-    # gloria.acct_setup(450)
-
-
-
-
-# def create_account(bank_records):
-
-#     """takes in bank_records, generates new ID and creates blank
-#     bank_record for new customer"""
-#     #bank_records = bank_records
-#     max_keyval_in_bank_rec = 1001 + 10
-
-#     account_id = max_keyval_in_bank_rec
-
-#     print(account_id)
-#     return account_id
-
-# def prompt_for_account_num():
-#     """takes nothing, returns user_input"""
-    
-#     return input('Please enter your 4 digitaccount number:')
-
-# def prompt_and_format_user_input(bank_records):
-#     """prompts user for account id, if no account, account is created
-#     returns account_id"""
-#     print('\nPlease enter your account number, if you do not have an account',\
-#         'please enter "None" and an account number will be created for you.'
-#     )
-
-#     account_id = prompt_for_account_num()
-
-#     if account_id not in bank_records.keys():
-#         print('\nThat account is not found, please re-enter 4 digit account number: ')
-#         account_id = prompt_for_account_num()
-
-#     elif int(account_id) == ValueError:
-#         createaccount()
-    
-#     # else:
-#     #     IndividualAccount(account_id)
-
-#     return int(account_id)
-
-#transactionID auto gen two part with date, trans num for that date, will 
-    #"print" list of all transactions that happened on that date.  Even 
-    #more advanced - transaction id that.
-
-
-#***************  scrap heap *******************  scrap heap *************
-
-
-    # def prompt_for_selection(acct_name):
-    # """take name, give options, redirect to appropriate menu.  return None"""
-    # print(
-    #     'Choose from these options by number.',
-    #     '1 = BALANCE, 2 = DEPOSIT, 3 = WITHDRAWAL, 4 = INTEREST, or ' + 
-    #     '5 = EXIT'
-    # )
-    # selection = int(input('Your selection:'))
-    # if selection == 1:
-
-    #     BankAccount.lookup_balance(acct_name)
-
-    # elif selection == 2:
-
-    #     BankAccount.increase_balance(acct_name)
-
-    # elif selection == 3:
-
-    #     BankAccount.decrease_balance(acct_name)
-
-    # elif selection == 4:
-
-    #     BankAccount.process_interest(acct_name)
-
-    # return None
