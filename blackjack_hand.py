@@ -9,7 +9,7 @@ class Card:
 
     def __repr__(self):
         """magic repr"""
-        return 'Card({}, {})'.format(self.suit, self.card_val)
+        return 'Card({}, {})'.format(self.suit, self.card_rank)
 
 
 class Hand:
@@ -40,24 +40,35 @@ def give_score():
     """return lose message if score_hand() > 21"""
 
 
-def prompt_user_enter_hand():
+def prompt_user_for_hand():
     """ask user for hand, run functions to score, return score"""
-    user_suit1 = input('\nWhat suit to use for card 1? '.format.capitalize())
-    user_rank1 = input('Which card is it? '.format.capitalize())
-    user_suit2 = input('\nWhat suit to use for card 2? '.format.capitalize())
-    user_rank2 = input('Which card is it? '.format.capitalize())
-    user_card1 = Card(user_suit1, user_rank1)
-    user_card2 = Card(user_suit2, user_rank2)
+    print(
+        'For ease of data entry, use the following abbreviations:',
+        '\n SUITS:  Clubs = CL, Spades = SP, Hearts = HE, and Diamonds = DI',
+        '\n CARD RANK: Ace = ac, Jack = ja, Queen = qu, King = ki',
+        '\n    cards ranked with numbers are 2 - 10'
+    )
+    user_suit1 = input('\nWhat suit to use for card 1? ')
+    user_rank1 = input('Which card is it? ')
+    user_suit2 = input('\nWhat suit to use for card 2? ')
+    user_rank2 = input('Which card is it? ')
+    user_cards = [(user_suit1, user_rank1), (user_suit2, user_rank2)]
+    
+    return user_cards
+
+def format_user_hand():
+    user_cards = prompt_user_for_hand()
+    user_card1 = Card(user_cards[0][0], user_cards[0][1])
+    user_card2 = Card(user_cards[1][0], user_cards[1][1])
     user_hand = Hand([user_card1, user_card2])
     print(user_card1, user_card2, user_hand)
 
     return user_hand
 
 
-
 def schematic():
 
-    prompt_user_enter_hand()
+    format_user_hand()
 
 
 schematic()
