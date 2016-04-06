@@ -3,7 +3,7 @@ import random
 
 class BankAccount:
     
-    def acct_setup(self, bal, user_name):
+    def __init__(self, bal, user_name):
         self.bal = bal
         self.name = str(user_name).capitalize()
 

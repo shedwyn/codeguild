@@ -21,21 +21,16 @@ class Business:
         return 'Business({}, {})'.format(self.business_name, self.reviews)
 
 
-    def find_avg_rating(self, business_to_reviews):
+    def find_avg_rating(self):
         """takes reviews fields for business, calc avg on rating, return avg"""
         rating_sum = sum([review.rating for review in self.reviews])
         rating_average = Decimal(rating_sum/len(self.reviews))
         return round((rating_average), 1)
 
-    def extract_one_review(self, business_to_reviews):
+    def extract_one_review(self):
         """takes review fields, pulls off one review and corresponding rating for business, return
         one rating"""
-        rating = 0
-        while rating < 1:
-            for review in self.reviews:
-                business_review = review
-                rating += 1
-        return business_review
+        return self.reviews[0]
 
     
 # ********************** END OF CLASSES ****************************
@@ -72,7 +67,6 @@ def formatting_businesses(raw_business_review_data):
     ]
     return business_and_reviews
 
-
 def create_business_to_reviews(business_and_reviews):
     """takes instatiated list, creates dictionary with business name as key, returns dictionary"""    
     business_to_reviews = {business.business_name:business for business in business_and_reviews}
@@ -106,13 +100,13 @@ def main():
 
     search_name = prompt_for_business_name()
 
-    average_rating = Business.find_avg_rating(business_to_reviews[search_name], business_to_reviews)
+    average_rating = Business.find_avg_rating(business_to_reviews[search_name])
 
     print('The average rating for {} was'.format(search_name), average_rating)
 
-    print(Business.extract_one_review(business_to_reviews[search_name], business_to_reviews))
+    print(Business.extract_one_review(business_to_reviews[search_name]))
 
-
+    print(business_to_reviews[search_name].extract_one_review())
 
 
 main()
