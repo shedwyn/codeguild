@@ -11,29 +11,6 @@ class Card:
         """magic repr"""
         return 'Card({}, {})'.format(self.suit, self.card_rank)
 
-    def score_single_card(card):
-        
-        scores = [
-            ('ace', 1), 
-            ('2', 2), 
-            ('3', 3), 
-            ('4', 4), 
-            ('5', 5), 
-            ('6', 6), 
-            ('7', 7), 
-            ('8', 8), 
-            ('9', 9), 
-            ('10', 10), 
-            ('jack', 10), 
-            ('queen', 10), 
-            ('king', 10)
-        ]
-        #card_score = 0
-        for item in scores:
-            if card.card_rank == item[0]:
-                card_score = item[1]
-        return card_score
-
 
 class Hand:
     def __init__(self, cards):
@@ -42,19 +19,32 @@ class Hand:
     def __repr__(self):
         return 'Hand({})'.format(self.cards)
 
-    def give_score(user_hand):
+    def calc_hand_score(user_hand):
         """take in hand, tally current hand, return total score"""
-  
+        rank_to_score = {
+            'ace': 1, 
+            '2': 2, 
+            '3': 3, 
+            '4': 4, 
+            '5': 5, 
+            '6': 6, 
+            '7': 7, 
+            '8': 8, 
+            '9': 9, 
+            '10': 10, 
+            'jack': 10, 
+            'queen': 10, 
+            'king': 10
+        }
         scoring_list = []
-        
         for card in user_hand.cards:
-            scoring_list.append(Card.score_single_card(card))
-
-        if 'ace' in user_hand.cards and sum(scoring_list) < 11:
-            scoring_list.append(10)
-
+            scoring_list.append(rank_to_score[card.card_rank])
         hand_score = sum(scoring_list)
-
+        for card in user_hand.cards:
+            if card.card_rank == 'ace':#why didn't this work with the 
+                #second piece of logic attached?
+                if (hand_score + 10) <= 21:
+                    hand_score += 10
         return hand_score
 
 
@@ -90,24 +80,22 @@ def draw_new_card():
 
 def add_card_to_hand(user_hand):
     """takes new card and user_hand, adds card to user_hand, returns new_hand"""
-    print(user_hand)
     new_card = draw_new_card()
     user_hand.cards.append(new_card)
-    print(user_hand)
     produce_final_score(user_hand)
 
-    return 
+    return None
 
 
 def produce_final_score(user_hand):
     """returns total score of final hand"""
     
-    score = user_hand.give_score()
+    score = user_hand.calc_hand_score()
 
     if score < 21:
         add_card_to_hand(user_hand)
 
-    elif user_hand.give_score() == 21:
+    elif user_hand.calc_hand_score() == 21:
         print('winner, winner, chicken dinner!')
     
     else:
@@ -127,11 +115,14 @@ def schematic():
     #print('second hand', user_card1, user_card2, user_hand)
     #user_hand = Hand([card1, card2])
 
-    print(user_hand.give_score())
+    #print(user_hand.calc_hand_score())
 
     produce_final_score(user_hand)
 
 
     
 
-schematic()
+#schematic()
+hand = Hand([Card('cl', '2'), Card('cl', 'ace')])
+produce_final_score(hand)
+
