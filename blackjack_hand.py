@@ -104,15 +104,16 @@ def produce_final_score(user_hand):
     
     score = user_hand.give_score()
 
-    while score < 21:
+    if score < 21:
         add_card_to_hand(user_hand)
 
-    if user_hand.give_score() == 21:
+    elif user_hand.give_score() == 21:
         print('winner, winner, chicken dinner!')
+    
     else:
         print('wah, wah, wah...busted!')
 
-    
+
 
 def schematic():
     """functions that run the program, returns nothing"""
