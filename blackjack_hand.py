@@ -41,12 +41,9 @@ class Hand:
             scoring_list.append(rank_to_score[card.card_rank])
         hand_score = sum(scoring_list)
         for card in user_hand.cards:
-            if card.card_rank == 'ace':#why didn't this work with the 
-                #second piece of logic attached?
-                if (hand_score + 10) <= 21:
-                    hand_score += 10
+            if card.card_rank == 'ace' and (hand_score +10) <= 21:
+                hand_score += 10
         return hand_score
-
 
 
 def prompt_user_for_suit():
@@ -82,47 +79,32 @@ def add_card_to_hand(user_hand):
     """takes new card and user_hand, adds card to user_hand, returns new_hand"""
     new_card = draw_new_card()
     user_hand.cards.append(new_card)
+    print('You are now holding these cards:  ', user_hand)
     produce_final_score(user_hand)
-
     return None
 
-
 def produce_final_score(user_hand):
-    """returns total score of final hand"""
-    
+    """returns total score of final hand"""  
     score = user_hand.calc_hand_score()
-
+    print('Your score is:  ', score)
     if score < 21:
         add_card_to_hand(user_hand)
-
     elif user_hand.calc_hand_score() == 21:
-        print('winner, winner, chicken dinner!')
-    
+        print('winner, winner, chicken dinner!')   
     else:
         print('wah, wah, wah...busted!')
-
-
 
 def schematic():
     """functions that run the program, returns nothing"""
     # suits = ['Clubs', 'Spades', 'Hearts', 'Diamonds']
-    user_card1 = Card('cl', '9')  #format_single_card()
-    user_card2 = Card('he', 'ace')  #format_single_card()
+    user_card1 = format_single_card()
+    user_card2 = format_single_card()
     user_hand = format_user_hand(user_card1, user_card2) 
-    print(user_hand)
-    
-    #add_card_to_hand(user_hand)
-    #print('second hand', user_card1, user_card2, user_hand)
-    #user_hand = Hand([card1, card2])
-
-    #print(user_hand.calc_hand_score())
-
+    print('You were dealt these cards:  ', user_hand)
     produce_final_score(user_hand)
 
 
-    
-
-#schematic()
-hand = Hand([Card('cl', '2'), Card('cl', 'ace')])
-produce_final_score(hand)
+schematic()
+# hand = Hand([Card('cl', '2'), Card('cl', 'ace')])
+# produce_final_score(hand)
 
