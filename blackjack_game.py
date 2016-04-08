@@ -53,17 +53,24 @@ class Deck:
     def __init__(self, cards):
         """takes in self and list of cards"""
         self.cards = cards
+        random.shuffle(self.cards)
 
     def __repr__(self, cards):
         return 'Deck({})'.format(self.cards)
 
-    def deal_hand(self):
+    def deal_card(self):
         """takes in nothing.  deals 2 cards to player and to dealer"""
-        random.shuffle(self.cards)
-        card1 = self.cards.pop()
-        card2 = self.cards.pop()
-        hand = Hand([card1, card2])
-        return hand
+        card = self.cards.pop()
+        return card
+
+    # def deal_hand(self):
+    #     """takes in nothing.  deals 2 cards to player and to dealer"""
+    #     random.shuffle(self.cards)
+    #     card1 = self.cards.pop()
+    #     card2 = self.cards.pop()
+    #     hand = Hand([card1, card2])
+    #     print('\n\n Your hand:  ', hand)
+    #     return hand
 
 
 def prompt_user_for_suit():
@@ -74,7 +81,7 @@ def prompt_user_for_rank():
     """ask user for rank, return rank"""
     return input('\nWhich card is it? ')
 
-def create_deck():
+def create_deck():#look at product() for this
     """takes nothing, instantiates Card for single cards and instantiates
     Deck.  returns deck dictionary"""
     suits = ['clubs', 'spades', 'hearts', 'diamonds']
@@ -92,21 +99,14 @@ def create_deck():
     deck_cards = Deck(deck_list)
     return deck_cards
 
-
-
-
-
 def format_single_card(suit, rank):
     """takes in suit & rank, prompts for card variables, returns instantiated card"""
     return Card(suit, rank)
 
-def format_user_hand(user_card1, user_card2):
-    """takes in initial deal cards, instantiates to Hand, returns instatiated hand"""
-    return Hand([user_card1, user_card2])
-
 def draw_new_card():
     """takes nothing, creates new card, returns updated hand"""
-    return format_single_card()
+    new_card = deal_card(self)
+    #return 
 
 def add_card_to_hand(user_hand):
     """takes new card and user_hand, adds card to user_hand, returns new_hand"""
@@ -121,30 +121,27 @@ def produce_final_score(user_hand):
     score = user_hand.calc_hand_score()
     print('Your score is:  ', score)
     if score < 21:
+        draw_answer = input('\nDraw again (D) or Hold (H):  ')
+        print('\n')
+        if draw_answer == 'D':
+            deal_card(self)
+        else:
+            print('no draw')
         add_card_to_hand(user_hand)
     elif user_hand.calc_hand_score() == 21:
         print('winner, winner, chicken dinner!')   
     else:
         print('wah, wah, wah...busted!')
 
-def schematic():
+def main():
     """functions that run the program, returns nothing"""
     deck_cards = create_deck()
-    print(len(deck_cards.cards))
-
-    player_cards = deck_cards.deal_hand()
-    print(player_cards)
-
-    print(len(deck_cards.cards))
-
-    computer_cards = deck_cards.deal_hand()
-    print(computer_cards)
-
-    print(len(deck_cards.cards))
+    player_hand = Hand([deck_cards.deal_card(), deck_cards.deal_card()])
+    print(player_hand)
+    computer_hand = Hand([deck_cards.deal_card(), deck_cards.deal_card()])
 
 
-
-
+    produce_final_score(player_hand)
 
 
 
@@ -153,15 +150,9 @@ def schematic():
     # user_card1 = format_single_card()
     # user_card2 = format_single_card()
     # user_hand = format_user_hand(user_card1, user_card2) 
-    
-    # print('You were dealt these cards:  ', user_hand)
-    
     # produce_final_score(user_hand)
+    # hand = Hand([Card('cl', '2'), Card('cl', 'ace')])
+    # produce_final_score(hand)
 
 
-schematic()
-
-
-
-# hand = Hand([Card('cl', '2'), Card('cl', 'ace')])
-# produce_final_score(hand)
+main()
