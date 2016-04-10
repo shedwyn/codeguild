@@ -48,6 +48,24 @@ class Hand:
                 hand_score += 10
         return hand_score
 
+    def add_card_to_hand(self, deck_cards):
+        """takes new card and hand, adds card to hand, returns new_hand"""
+        #deck_cards = deck_cards
+        new_card = deck_cards.deal_card()
+        self.cards.append(new_card)
+        print('You are now holding these cards:  ', self)
+        play_game()
+        return None
+
+    def decide_player_draw_or_hold(player_hand, deck_cards):
+        draw_answer = input('\nDraw again (D) or Hold (H):  ')
+            print('\n')
+            if draw_answer == 'D':
+                user_hand.add_card_to_hand(deck_cards)
+            else:
+                print('\n No draw, Human entity holds')
+        return player_hand
+
 
 class Deck:
     def __init__(self, cards):
@@ -59,9 +77,8 @@ class Deck:
         return 'Deck({})'.format(self.cards)
 
     def deal_card(self):
-        """takes in nothing.  deals 2 cards to player and to dealer"""
-        card = self.cards.pop()
-        return card
+        """takes in nothing.  deals card, returns card"""
+        return self.cards.pop()
 
     # def deal_hand(self):
     #     """takes in nothing.  deals 2 cards to player and to dealer"""
@@ -103,46 +120,107 @@ def format_single_card(suit, rank):
     """takes in suit & rank, prompts for card variables, returns instantiated card"""
     return Card(suit, rank)
 
-def draw_new_card():
-    """takes nothing, creates new card, returns updated hand"""
-    new_card = deal_card(self)
-    #return 
+def format_single_hand(hand_list):
+    """take in list and instatiates into Hand, returns instatiated hand"""
+    return Hand(hand_list)
 
-def add_card_to_hand(user_hand):
-    """takes new card and user_hand, adds card to user_hand, returns new_hand"""
-    new_card = draw_new_card()
-    user_hand.cards.append(new_card)
-    print('You are now holding these cards:  ', user_hand)
-    produce_final_score(user_hand)
-    return None
+# def decide_player_draw_or_hold(player_hand, deck_cards):
+#     draw_answer = input('\nDraw again (D) or Hold (H):  ')
+#         print('\n')
+#         if draw_answer == 'D':
+#             user_hand.add_card_to_hand(deck_cards)
+#         else:
+#             print('\n No draw, Human entity holds')
+#     return player_hand
 
-def produce_final_score(user_hand):
-    """returns total score of final hand"""  
-    score = user_hand.calc_hand_score()
-    print('Your score is:  ', score)
-    if score < 21:
-        draw_answer = input('\nDraw again (D) or Hold (H):  ')
-        print('\n')
-        if draw_answer == 'D':
-            deal_card(self)
+def determine_winner(player_score, computer_score, user_hand, computer_hand, deck_cards):
+    """takes in hands, deck, uses if statements to determine 
+    winner, returns win statement"""
+    computer_win = textwrap.wrap('HAL wins!  Please report to the airlock immediately for ejection.', 40)
+    player_win = textwrap.wrap('Player wins this round!  The computer let you win, you know that, right?', 40)
+    tie_win = textwrap.wrap('Unbelievable!  A tie!  We should play best 2 out of 3!', 40)
+    tie_loss - textwrap.wrap('Unbelievable!  A tie loss!  How did that happen?!', 40)
+    if player_score < 21 and computer_score < 21:
+        user_hand = user_hand.decide_player_draw_or_hold(deck_cards)
+        # draw_answer = input('\nDraw again (D) or Hold (H):  ')
+        # print('\n')
+        # if draw_answer == 'D':
+        #     user_hand.add_card_to_hand(deck_cards)
+        # else:
+        #     print('\nNo draw, human entity holds')
+    elif player_score < 21 and computer_score < 17:
+        print('\nComputer entity must draw')
+        computer_hand.add_card_to_hand(deck_cards)
+    elif player_score == 21 and computer_score < 21:
+        game_answer = player_win
+    elif player_score < 21 and computer_score == 21:
+        game_answer = computer_win
+    elif player_score == 21 and computer_score == 21:
+        game_answer = tie_win
+    elif player_score > 21 and comptuer_score > 21:
+        game_answer = tie_loss
+    elif player_score < 21 and computer_score < 21:
+        if player_score > computer_score:
+            game_answer = player_win
         else:
-            print('no draw')
-        add_card_to_hand(user_hand)
-    elif user_hand.calc_hand_score() == 21:
-        print('winner, winner, chicken dinner!')   
-    else:
-        print('wah, wah, wah...busted!')
+            game_answer = computer_win
+    return game_answer
+
+
+
+def play_game():
+    """returns total score of final hand"""
+    #deck_cards = deck_cards
+    deck_cards = create_deck()
+    player_hand = format_single_hand([deck_cards.deal_card(), deck_cards.deal_card()])
+    computer_hand = format_single_hand([deck_cards.deal_card(), deck_cards.deal_card()])
+    player_score = user_hand.calc_hand_score()
+    computer_score = computer_hand.calc_hand_score()
+    print('\nPlayer\'s initial score is:  ', player_score)
+    print('\nComputer\'s initial score is:  ', computer_score)
+    print(
+        '\n', determine_winner(
+            player_score, computer_score, user_hand, computer_hand, deck_cards
+        )
+    )
+
+    
+
+    # if player_score < 21 and computer_score < 21:
+    #     draw_answer = input('\nDraw again (D) or Hold (H):  ')
+    #     print('\n')
+    #     if draw_answer == 'D':
+    #         user_hand.add_card_to_hand(deck_cards)
+    #     else:
+    #         print('\nNo draw, human entity holds')
+    # elif player_score < 21 and computer_score < 17:
+    #     print('\nComputer entity must draw')
+    #     computer_hand.add_card_to_hand(deck_cards)
+    # elif player_score == 21 and computer_score < 21:
+    #     print('Player wins this round!  The computer let you win, you know that, right?')
+    # elif player_score < 21 and computer_score == 21:
+    #     print('HAL wins!  Please report to the airlock immediately for ejection.')
+    # elif player_score == 21 and computer_score == 21:
+    #     print('Unbelievable!  A tie!  Gimme another chance!')
+
+
+def calculate_winner(user_hand, computer_hand):
+    player_score = user_hand.calc_hand_score()
+    computer_score = computer_hand.calc_hand_score()
+
+
 
 def main():
     """functions that run the program, returns nothing"""
-    deck_cards = create_deck()
-    player_hand = Hand([deck_cards.deal_card(), deck_cards.deal_card()])
-    print(player_hand)
-    computer_hand = Hand([deck_cards.deal_card(), deck_cards.deal_card()])
+    
+    play_game()
 
-
-    produce_final_score(player_hand)
-
+    print('\nWould you like to play another game(with fresh deck)?)
+    play_again = input('\n  Y or N?  ')
+        if play_again == 'Y':
+            play_game()
+        else:
+            print('\n Goodbye, human.')
 
 
 
@@ -150,9 +228,9 @@ def main():
     # user_card1 = format_single_card()
     # user_card2 = format_single_card()
     # user_hand = format_user_hand(user_card1, user_card2) 
-    # produce_final_score(user_hand)
+    # play_game(user_hand)
     # hand = Hand([Card('cl', '2'), Card('cl', 'ace')])
-    # produce_final_score(hand)
+    # play_game(hand)
 
 
 main()
