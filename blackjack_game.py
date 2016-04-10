@@ -81,8 +81,6 @@ class Deck:
         return self.cards.pop()
 
     
-
-
 def prompt_user_for_suit():
     """ask user for suit of card, return suit"""
     return input('\nWhat suit to use for card? ')
@@ -117,7 +115,6 @@ def format_single_hand(hand_list):
     """take in list and instatiates into Hand, returns instatiated hand"""
     return Hand(hand_list)
 
-
 def determine_winner(player_score, computer_score, user_hand, computer_hand, deck_cards):
     """takes in hands, deck, uses if statements to determine 
     winner, returns win statement"""
@@ -146,10 +143,8 @@ def determine_winner(player_score, computer_score, user_hand, computer_hand, dec
             game_answer = computer_win
     return game_answer
 
-
-
 def play_game():
-    """returns total score of final hand"""
+    """game play function, returns None"""
     #deck_cards = deck_cards
     deck_cards = create_deck()
     player_hand = format_single_hand([deck_cards.deal_card(), deck_cards.deal_card()])
@@ -163,14 +158,7 @@ def play_game():
             player_score, computer_score, user_hand, computer_hand, deck_cards
         )
     )
-
-   
-
-def calculate_winner(user_hand, computer_hand):
-    player_score = user_hand.calc_hand_score()
-    computer_score = computer_hand.calc_hand_score()
-
-
+    return None
 
 def main():
     """functions that run the program, returns nothing"""
