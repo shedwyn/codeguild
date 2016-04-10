@@ -123,8 +123,7 @@ def determine_winner(player_score, computer_score, user_hand, computer_hand, dec
     tie_win = textwrap.wrap('Unbelievable!  A tie!  We should play best 2 out of 3!', 40)
     tie_loss - textwrap.wrap('Unbelievable!  A tie loss!  How did that happen?!', 40)
     if player_score < 21 and computer_score < 21:
-        user_hand = user_hand.decide_player_draw_or_hold(deck_cards)
-        
+        user_hand = user_hand.decide_player_draw_or_hold(deck_cards)     
     elif player_score < 21 and computer_score < 17:
         print('\nComputer entity must draw')
         computer_hand.add_card_to_hand(deck_cards)
