@@ -1,3 +1,4 @@
+import textwrap
 import random
 
 
@@ -57,14 +58,14 @@ class Hand:
         play_game()
         return None
 
-    def decide_player_draw_or_hold(player_hand, deck_cards):
-        draw_answer = input('\nDraw again (D) or Hold (H):  ')
-            print('\n')
-            if draw_answer == 'D':
-                user_hand.add_card_to_hand(deck_cards)
-            else:
-                print('\n No draw, Human entity holds')
-        return player_hand
+    # def decide_player_draw_or_hold(player_hand, deck_cards):
+    #     draw_answer = input('\nDraw again (D) or Hold (H):  ')
+    #     print('\n')
+    #     if draw_answer == 'D':
+    #         user_hand.add_card_to_hand(deck_cards)
+    #     else:
+    #         print('\n No draw, Human entity holds')
+    #     return player_hand
 
 
 class Deck:
@@ -121,9 +122,24 @@ def determine_winner(player_score, computer_score, user_hand, computer_hand, dec
     computer_win = textwrap.wrap('HAL wins!  Please report to the airlock immediately for ejection.', 40)
     player_win = textwrap.wrap('Player wins this round!  The computer let you win, you know that, right?', 40)
     tie_win = textwrap.wrap('Unbelievable!  A tie!  We should play best 2 out of 3!', 40)
-    tie_loss - textwrap.wrap('Unbelievable!  A tie loss!  How did that happen?!', 40)
+    tie_loss = textwrap.wrap('Unbelievable!  A tie loss!  How did that happen?!', 40)
+    game_answer = 'empty line'
+    print(
+        '\nplayerscore', player_score,
+        '\ncomputerscore', computer_score, 
+        '\nuser_hand', user_hand,
+        '\ncomputer_hand', computer_hand
+    )
     if player_score < 21 and computer_score < 21:
-        user_hand = user_hand.decide_player_draw_or_hold(deck_cards)     
+        # user_hand.decide_player_draw_or_hold(deck_cards)   
+        draw_answer = input('\nDraw again (D) or Hold (H):  ')
+        print('\n')
+        if draw_answer == 'D':
+            user_hand.add_card_to_hand(deck_cards)
+        else:
+            print('\n No draw, Human entity holds')
+        return player_hand
+  
     elif player_score < 21 and computer_score < 17:
         print('\nComputer entity must draw')
         computer_hand.add_card_to_hand(deck_cards)
@@ -148,26 +164,25 @@ def play_game():
     deck_cards = create_deck()
     player_hand = format_single_hand([deck_cards.deal_card(), deck_cards.deal_card()])
     computer_hand = format_single_hand([deck_cards.deal_card(), deck_cards.deal_card()])
-    player_score = user_hand.calc_hand_score()
+    player_score = player_hand.calc_hand_score()
     computer_score = computer_hand.calc_hand_score()
     print('\nPlayer\'s initial score is:  ', player_score)
     print('\nComputer\'s initial score is:  ', computer_score)
     print(
-        '\n', determine_winner(
-            player_score, computer_score, user_hand, computer_hand, deck_cards
-        )
+        '\n',
+        determine_winner(player_score, computer_score, player_hand, computer_hand, deck_cards)
     )
     return None
 
 def main():
     """functions that run the program, returns nothing"""
     play_game()
-    print('\nWould you like to play another game(with fresh deck)?)
+    print('\nWould you like to play another game(with fresh deck)?')
     play_again = input('\n  Y or N?  ')
-        if play_again == 'Y':
-            play_game()
-        else:
-            print('\n Goodbye, human.')
+    if play_again == 'Y':
+        play_game()
+    else:
+        print('\n Goodbye, human.')
 
    
 main()
