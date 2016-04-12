@@ -33,6 +33,23 @@ class ListListTTTBoard:
     def won(self):
         """Return which token type won ('X' or 'O') or None if no one
         has won yet."""
+        if self.rows[0][0] == self.rows[0][1] == self.rows[0][2]:
+            return self.rows[0][0]
+        elif self.rows[1][0] == self.rows[1][1] == self.rows[1][2]:
+            return self.rows[1][0]
+        elif self.rows[2][0] == self.rows[2][1] == self.rows[2][2]:
+            return self.rows[2][0]
+        elif self.rows[0][0] == self.rows[1][0] == self.rows[2][0]
+
+        elif self.rows[0][1] == self.rows[1][1] == self.rows[2][1]
+
+        elif self.rows[0][2] == self.rows[1][2] == self.rows[2][2]
+
+        elif self.rows[0][0] == self.rows[1][1] == self.rows[2][2]
+
+        elif self.rows[0][2] == self.rows[1][1] == self.rows[2][0]
+
+
         pass
 
     def __str__(self):
@@ -180,10 +197,10 @@ def main():
 # main()
 
 self_rows = [
-            ['X', 'X', 'O'],
-            ['O', 'O', 'X'],
-            ['X', ' ', ' '],
+            ['O', 'X', 'X'],
+            [' ', 'O', 'X'],
+            ['O', ' ', 'X'],
         ]
 
-
+Ways to win = self_rows[0][1:3] == self_rows[0][0]
 
