@@ -28,7 +28,8 @@ class ListListTTTBoard:
         0, 0 is the top-left.
         `player` is either 'X' or 'O'
         """
-        return self.rows[x][y] = player
+        self.rows[x][y] = player
+        return self.rows
 
     def won(self):
         """Return which token type won ('X' or 'O') or None if no one
@@ -39,18 +40,18 @@ class ListListTTTBoard:
             return self.rows[1][0]
         elif self.rows[2][0] == self.rows[2][1] == self.rows[2][2]:
             return self.rows[2][0]
-        elif self.rows[0][0] == self.rows[1][0] == self.rows[2][0]
-
-        elif self.rows[0][1] == self.rows[1][1] == self.rows[2][1]
-
-        elif self.rows[0][2] == self.rows[1][2] == self.rows[2][2]
-
-        elif self.rows[0][0] == self.rows[1][1] == self.rows[2][2]
-
-        elif self.rows[0][2] == self.rows[1][1] == self.rows[2][0]
-
-
-        pass
+        elif self.rows[0][0] == self.rows[1][0] == self.rows[2][0]:
+            return self.rows[0][0]
+        elif self.rows[0][1] == self.rows[1][1] == self.rows[2][1]:
+            return self.rows[0][1]
+        elif self.rows[0][2] == self.rows[1][2] == self.rows[2][2]:
+            return self.rows[0][2]
+        elif self.rows[0][0] == self.rows[1][1] == self.rows[2][2]:
+            return self.rows[0][0]
+        elif self.rows[0][2] == self.rows[1][1] == self.rows[2][0]:
+            return self.rows[0][2]
+        else:
+            return None
 
     def __str__(self):
         """Returns a string representation of the board.
@@ -197,10 +198,10 @@ def main():
 # main()
 
 self_rows = [
-            ['O', 'X', 'X'],
+            ['O', 'X', 'O'],
             [' ', 'O', 'X'],
             ['O', ' ', 'X'],
         ]
 
-Ways to win = self_rows[0][1:3] == self_rows[0][0]
+
 
