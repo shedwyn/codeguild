@@ -72,7 +72,7 @@ class DictTTTBoard:
             'a3': ' ', 'b3': ' ', 'c3': ' ',
         }
 
-    def place(self, x, y, token):
+    def place(self, x, y, player):
         """Places a token on the board at some given coordinates.
         0, 0 is the top-left.
         `player` is either 'X' or 'O'
@@ -125,7 +125,9 @@ class CoordsTTTBoard:
 
         0, 0 is the top-left.
         `player` is either 'X' or 'O'
-        """
+        """ 
+        self.x_y_token_triplets = self.x_y_token_triplets + [(x, y, player)]
+
         pass
 
     def won(self):
@@ -174,4 +176,5 @@ def main():
     play(board3)
 
 
-main()
+# main()
+
