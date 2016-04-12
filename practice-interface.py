@@ -24,12 +24,11 @@ class ListListTTTBoard:
 
     def place(self, x, y, player):
         """Places a token on the board at some given coordinates.
+        
         0, 0 is the top-left.
         `player` is either 'X' or 'O'
         """
-        self.rows[x][y] = player
-
-        pass
+        return self.rows[x][y] = player
 
     def won(self):
         """Return which token type won ('X' or 'O') or None if no one
@@ -45,7 +44,9 @@ class ListListTTTBoard:
          |X|O
          | |
         """
-        pass
+
+        rows_as_strings = ['|'.join(_) for _ in self.rows]
+        return '\n'.join(rows_as_strings)
 
 
 class DictTTTBoard:
@@ -177,4 +178,12 @@ def main():
 
 
 # main()
+
+self_rows = [
+            ['X', 'X', 'O'],
+            ['O', 'O', 'X'],
+            ['X', ' ', ' '],
+        ]
+
+
 
