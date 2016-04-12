@@ -9,11 +9,14 @@ class Board:
         """takes board and column index, finds first empty row for that column, returns
         the row index"""
         for pair in reversed(list(enumerate(self.board_rows_of_columns))):
-            # print(pair)
+            print('pair', pair)
             row_index = pair[0]
             row = pair[1]
             if row[col_index] == '':
+                print('row index', row_index)
                 return row_index
+    def place_token(self, row_index, col_index, color):
+        self.board_rows_of_columns[row_index][col_index] = color
 
 
 class Token:
@@ -51,28 +54,21 @@ def create_tokens(moves_list):
     data, returns list of instantiated tokens"""
     tokens = []
     for pair in enumerate(moves_list):
-        print(pair)
         if pair[0] % 2 == 0:
             token = Token('Y', int(pair[1]))
-            print(token)
             tokens.append(token)
         else:
             token = Token('R', int(pair[1]))
-            print(token)
             tokens.append(token)
     return tokens
 
-def place_token(board, row_index, col_index, color):
-    board[row_index][col_index] = color
-
-def play_moves(token, current_board):
+def play_move(token, current_board):
     """takes token and board, iterates across moves list, places tokens
     prints board after each move, returns board"""
-    row_index = retrieve_next_empty_row_index(current_board, token.column)
-    print(row_index)
-
-
-    return None
+    row_index = current_board.retrieve_next_empty_row_index(token.column)
+    current_board.place_token(row_index, token.column, token.color)
+    print('\npost move in play move', current_board)
+    return current_board
 
 def main():
     """collection of functions"""
@@ -86,11 +82,16 @@ def main():
     ])
     moves_list = format_moves_list()
     tokens = create_tokens(moves_list)
-    print(tokens[0])
-    play_moves(tokens[0], current_board)
-
-    # for token in tokens:
-    #     play_moves(token, current_board)
+    # print('\n', tokens[0])
+    # play_move(tokens[0], current_board)
+    # print('\nmain function board', current_board)
+    num = 1
+    for token in tokens:
+        print('\nmove# ', num, 'column#', token.column, '\n')
+        play_move(token, current_board)
+        print('*'*15)
+        print('\n', current_board)
+        print('*'*15)
 
     # col_index = current_move - 1
     
