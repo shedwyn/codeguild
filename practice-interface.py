@@ -24,10 +24,11 @@ class ListListTTTBoard:
 
     def place(self, x, y, player):
         """Places a token on the board at some given coordinates.
-
         0, 0 is the top-left.
         `player` is either 'X' or 'O'
         """
+        self.rows[x][y] = player
+
         pass
 
     def won(self):
@@ -81,7 +82,7 @@ class DictTTTBoard:
         board_col = board_cols[y]
         board_pos = board_col + board_row
         self.pos_to_token[board_pos] = player 
-         
+
         pass
 
     def won(self):
