@@ -55,10 +55,10 @@ def create_tokens(moves_list):
     tokens = []
     for pair in enumerate(moves_list):
         if pair[0] % 2 == 0:
-            token = Token('Y', int(pair[1]))
+            token = Token('Y', int(pair[1])-1)
             tokens.append(token)
         else:
-            token = Token('R', int(pair[1]))
+            token = Token('R', int(pair[1])-1)
             tokens.append(token)
     return tokens
 
@@ -89,6 +89,7 @@ def main():
     for token in tokens:
         print('\nmove# ', num, 'column#', token.column, '\n')
         play_move(token, current_board)
+        num += 1
         print('*'*15)
         print('\n', current_board)
         print('*'*15)
