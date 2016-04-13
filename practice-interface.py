@@ -21,6 +21,7 @@ class ListListTTTBoard:
             [' ', ' ', ' '],
             [' ', ' ', ' '],
         ]
+        print('init', self.rows)
 
     def place(self, x, y, player):
         """Places a token on the board at some given coordinates.
@@ -28,29 +29,31 @@ class ListListTTTBoard:
         0, 0 is the top-left.
         `player` is either 'X' or 'O'
         """
-        self.rows[x][y] = player
+        self.rows[y][x] = player
+        print('place', self.rows)
         return self.rows
 
     def won(self):
         """Return which token type won ('X' or 'O') or None if no one
         has won yet."""
-        if self.rows[0][0] == self.rows[0][1] == self.rows[0][2]:
+        if self.rows[0][0] == self.rows[1][0] and self.rows[0][0] == self.rows[2][0]:
             return self.rows[0][0]
-        elif self.rows[1][0] == self.rows[1][1] == self.rows[1][2]:
+        elif self.rows[0][1] == self.rows[1][1] and self.rows[0][1] == self.rows[2][1]:
             return self.rows[1][0]
-        elif self.rows[2][0] == self.rows[2][1] == self.rows[2][2]:
+        elif self.rows[0][2] == self.rows[1][2] and self.rows[0][2] == self.rows[2][2]:
             return self.rows[2][0]
-        elif self.rows[0][0] == self.rows[1][0] == self.rows[2][0]:
+        elif self.rows[0][0] == self.rows[0][1] and self.rows[0][0] == self.rows[0][2]:
             return self.rows[0][0]
-        elif self.rows[0][1] == self.rows[1][1] == self.rows[2][1]:
+        elif self.rows[1][0] == self.rows[1][1] and self.rows[1][0] == self.rows[1][2]:
             return self.rows[0][1]
-        elif self.rows[0][2] == self.rows[1][2] == self.rows[2][2]:
+        elif self.rows[2][0] == self.rows[2][1] and self.rows[2][0] == self.rows[2][2]:
             return self.rows[0][2]
-        elif self.rows[0][0] == self.rows[1][1] == self.rows[2][2]:
+        elif self.rows[0][0] == self.rows[1][1] and self.rows[0][0] == self.rows[2][2]:
             return self.rows[0][0]
-        elif self.rows[0][2] == self.rows[1][1] == self.rows[2][0]:
+        elif self.rows[2][0] == self.rows[1][1] and self.rows[2][0] == self.rows[0][2]:
             return self.rows[0][2]
         else:
+            print('none win condition')
             return None
 
     def __str__(self):
@@ -64,6 +67,8 @@ class ListListTTTBoard:
         """
 
         rows_as_strings = ['|'.join(_) for _ in self.rows]
+        print('str ', rows_as_strings)
+        print('\n'.join(rows_as_strings)) 
         return '\n'.join(rows_as_strings)
 
 
@@ -102,12 +107,24 @@ class DictTTTBoard:
         board_pos = board_col + board_row
         self.pos_to_token[board_pos] = player 
 
-        pass
+        return self.pos_to_token
 
     def won(self):
         """Return which token type won ('X' or 'O') or None if no one
         has won yet."""
         pass
+
+    def create_column_sorted_tokens(self):
+        """sort tokens by column into single list.  return list"""
+        #, reverse=True removed from below
+        sorted_pos_to_token = sorted(self.pos_to_token)
+        column_ordered_tokens = []
+        index_sorted_pos_to_token = 0
+        for move in self.pos_to_token:
+            key_self.pos_to_token = sorted_pos_to_token[index_sorted_pos_to_token]
+            column_ordered_tokens = column_ordered_tokens + [self.pos_to_token[key_selfpos_to_token]]
+            index_sorted_pos_to_token += 1
+        return column_ordered_tokens
 
     def __str__(self):
         """Returns a string representation of the board.
@@ -118,6 +135,17 @@ class DictTTTBoard:
          |X|O
          | |
         """
+        # keys in own list, match string slice [1] for each, cast those triplets
+            # to string (do they live in a list?) and print in reverse order
+            #SPLIT INTO PARALLEL LISTS, FIX THE KEY, RECAST, THEN DO THE LIST
+            #CLASS CODE
+
+        column_sorted_tokens = self.create_column_sorted_tokens()
+
+
+        rows_as_strings = ['|'.join(_) for _ in self.column_sorted_tokens]
+        return '\n'.join(rows_as_strings)
+
         pass
 
 
@@ -176,6 +204,7 @@ def play(board):
     board.place(0, 0, 'O')
     print(board)
     board.place(1, 0, 'X')
+    print('this', str(board))
     assert str(board) == "O|X| \n |X| \n | | \n"
     print(board)
     board.place(0, 2, 'O')
@@ -187,21 +216,31 @@ def play(board):
 
 
 def main():
-    board1 = DictTTTBoard()
-    play(board1)
+    # board1 = DictTTTBoard()
+    # play(board1)
     board2 = ListListTTTBoard()
     play(board2)
-    board3 = CoordsTTTBoard()
-    play(board3)
+    # board3 = CoordsTTTBoard()
+    # play(board3)
 
 
-# main()
+main()
 
-self_rows = [
-            ['O', 'X', 'O'],
-            [' ', 'O', 'X'],
-            ['O', ' ', 'X'],
-        ]
+# selfpos_to_token = {
+#             'a1': 'O', 'b1': 'X', 'c1': 'O',
+#             'a2': 'O', 'b2': 'X', 'c2': 'X',
+#             'a3': ' ', 'b3': 'O', 'c3': ' ',
+#         }
+
+# sorted_pos_to_token = sorted(selfpos_to_token)
+# print(sorted_pos_to_token)
+# column_ordered_tokens = []
+# index_sorted_pos_to_token = 0
+# for move in selfpos_to_token:
+#     key_selfpos_to_token = sorted_pos_to_token[index_sorted_pos_to_token]
+#     column_ordered_tokens = column_ordered_tokens + [selfpos_to_token[key_selfpos_to_token]]
+#     index_sorted_pos_to_token += 1
+# print(column_ordered_tokens)
 
 
 
