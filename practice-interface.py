@@ -17,9 +17,9 @@ class ListListTTTBoard:
     def __init__(self):
         """Initializes an empty board."""
         self.rows = [
-            [' ', ' ', ' '],
-            [' ', ' ', ' '],
-            [' ', ' ', ' '],
+            ['a1', ' ', 'c1'],
+            [' ', 'b2', ' '],
+            ['a3', ' ', 'c3'],
         ]
         print('init', self.rows)
 
@@ -33,28 +33,58 @@ class ListListTTTBoard:
         print('place', self.rows)
         return self.rows
 
+    def create_diagonals_list(self, list_of_rows, list_of_columns):
+        """create list of diagonal areas"""
+        print('\n\nlistrows', list_of_rows)
+        list_of_reversed_columns = [list(reversed(_)) for _ in list_of_columns]
+        print('\n\nreversed', list_of_reversed_columns)
+        indexr = 0
+        diagonalsr = []
+        for listr in list_of_rows:
+            diagonals[0] += listr[indexr]
+            indexr += 1
+        print('diagonals[0]   ', diagonals[0])
+        indexc = 0
+        diagonalsl = []
+        print('item 0:  ', list_of_reversed_columns[0])
+        # for x in list_of_reversed_columns:
+        #     print(x)
+            # diagonals[1] += tuplec[indexc]
+            # indexc += 1
+            # print('tuplec', tuplec[indexc])
+        print(diagonals)
+        return diagonals
+
+
     def won(self):
         """Return which token type won ('X' or 'O') or None if no one
         has won yet."""
-        if self.rows[0][0] == self.rows[1][0] and self.rows[0][0] == self.rows[2][0]:
-            return self.rows[0][0]
-        elif self.rows[0][1] == self.rows[1][1] and self.rows[0][1] == self.rows[2][1]:
-            return self.rows[1][0]
-        elif self.rows[0][2] == self.rows[1][2] and self.rows[0][2] == self.rows[2][2]:
-            return self.rows[2][0]
-        elif self.rows[0][0] == self.rows[0][1] and self.rows[0][0] == self.rows[0][2]:
-            return self.rows[0][0]
-        elif self.rows[1][0] == self.rows[1][1] and self.rows[1][0] == self.rows[1][2]:
-            return self.rows[0][1]
-        elif self.rows[2][0] == self.rows[2][1] and self.rows[2][0] == self.rows[2][2]:
-            return self.rows[0][2]
-        elif self.rows[0][0] == self.rows[1][1] and self.rows[0][0] == self.rows[2][2]:
-            return self.rows[0][0]
-        elif self.rows[2][0] == self.rows[1][1] and self.rows[2][0] == self.rows[0][2]:
-            return self.rows[0][2]
-        else:
-            print('none win condition')
-            return None
+        list_of_rows = list(self.rows)
+        list_of_columns = list(zip(*list_of_rows))
+        diagonals = self.create_diagonals_list(list_of_rows, list_of_columns)
+        print('\n\n diagonals:  ', diagonals)
+
+
+
+        # if self.rows[0][0] == self.rows[1][0] and self.rows[0][0] == self.rows[2][0]:
+        #     return self.rows[0][0]
+        # elif self.rows[0][1] == self.rows[1][1] and self.rows[0][1] == self.rows[2][1]:
+        #     return self.rows[1][0]
+        # elif self.rows[0][2] == self.rows[1][2] and self.rows[0][2] == self.rows[2][2]:
+        #     return self.rows[2][0]
+        # elif self.rows[0][0] == self.rows[0][1] and self.rows[0][0] == self.rows[0][2]:
+        #     return self.rows[0][0]
+        # elif self.rows[1][0] == self.rows[1][1] and self.rows[1][0] == self.rows[1][2]:
+        #     return self.rows[0][1]
+        # elif self.rows[2][0] == self.rows[2][1] and self.rows[2][0] == self.rows[2][2]:
+        #     return self.rows[0][2]
+        # elif self.rows[0][0] == self.rows[1][1]  == self.rows[2][2]:
+        #     return self.rows[0][0]
+        # elif self.rows[2][0] == self.rows[1][1]  == self.rows[0][2]:
+        #     return self.rows[0][2]
+        # else:
+        #     print('none win condition')
+        #     return None
 
     def __str__(self):
         """Returns a string representation of the board.
@@ -67,9 +97,8 @@ class ListListTTTBoard:
         """
 
         rows_as_strings = ['|'.join(_) for _ in self.rows]
-        print('str ', rows_as_strings)
-        print('\n'.join(rows_as_strings)) 
-        return '\n'.join(rows_as_strings)
+        board_strings_plus_carriage_return = '\n'.join(rows_as_strings) + '\n'
+        return board_strings_plus_carriage_return
 
 
 class DictTTTBoard:
@@ -219,7 +248,10 @@ def main():
     # board1 = DictTTTBoard()
     # play(board1)
     board2 = ListListTTTBoard()
-    play(board2)
+    print('before board2:  ', board2)
+    board2.won()
+    print('after board2:  ', board2)
+    # play(board2)
     # board3 = CoordsTTTBoard()
     # play(board3)
 
