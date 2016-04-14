@@ -35,26 +35,20 @@ class ListListTTTBoard:
 
     def create_diagonals_list(self, list_of_rows, list_of_columns):
         """create list of diagonal areas"""
-        print('\n\nlistrows', list_of_rows)
         list_of_reversed_columns = [list(reversed(_)) for _ in list_of_columns]
-        print('\n\nreversed', list_of_reversed_columns)
         indexr = 0
-        diagonalsr = []
-        for listr in list_of_rows:
-            diagonals[0] += listr[indexr]
-            indexr += 1
-        print('diagonals[0]   ', diagonals[0])
-        indexc = 0
-        diagonalsl = []
-        print('item 0:  ', list_of_reversed_columns[0])
-        # for x in list_of_reversed_columns:
-        #     print(x)
-            # diagonals[1] += tuplec[indexc]
-            # indexc += 1
-            # print('tuplec', tuplec[indexc])
-        print(diagonals)
-        return diagonals
+        indexl = 0
+        diagonals = [[], []]
+        for x1, x2 in zip(l, l[1:]):
 
+        for listr in list_of_rows:
+            diagonals[0] += [listr[indexr]]
+            indexr += 1
+        for listl in list_of_reversed_columns:
+            print('listl: ', listl)
+            diagonals[1] += [listl[indexl]]
+            indexl += 1
+        return diagonals
 
     def won(self):
         """Return which token type won ('X' or 'O') or None if no one
@@ -248,9 +242,7 @@ def main():
     # board1 = DictTTTBoard()
     # play(board1)
     board2 = ListListTTTBoard()
-    print('before board2:  ', board2)
     board2.won()
-    print('after board2:  ', board2)
     # play(board2)
     # board3 = CoordsTTTBoard()
     # play(board3)
