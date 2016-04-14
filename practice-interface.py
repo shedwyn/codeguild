@@ -39,8 +39,7 @@ class ListListTTTBoard:
         indexr = 0
         indexl = 0
         diagonals = [[], []]
-        for x1, x2 in zip(l, l[1:]):
-
+        #for x1, x2 in zip(l, l[1:]):
         for listr in list_of_rows:
             diagonals[0] += [listr[indexr]]
             indexr += 1
@@ -56,7 +55,14 @@ class ListListTTTBoard:
         list_of_rows = list(self.rows)
         list_of_columns = list(zip(*list_of_rows))
         diagonals = self.create_diagonals_list(list_of_rows, list_of_columns)
-        print('\n\n diagonals:  ', diagonals)
+        
+        if 'X' in list_of_rows[0:3][0:3]
+
+        elif item in list_of_columns:
+
+        elif item in diagonals:
+
+
 
 
 
