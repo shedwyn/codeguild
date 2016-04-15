@@ -17,23 +17,74 @@ class ListListTTTBoard:
     def __init__(self):
         """Initializes an empty board."""
         self.rows = [
-            [' ', ' ', ' '],
-            [' ', ' ', ' '],
-            [' ', ' ', ' '],
+            ['a1', ' ', 'c1'],
+            [' ', 'b2', ' '],
+            ['a3', ' ', 'c3'],
         ]
+        print('init', self.rows)
 
     def place(self, x, y, player):
         """Places a token on the board at some given coordinates.
-
+        
         0, 0 is the top-left.
         `player` is either 'X' or 'O'
         """
-        pass
+        self.rows[y][x] = player
+        print('place', self.rows)
+        return self.rows
+
+    def create_diagonals_list(self, list_of_rows, list_of_columns):
+        """create list of diagonal areas"""
+        list_of_reversed_columns = [list(reversed(_)) for _ in list_of_columns]
+        indexr = 0
+        indexl = 0
+        diagonals = [[], []]
+        #for x1, x2 in zip(l, l[1:]):
+        for listr in list_of_rows:
+            diagonals[0] += [listr[indexr]]
+            indexr += 1
+        for listl in list_of_reversed_columns:
+            print('listl: ', listl)
+            diagonals[1] += [listl[indexl]]
+            indexl += 1
+        return diagonals
 
     def won(self):
         """Return which token type won ('X' or 'O') or None if no one
         has won yet."""
-        pass
+        list_of_rows = list(self.rows)
+        list_of_columns = list(zip(*list_of_rows))
+        diagonals = self.create_diagonals_list(list_of_rows, list_of_columns)
+        
+        if 'X' in list_of_rows[0:3][0:3]
+
+        elif item in list_of_columns:
+
+        elif item in diagonals:
+
+
+
+
+
+        # if self.rows[0][0] == self.rows[1][0] and self.rows[0][0] == self.rows[2][0]:
+        #     return self.rows[0][0]
+        # elif self.rows[0][1] == self.rows[1][1] and self.rows[0][1] == self.rows[2][1]:
+        #     return self.rows[1][0]
+        # elif self.rows[0][2] == self.rows[1][2] and self.rows[0][2] == self.rows[2][2]:
+        #     return self.rows[2][0]
+        # elif self.rows[0][0] == self.rows[0][1] and self.rows[0][0] == self.rows[0][2]:
+        #     return self.rows[0][0]
+        # elif self.rows[1][0] == self.rows[1][1] and self.rows[1][0] == self.rows[1][2]:
+        #     return self.rows[0][1]
+        # elif self.rows[2][0] == self.rows[2][1] and self.rows[2][0] == self.rows[2][2]:
+        #     return self.rows[0][2]
+        # elif self.rows[0][0] == self.rows[1][1]  == self.rows[2][2]:
+        #     return self.rows[0][0]
+        # elif self.rows[2][0] == self.rows[1][1]  == self.rows[0][2]:
+        #     return self.rows[0][2]
+        # else:
+        #     print('none win condition')
+        #     return None
 
     def __str__(self):
         """Returns a string representation of the board.
@@ -44,7 +95,10 @@ class ListListTTTBoard:
          |X|O
          | |
         """
-        pass
+
+        rows_as_strings = ['|'.join(_) for _ in self.rows]
+        board_strings_plus_carriage_return = '\n'.join(rows_as_strings) + '\n'
+        return board_strings_plus_carriage_return
 
 
 class DictTTTBoard:
@@ -71,7 +125,7 @@ class DictTTTBoard:
             'a3': ' ', 'b3': ' ', 'c3': ' ',
         }
 
-    def place(self, x, y, token):
+    def place(self, x, y, player):
         """Places a token on the board at some given coordinates.
         0, 0 is the top-left.
         `player` is either 'X' or 'O'
@@ -81,13 +135,25 @@ class DictTTTBoard:
         board_col = board_cols[y]
         board_pos = board_col + board_row
         self.pos_to_token[board_pos] = player 
-         
-        pass
+
+        return self.pos_to_token
 
     def won(self):
         """Return which token type won ('X' or 'O') or None if no one
         has won yet."""
         pass
+
+    def create_column_sorted_tokens(self):
+        """sort tokens by column into single list.  return list"""
+        #, reverse=True removed from below
+        sorted_pos_to_token = sorted(self.pos_to_token)
+        column_ordered_tokens = []
+        index_sorted_pos_to_token = 0
+        for move in self.pos_to_token:
+            key_self.pos_to_token = sorted_pos_to_token[index_sorted_pos_to_token]
+            column_ordered_tokens = column_ordered_tokens + [self.pos_to_token[key_selfpos_to_token]]
+            index_sorted_pos_to_token += 1
+        return column_ordered_tokens
 
     def __str__(self):
         """Returns a string representation of the board.
@@ -98,6 +164,17 @@ class DictTTTBoard:
          |X|O
          | |
         """
+        # keys in own list, match string slice [1] for each, cast those triplets
+            # to string (do they live in a list?) and print in reverse order
+            #SPLIT INTO PARALLEL LISTS, FIX THE KEY, RECAST, THEN DO THE LIST
+            #CLASS CODE
+
+        column_sorted_tokens = self.create_column_sorted_tokens()
+
+
+        rows_as_strings = ['|'.join(_) for _ in self.column_sorted_tokens]
+        return '\n'.join(rows_as_strings)
+
         pass
 
 
@@ -124,7 +201,9 @@ class CoordsTTTBoard:
 
         0, 0 is the top-left.
         `player` is either 'X' or 'O'
-        """
+        """ 
+        self.x_y_token_triplets = self.x_y_token_triplets + [(x, y, player)]
+
         pass
 
     def won(self):
@@ -154,6 +233,7 @@ def play(board):
     board.place(0, 0, 'O')
     print(board)
     board.place(1, 0, 'X')
+    print('this', str(board))
     assert str(board) == "O|X| \n |X| \n | | \n"
     print(board)
     board.place(0, 2, 'O')
@@ -165,13 +245,33 @@ def play(board):
 
 
 def main():
-    board1 = DictTTTBoard()
-    play(board1)
+    # board1 = DictTTTBoard()
+    # play(board1)
     board2 = ListListTTTBoard()
-    play(board2)
-    board3 = CoordsTTTBoard()
-    play(board3)
+    board2.won()
+    # play(board2)
+    # board3 = CoordsTTTBoard()
+    # play(board3)
 
 if __name__ == '__main__':
 
     main()
+
+
+# selfpos_to_token = {
+#             'a1': 'O', 'b1': 'X', 'c1': 'O',
+#             'a2': 'O', 'b2': 'X', 'c2': 'X',
+#             'a3': ' ', 'b3': 'O', 'c3': ' ',
+#         }
+
+# sorted_pos_to_token = sorted(selfpos_to_token)
+# print(sorted_pos_to_token)
+# column_ordered_tokens = []
+# index_sorted_pos_to_token = 0
+# for move in selfpos_to_token:
+#     key_selfpos_to_token = sorted_pos_to_token[index_sorted_pos_to_token]
+#     column_ordered_tokens = column_ordered_tokens + [selfpos_to_token[key_selfpos_to_token]]
+#     index_sorted_pos_to_token += 1
+# print(column_ordered_tokens)
+
+
