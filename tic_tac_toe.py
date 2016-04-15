@@ -21,7 +21,6 @@ class ListListTTTBoard:
             [' ', ' ', ' '],
             [' ', ' ', ' '],
         ]
-        print('init', self.rows)
 
     def place(self, x, y, player):
         """Places a token on the board at some given coordinates.
@@ -30,7 +29,6 @@ class ListListTTTBoard:
         `player` is either 'X' or 'O'
         """
         self.rows[y][x] = player
-        print('place', self.rows)
         return self.rows
 
     def create_diagonals_list(self, list_of_rows, list_of_columns):
@@ -60,9 +58,9 @@ class ListListTTTBoard:
         joined_diagonals = [''.join(diagonal) for diagonal in diagonals]
                 
         if 'XXX' in joined_list_of_rows or 'XXX' in joined_list_of_columns or 'XXX' in joined_diagonals:
-                return 'X'
+            return 'X'
         elif 'OOO' in joined_list_of_rows or 'OOO' in joined_list_of_columns or 'OOO' in joined_diagonals:
-                return 'O'
+            return 'O'
         else:
             return None        
 
@@ -213,7 +211,6 @@ def play(board):
     board.place(0, 0, 'O')
     print(board)
     board.place(1, 0, 'X')
-    print('this', str(board))
     assert str(board) == "O|X| \n |X| \n | | \n"
     print(board)
     board.place(0, 2, 'O')
@@ -228,8 +225,7 @@ def main():
     # board1 = DictTTTBoard()
     # play(board1)
     board2 = ListListTTTBoard()
-    board2.won()
-    # play(board2)
+    play(board2)
     # board3 = CoordsTTTBoard()
     # play(board3)
 
