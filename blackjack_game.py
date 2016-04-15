@@ -25,6 +25,7 @@ class Hand:
 
     def calc_hand_score(self):
         """take in hand, tally current hand, return total score"""
+        print('calc_hand_score = ', self.cards)
         rank_to_score = {
             'ace': 1, 
             '2': 2, 
@@ -53,7 +54,8 @@ class Hand:
         """takes new card and hand, adds card to hand, returns new_hand"""
         #deck_cards = deck_cards
         new_card = deck_cards.deal_card()
-        new_hand = self.cards.append(new_card)
+        new_hand = self.cards.append(new_card) # .append does not return anything
+            #, it appends and moves on
 
         return new_hand
 
@@ -115,8 +117,11 @@ def format_single_hand(hand_list):
     """take in list and instatiates into Hand, returns instatiated hand"""
     return Hand(hand_list)
 
-def deal_more_cards(player_score, computer_score, user_hand, computer_hand, deck_cards):
+def deal_more_cards(user_hand, computer_hand, deck_cards):
     """takes in scores, hands, deck.  continues dealing until win or bust.  returns??"""
+    player_score = user_hand.calc_hand_score()
+    computer_score = computer_hand.calc_hand_score()
+    print(user_hand, computer_hand)
     if player_score < 21 and computer_score < 21:
         # user_hand.decide_player_draw_or_hold(deck_cards)   
         draw_answer = input('\nDraw again (D) or Hold (H):  ')
@@ -125,26 +130,13 @@ def deal_more_cards(player_score, computer_score, user_hand, computer_hand, deck
             player_hand = user_hand.add_card_to_hand(deck_cards)
             print('You are now holding these cards:  ', player_hand)
         else:
-            print('\n No draw, Human entity holds')
-        player_hand = player_hand  
+            print('\n No draw, Human entity holds')  
     elif player_score < 21 and computer_score < 17:
         print('\nComputer entity must draw')
         computer_hand = computer_hand.add_card_to_hand(deck_cards)
         print('You are now holding these cards:  ', computer_hand)
-    # elif player_score == 21 and computer_score < 21:
-    #     game_answer = player_win
-    # elif player_score < 21 and computer_score == 21:
-    #     game_answer = computer_win
-    # elif player_score == 21 and computer_score == 21:
-    #     game_answer = tie_win
-    # elif player_score > 21 and comptuer_score > 21:
-    #     game_answer = tie_loss
-    # elif player_score < 21 and computer_score < 21:
-    #     if player_score > computer_score:
-    #         game_answer = player_win
-    #     else:
-    #         game_answer = computer_win
-
+    return determine_winner(player_hand, computer_hand, deck_cards)
+    
 def determine_winner(user_hand, computer_hand, deck_cards):
     """takes in hands, deck, uses if statements to determine 
     winner, returns win statement"""
@@ -152,10 +144,10 @@ def determine_winner(user_hand, computer_hand, deck_cards):
     player_win = textwrap.wrap('Player wins this round!  The computer let you win, you know that, right?', 40)
     tie_win = textwrap.wrap('Unbelievable!  A tie!  We should play best 2 out of 3!', 40)
     tie_loss = textwrap.wrap('Unbelievable!  A tie loss!  How did that happen?!', 40)
+    print(user_hand)
     player_score = user_hand.calc_hand_score()
-
+    print(computer_hand)
     computer_score = computer_hand.calc_hand_score()
-
     game_answer = 'empty line'
     print(
         '\nplayerscore', player_score,
@@ -171,23 +163,18 @@ def determine_winner(user_hand, computer_hand, deck_cards):
         game_answer = tie_win
     elif player_score > 21 and computer_score > 21:
         game_answer = tie_loss
-    elif player_score < 21 and computer_score < 21:
-        if player_score > computer_score:
-            game_answer = player_win
-        else:
-            game_answer = computer_win
+    # elif player_score < 21 and computer_score < 21:
+    #     if player_score > computer_score:
+    #         game_answer = player_win
+    #     else:
+    #         game_answer = computer_win
     else:
-        deal_more_cards(player_score, computer_score, user_hand, computer_hand, deck_cards)
-
-    
-
-
+        deal_more_cards(user_hand, computer_hand, deck_cards)
     return game_answer
 
 def play_game(deck_cards):
     """game play function, returns None"""
-    #deck_cards = deck_cards
-    
+    #deck_cards = deck_cards 
     player_hand = format_single_hand([deck_cards.deal_card(), deck_cards.deal_card()])
     computer_hand = format_single_hand([deck_cards.deal_card(), deck_cards.deal_card()])
     player_score = player_hand.calc_hand_score()

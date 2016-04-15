@@ -8,13 +8,13 @@ def request_initial_word():
 
 def transform_snake_to_camel(word):
     """take word and return it as CamelCase"""
-    return ''.join([_.capitalize() for _ in user_word.split('_')])
+    return ''.join([_.capitalize() for _ in word.split('_')])
 
 
 def transform_camel_to_snake(word):
     """take CamelCase word and return it in snake_case"""
-    split_word = re.findall('[A-Z][^A-Z]*', camel_cased_user_word)
-    return '_'.join(word.lower() for word in split_word)
+    split_word = re.findall('[A-Z][^A-Z]*', word)
+    return '_'.join(_.lower() for _ in split_word)
 
 
 def main():
@@ -34,5 +34,5 @@ def main():
 
     # print(snake_cased_camel_word)
 
-if __name__ == __main__:
+if __name__ == '__main__':
     main()

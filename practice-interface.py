@@ -17,9 +17,9 @@ class ListListTTTBoard:
     def __init__(self):
         """Initializes an empty board."""
         self.rows = [
-            ['a1', ' ', 'c1'],
-            [' ', 'b2', ' '],
-            ['a3', ' ', 'c3'],
+            [' ', ' ', ' '],
+            [' ', ' ', ' '],
+            [' ', ' ', ' '],
         ]
         print('init', self.rows)
 

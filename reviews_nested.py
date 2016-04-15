@@ -10,6 +10,11 @@ class Review:
     def __repr__(self):
         return 'Review({}, {})'.format(self.rating, self.review_text)
 
+    def summarize(self, char_count):
+        return self.review_text[:char_count]
+
+my_review = Review(5, 'Delicious')
+my_review.summarize(3)  #> Del
 
 class Business:
     def __init__(self, business_name, reviews):
