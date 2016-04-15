@@ -172,5 +172,6 @@ def main():
     board3 = CoordsTTTBoard()
     play(board3)
 
+if __name__ == '__main__':
 
-main()
+    main()
