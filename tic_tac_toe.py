@@ -42,7 +42,6 @@ class ListListTTTBoard:
             diagonals[0] += [listr[indexr]]
             indexr += 1
         for listl in list_of_reversed_columns:
-            print('listl: ', listl)
             diagonals[1] += [listl[indexl]]
             indexl += 1
         return diagonals
@@ -109,8 +108,8 @@ class DictTTTBoard:
         `player` is either 'X' or 'O'
         """
         board_cols = ['a', 'b', 'c']
-        board_row = str(x + 1)
-        board_col = board_cols[y]
+        board_row = str(y + 1)
+        board_col = board_cols[x]
         board_pos = board_col + board_row
         self.pos_to_token[board_pos] = player 
 
@@ -131,6 +130,10 @@ class DictTTTBoard:
             key_self.pos_to_token = sorted_pos_to_token[index_sorted_pos_to_token]
             column_ordered_tokens = column_ordered_tokens + [self.pos_to_token[key_selfpos_to_token]]
             index_sorted_pos_to_token += 1
+
+            #use .index and slice?
+
+
         return column_ordered_tokens
 
     def __str__(self):
@@ -222,10 +225,10 @@ def play(board):
 
 
 def main():
-    # board1 = DictTTTBoard()
-    # play(board1)
-    board2 = ListListTTTBoard()
-    play(board2)
+    board1 = DictTTTBoard()
+    play(board1)
+    # board2 = ListListTTTBoard()
+    # play(board2)
     # board3 = CoordsTTTBoard()
     # play(board3)
 
