@@ -1,0 +1,33 @@
+body{
+    background: #FF6200;
+    font-family:"Candara", sans-serif;
+    text-align: center;
+}
+
+.biotext{
+    text-align: justify;
+}
+
+a{
+    color:#3300FF;
+}
+
+.quotes{
+    font-style: italic;
+}
+
+img{
+    border:thick double #B5AED4;
+    border-bottom-left-radius: 0.5em;
+    border-bottom-right-radius: 0.5em;
+    border-top-left-radius: 0.5em;
+    border-top-right-radius: 0.5em;
+}
+
+ul > li{
+    list-style: square inside
+}
+/*ul > li:before{
+    content: "\261e"
+}
+*/
