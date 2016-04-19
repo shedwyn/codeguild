@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><title>Food Survey Form</title></head>
+<link rel="stylesheet" type="text/css" href="food_style.css">
+<body>
+    <header><h1>Food Survey Form</h1></header>
+    <form>
+        <div>
+            <label>First Name<input type="text" name="name"></label>   
+        </div> 
+        <div>
+            <button><em>I'M <a target="_blank" href="EatIt_song.mp3">HUNGRY</a> NOW!</em></button>
+            <!-- how could I get it to play Weird Al song "Eat it", "My Bologna", etc when pressed? JavaScript only, per David -->
+        </div>
+        <div>
+            <br><fieldset>
+            <legend><h2>Food Intake Type:</h2></legend>
+                <input type="radio" name="intaketype" value="omnivore"> Omnivore
+                <input type="radio" name="intaketype" value="pescatarian"> Pescatarian
+                <input type="radio" name="intaketype" value="vegetarian"> Vegetarian
+                <input type="radio" name="intaketype" value="vegan"> Vegan
+                <fieldset>
+                    <legend>Subcategory: </legend>
+                    <label for="raw"><input type="checkbox" name="raw">Raw diet
+                    </label>
+                    <label for="gluten"><input type="checkbox" name="gluten">Gluten free
+                    </label>
+                    <label for="picky"><input type="checkbox" name="picky">Notoriously picky eater
+                    </label>
+                    <label for="carnivore"><input type="checkbox" name="carnivore">Primarily Meat
+                    </label>
+                </fieldset>
+            </fieldset>
+        </div>
+        <div>
+            <fieldset>
+                <legend><h2>Last Night's Dinner:</h2></legend>
+                <label>What was your meal last night?<input type="text" name="dinner"></label>
+                <label>Meal Contained the following:</label>
+                <label for="protein"><input type="checkbox" name="protein">Protein</label>
+                <label for="grain"><input type="checkbox" name="grain">Potato</label>
+                <label for="veggie"><input type="checkbox" name="veggie">Vegetable</label>
+                <label for="cheese"><input type="checkbox" name="cheese">Cheese</label>
+            </fieldset>
+        </div>
+        <div>
+            <fieldset>
+                <legend><h2>I Scream, You Scream...</h2></legend>
+                <label>Choose Your Favorite Flavor:<select>
+                    <legend>Choose your favorite flavors of ice cream:</legend>
+                    <option value="chocolate">Chocolate</option>
+                    <option value="vanilla">Vanilla</option>
+                    <option value="berry">Berry - straw-, black-, blue-, rasp-, etc</option>
+                    <option value="fruit">Fruit - banana, peach, mango, etc</option>
+                    <option value="nut">Nut - filbert, pistachio, almond, etc</option>
+                    <option value="weird">Unusual flavor not listed</option>
+                </select></label>
+            </fieldset>
+        </div>
+        <div>
+            <fieldset>
+                <legend><h2>Short flowery food essay</h2></legend>
+                <label>Describe the best meal that you can remember having:<textarea></textarea></label>
+            </fieldset>
+        </div>
+        <div>
+            <button type="submit">Submit</button>
+        </div>
+    </form>
+</body>
+</html>
