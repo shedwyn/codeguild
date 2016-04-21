@@ -1,11 +1,3 @@
-<!-- Write up a short bio webpage for yourself or someone famous. Include:
-
-A written introduction
-A picture of them (or a placeholder)
-A list of places where they've lived
-A quote from them
-Proper structuring HTML elements -->
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -18,10 +10,12 @@ Proper structuring HTML elements -->
 <body class="flex-container">
 
     <header>
-        <h1>Erin Lynette Fough</h1>
-        <h2><em>aka: 'elf', 'little e'</em></h2>
-        <img src="photoofme.jpg" alt="Photo of Erin with Grand Tetons in Background" class="floatcenter">
-        <h3>Quotable: <p class="quotes">Misanthropy seems a logical (natural?) response to realizing the planet is overpopulated by the single most destructive force our planet has known since the dinosaurs were wiped out.</p><p class="quotes">Life doesn't always offer elegant solutions.  More often, life is a wet cotton string, tangled beyond reason. </p></h3>
+        <div>
+            <h1>Erin Lynette Fough</h1>
+            <h2><em>aka: 'elf', 'little e'</em></h2>   
+            <h3>Quotable: <p class="quotes">Misanthropy seems a logical (natural?) response to realizing the planet is overpopulated by the single most destructive force our planet has known since the dinosaurs were wiped out.</p><p class="quotes">Life doesn't always offer elegant solutions.  More often, life is a wet cotton string, tangled beyond reason. </p></h3>
+        </div>
+        <img src="photoofme.jpg" alt="Photo of Erin with Grand Tetons in Background">
     </header>
 
     <section>
@@ -37,7 +31,7 @@ Proper structuring HTML elements -->
     <div class="biotext">
         <h2>History:</h2>
         <h3>Early Years:</h3>
-        <section class="flex-container">
+        <section class="flex-container" id="early-yrs">
             <img src="ChevyVan.jpg" alt="Green '69 Chevy Van" id="vanphoto">
             <div>
                 <p>I was born in Stayton, OR to Ralph D. (teacher/network admin) and Patricia A. Fough (bookkeeper/librarian).  Raised in a rural area to aspiring middle-class parents, there were noticeable but unacknowledged conflicts between the liberal middle-class values I was learning at home (thanks to parents <em>and</em> television) and the more conservative values of those working-class farmers and cannery workers. As a child I was unaware that what many of my friends were experiencing was rural poverty.  Drugs, domestic violence, child abuse, high unemployment, and racism surrounded me but somehow I was either unaware of or shielded from them.</p>
@@ -51,6 +45,7 @@ Proper structuring HTML elements -->
             <p>But although I was scratching my itchy feet, my mind has never been satisfied, which is, I suppose, how I ended up in code school.</p>
         </section>
     </div>
+    <!-- <div class="nonbiogradient"> -->
     <h2>USA States Traveled:</h2>
     <section class="flex-container">
         <ul>
@@ -61,8 +56,8 @@ Proper structuring HTML elements -->
         </ul>
         <ul>
             <h3>Midwestern</h3>
-            <li>Iowa</li><li>Nebraska</li><li>Kansas</li>
-            <li>Minnesota</li><li>Wisconsin</li>
+            <li>Illinois</li><li>Nebraska</li><li>Kansas</li>
+            <li>Minnesota</li><li>Wisconsin</li><li>Iowa</li>
         </ul>
         <ul>
             <h3>Texas</h3>
@@ -87,10 +82,10 @@ Proper structuring HTML elements -->
     </section>
 
     <footer>
-        <p>Created by Erin L. Fough</p>
-        <p>Links to Instagram and Linked In</p>
+        <p class="footer-left">Created by Erin L. Fough</p>
+        <p class="footer-right">Links to Instagram and Linked In</p>
     </footer>
-
+    <!-- </div> -->
 </body>
 
 
