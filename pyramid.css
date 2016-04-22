@@ -73,7 +73,7 @@ figure height from inside out
         </div>*/
 
 div{
-    width: 100%;
+    /*width: 100%;*/
     height: 100px;
     margin: 20px 20px;
     border: 1px solid black;
@@ -83,8 +83,10 @@ div div{
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
+    width: 100%;
     height: 80px;
     margin: 10px 10px;
+    padding: 2px;
     border: 1px solid black;
     text-align: justify;
     background: #FFD000;
@@ -100,11 +102,11 @@ div div{
 }
 #center-left{
     /*margin-right: auto;*/
-    width: 80%;
+    flex: 4;
 }
 #center-right{
     /*margin-left: auto;*/
-    width: 20%;
+    flex: 1
 }
 #bottom-left{
     margin-right: auto;
