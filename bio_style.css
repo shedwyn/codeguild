@@ -1,9 +1,14 @@
-/*Keep your bio's HTML as bio.html and enhance your style sheet already in bio.css.
 
-Let's practice using layout in your bio:
 
-Modify the padding and margins on your paragraphs to look better.
-*/
+/*DAVID:  Sorry, but I could not figure out how to make a float work
+in the flex box and it seemed like a duplication of effort anyway.  
+I really struggled with the css stuff, not just because it was new
+but I really could not stay focused on it.  I found it incredibly
+nitpicky and dull.  Sorry, but that is how I feel and I decided
+to cut it short and work on my capstone or other programming stuff
+instead.  I looked at the media thing, but the instructions I could
+find were really eye-crossingly dull and infuriatingly unhelpful*/
+
 
 /* http://meyerweb.com/eric/tools/css/reset/ 
    v2.0 | 20110126
@@ -94,6 +99,8 @@ header{
     text-align: center;
     background: linear-gradient(to bottom right, #FF6200, #FCF805)
 }
+/*header image distortion is as a result of the camera used (the front facing
+camera available on my smartphone) and not the result of code*/
 header img{
     margin-right: 0.5em
 }
