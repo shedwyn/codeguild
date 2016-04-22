@@ -1,0 +1,121 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+/*NOTE:  Erin remove h1-h6, ul, p and strong from list below*/
+
+html, body, div, span, applet, object, iframe, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+    display: block;
+}
+body {
+    line-height: 1;
+}
+ol, ul {
+    list-style: none;
+}
+blockquote, q {
+    quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+    content: '';
+    content: none;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+/*all divs are full width
+each div is 100px high
+all inner boxes are full height of row
+10px margin for inner boxes
+20px margin for 3 main divs
+1px black border for all
+
+figure width from the bottom up
+figure height from inside out
+
+        <div>
+            one block
+        </div>
+            
+        <div>
+            two blocks 4:1 ratio - block 4
+            two blocks 4:1 ratio - block 1
+        </div>
+
+        <div>
+            3 inner blocks, each 20%, justified
+            3 inner blocks, each 20%, justified
+            3 inner blocks, each 20%, justified
+        </div>*/
+
+div{
+    width: 100%;
+    height: 100px;
+    margin: 20px 20px;
+    border: 1px solid black;
+    background: #00FFE1;
+}
+div div{
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    height: 80px;
+    margin: 10px 10px;
+    border: 1px solid black;
+    text-align: justify;
+    background: #FFD000;
+}
+.flex-container{
+    display:flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+
+}
+#center-left{
+    /*margin-right: auto;*/
+    width: 80%;
+}
+#center-right{
+    /*margin-left: auto;*/
+    width: 20%;
+}
+#bottom-left{
+    margin-right: auto;
+    width: 20%;
+}
+#bottom-center{
+    margin-right: auto;
+    margin-left: auto;
+    width: 20%;
+}
+#bottom-right{
+    margin-left: auto;
+    width: 20%;
+}
