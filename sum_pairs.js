@@ -2,32 +2,28 @@
 
 var findSumPairs = function(pairs, pairSum){
     var finalResult = [];
-    for (var i = 0; i < pairs.length; i += 1) {
-            if (pairs[i] + pairs[i - 1] === pairSum){
-                finalResult.push([pairs[i], pairs[i - 1]])
-            }
-        };
     for (var i = 0; i < pairs.length; i += 1) { //while i < pairs.length
-        var upNum = i + 1
-        sum (i + (upNum)) upNumuntil upNum === pairs.length
-        then sum (i + 1) + ((i + 1)) +1) until ((i+1)+ 1) === pairs.length
-        then sum ((i + 1)) +1) + (((i + 1)) +1)+1) until (((i + 1)) +1)+1)
-
-        if (pairs[i] + pairs[i - (pairs.length)] === pairSum){
-            finalResult.push([pairs[i], pairs[i - 1]])
-        }
-        else if (pairs[i] + pairs[i - (pairs.length -1)] === pairSum){
-            finalResult.push([pairs[i], pairs[i - 1]])
-        }
+        var secondI = i + 1;
+        for (i; secondI <= pairs.length; secondI += 1){
+            if (pairs[i] + pairs[secondI] === pairSum){
+                finalResult.push([pairs[i], pairs[secondI]])
+            };
+        };
     };
     return finalResult;
 };
 
-console.log(findSumPairs([-1, 0, 1, 2], 3)); // 6 unique combos
-console.log(findSumPairs([-1, 0, 1, 2], 1)); // 6 unique combos
-console.log(findSumPairs([2, -1, 2], 1); // 5 unique combos
-console.log(findSumPairs([-1, 1, 2, 2], 3); // 6 unique combos
+console.dir(findSumPairs([-1, 0, 1, 2], 3)); // 6 unique combos
+console.dir(findSumPairs([-1, 0, 1, 2], 1)); // 6 unique combos
+console.dir(findSumPairs([2, -1, 2], 1)); // 5 unique combos
+console.dir(findSumPairs([-1, 1, 2, 2], 3)); // 6 unique combos
 
+
+// for (var i = 0; i < pairs.length; i += 1) {
+    //         if (pairs[i] + pairs[i - 1] === pairSum){
+    //             finalResult.push([pairs[i], pairs[i - 1]])
+    //         }
+    //     };
 
 // This is how you can approach these problems in general on your own:
 
