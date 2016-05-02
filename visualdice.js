@@ -8,7 +8,8 @@ function rollSingleDie(){
 }
 function createDieImage(dieValue){
     var dieImageLocation = diceImages[dieValue];
-    return $("<img>").attr("src", dieImageLocation)
+    var rawImage = $("<img>").attr("src", dieImageLocation);
+    return $("<a></a>").append(rawImage).attr("href", "")
 }
 function addDieToDiceArea(){
     var numberOfRolls = getNumberToRoll();
@@ -33,14 +34,16 @@ function tallyHand(dieRolls){
 function initiateFullRoll(){
     $("form").on("submit", function (event){
         event.preventDefault();
-        $("#diceArea").empty()
+        $("#diceArea").empty();
         var dieRolls = addDieToDiceArea();
         tallyHand(dieRolls);
     })
 }
 function deleteSingleDie(){
-}
-function eraseEntireHand(){
+    $("a").on("click", function (event){
+        event.preventDefault();
+        $("#diceArea").remove("a");
+    })
 }
 var diceImages = {
     "1":"http://www.wpclipart.com/recreation/games/dice/.cache/die_face_1.png",
