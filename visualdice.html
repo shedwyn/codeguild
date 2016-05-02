@@ -8,7 +8,6 @@
 </head>
 
 <body>
-    <script src="http://underscorejs.org/underscore.js"></script>
     <form>
         <p>This is the form section for inputs.</p><p>A random number selection between 1 and 6 will be done a single time (in a for loop) and repeat the number of times you put in the input box below.</p>
         <input id="numberToRoll"><input type="submit" value="Roll">
@@ -17,8 +16,9 @@
         
     </div>
     <div>
-        <p id="handTally">This is the div that contains the total of all the dice shown above.  If a die above is re-rolled individually, this total will recalculate based on the number currently in the "hand"</p>
+        <p id="handTally"></p>
     </div>
+    <script src="http://underscorejs.org/underscore.js"></script>
     <script src="http://code.jquery.com/jquery-2.2.3.js"></script>
     <script src="visualdice.js"></script>
 

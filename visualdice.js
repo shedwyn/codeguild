@@ -6,28 +6,36 @@ function getNumberToRoll(){
 function rollSingleDie(){
     return _.random(1, 6)
 }
-function createDieImage(){
-    var dieImageLocation = diceImages[rollSingleDie()];
+function createDieImage(dieValue){
+    var dieImageLocation = diceImages[dieValue];
     return $("<img>").attr("src", dieImageLocation)
 }
 function addDieToDiceArea(){
     var numberOfRolls = getNumberToRoll();
+    var dieRolls = [];
     for (var i = 0; i < numberOfRolls; i += 1) {
-        $("#diceArea").append(createDieImage());
+        var dieValue = rollSingleDie();
+        dieRolls.push(dieValue);
+        $("#diceArea").append(createDieImage(dieValue));
     };
-    console.log("addDieToDiceArea ran if this prints to console")
     //Adding children to parent section
+    return dieRolls
 }
-function tallyHand(){
-    var parent = $("#diceArea");
-    var childCount = parent.children().length;
-    $("#tallyHand").text("Simple Dice Score:  " + childCount);
+function tallyHand(dieRolls){
+    var diceTally = _.reduce(
+        dieRolls,
+        function (runningTotal, item) {
+            return runningTotal + item;
+        },
+        0);
+    $("#handTally").text("Simple Dice Score:  " + diceTally);
 }
 function initiateFullRoll(){
     $("form").on("submit", function (event){
         event.preventDefault();
-        addDieToDiceArea();
-        tallyHand();
+        $("#diceArea").empty()
+        var dieRolls = addDieToDiceArea();
+        tallyHand(dieRolls);
     })
 }
 function deleteSingleDie(){
