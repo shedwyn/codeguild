@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Erin Fough's bio page</title>
+    <title>Visual_Dice - aka 'David's clever method to get everyone to play Farkle'</title>
     <link rel="stylesheet" type="text/css" href="visualdice.css">
 </head>
 
@@ -15,15 +15,20 @@
     <div id="diceArea">
         <p>This is where your dice will display when rolled; each die will be contained within its own div and when user clicks it, that one will be removed from "hand" and the process of rolling will be implemented again for that single die.</p>
         <p>To re-roll all the dice, click the button "roll" above to remove all these dice from the "hand" and roll an entirely new set</p>
+        <img src="http://www.wpclipart.com/recreation/games/dice/.cache/die_face_1.png">
+        <img src="http://www.wpclipart.com/recreation/games/dice/.cache/die_face_2.png">
+        <img src="http://www.wpclipart.com/recreation/games/dice/.cache/die_face_3.png">
+        <img src="http://www.wpclipart.com/recreation/games/dice/.cache/die_face_4.png">
+        <img src="http://www.wpclipart.com/recreation/games/dice/.cache/die_face_5.png">
+        <img src="http://www.wpclipart.com/recreation/games/dice/.cache/die_face_6.png">
     </div>
     <div>
-        <p>This is the div that contains the total of all the dice shown above.  If a die above is re-rolled individually, this total will recalculate based on the number currently in the "hand"</p>
+        <p id="handTally">This is the div that contains the total of all the dice shown above.  If a die above is re-rolled individually, this total will recalculate based on the number currently in the "hand"</p>
     </div>
+    <script src="http://code.jquery.com/jquery-2.2.3.js"></script>
+    <script type="http://underscorejs.org/underscore.js"></script>
+    <script src="visualdice.js"></script>
 </body>
-<!-- // Give the user a number input box with a button "roll". When they click that 
-    // button, make that many 6-sided dice appear on the screen.
-// The dice should appear visually as dice, although for testing you can just 
-    // start with numbers. Come up with any reasonable way to display the visual dice.
-// If the user clicks any of the dice, it re-rolls just that one. If they re-click 
-    // the roll button, erase the dice and roll new ones.
-// At the bottom of the screen, show the sum of all the dice currently out. -->
+<!-- The dice should appear visually as dice, although for testing you can just 
+    start with numbers. Come up with any reasonable way to display the visual dice.
+At the bottom of the screen, show the sum of all the dice currently out. -->

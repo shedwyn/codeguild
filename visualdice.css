@@ -2,3 +2,14 @@ div {
     border-top: 1px solid black;
     margin-top: 10px
 }
+img {
+    display: block;
+}
+#diceArea {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-content: flex-start;
+    align-items: flex-start;
+}
