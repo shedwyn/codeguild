@@ -8,10 +8,55 @@
 figure height from inside out*/
 
 body{
-    display: flex;
+  font-family:"Candara", sans-serif;
+}
+h1{
+  margin-left: 0.25em;
+}
+section{
+
+}
+p {
+  text-align: justify;
+  margin: 0.5em 0.5em 0.5em 0.5em;
+}
+
+nav{
+
+}
+img{
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+  max-width: 100%;
+  max-height: 100%;
+}
+.sideleft{
+    float: left;
+
+    width: 20%;
+    background-color: green;
+}
+.sideright{
+  background-color: orange;
+  margin-left: 20%;
+}
+.flexsection{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-content: flex-start;
+  align-items: flex-start;
+}
+.flexsection p {
+  flex: 1;
+}
+    
+    /*margin: 0 0;*/
+    /* display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
-    justify-content: flex-start;
+    justify-content: center;
     align-content: flex-start;
-    align-items: flex-start;
-}
+    align-items: center;*/
