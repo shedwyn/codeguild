@@ -15,6 +15,7 @@ function addDieToDiceArea(){
     for (var i = 0; i < numberOfRolls; i += 1) {
         $("#diceArea").append(createDieImage());
     };
+    console.log("addDieToDiceArea ran if this prints to console")
     //Adding children to parent section
 }
 function tallyHand(){
@@ -41,7 +42,10 @@ var diceImages = {
     "5":"http://www.wpclipart.com/recreation/games/dice/.cache/die_face_5.png",
     "6":"http://www.wpclipart.com/recreation/games/dice/.cache/die_face_6.png",
 };
-console.log(addDieToDiceArea(2));
+$(document).ready(function(){
+    //this could be the equivalent of jquery main
+    initiateFullRoll();
+});
 // Give the user a number input box with a button "roll". When they click that 
     // button, make that many 6-sided dice appear on the screen.
 // The dice should appear visually as dice, although for testing you can just 
