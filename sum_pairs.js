@@ -3,8 +3,7 @@
 var findSumPairs = function(pairs, pairSum){
     var finalResult = [];
     for (var i = 0; i < pairs.length; i += 1) { //while i < pairs.length
-        var secondI = i + 1;
-        for (i; secondI <= pairs.length; secondI += 1){
+        for (var secondI = i + 1; secondI <= pairs.length; secondI += 1){
             if (pairs[i] + pairs[secondI] === pairSum){
                 finalResult.push([pairs[i], pairs[secondI]])
             };

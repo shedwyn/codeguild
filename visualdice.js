@@ -12,6 +12,10 @@ function createDieImage(dieValue){
     return $("<a></a>").append(rawImage).attr("href", "")
 }
 function addDieToDiceArea(){
+    //May need to move some things into sep functions
+    // in order to get click single die to work because
+    // the tally is being run on a list.  Might need to
+    //change how the tally is being run
     var numberOfRolls = getNumberToRoll();
     var dieRolls = [];
     for (var i = 0; i < numberOfRolls; i += 1) {
@@ -42,7 +46,9 @@ function initiateFullRoll(){
 function deleteSingleDie(){
     $("a").on("click", function (event){
         event.preventDefault();
-        $("#diceArea").remove("a");
+        //presently, this code is removing ALL anchors and their data, 
+        //not just the one clicked
+        this.remove("a");//not sure, #diceArea in first paren did not work
     })
 }
 var diceImages = {

@@ -33,7 +33,35 @@ for (var i = 0; i < agesOnly.length; i += 1) {
 var brokenDict = [];
 for (var age in ageToCount)
     brokenDict.push([age, ageToCount[count]]);
-brokenDict.sort(function(a, b) {return a[1] - b[1]});
-console.log("final ageToCount print", ageToCount);
-console.log("brokenDict", brokenDict)
+var brokenDictSorted = brokenDict.sort(function(a, b) {return a[1] - b[1]});
 
+console.log("final ageToCount print", ageToCount);
+console.log("brokenDict", brokenDictSorted)
+
+// Credit for below to Peter Dziuba:, thought his solution might
+// be more efficient, but needs time to study
+// var my_ob = {};
+// for (var name in namesToAges) {
+//     var tracker = namesToAges[name];
+//     if (tracker in my_ob) {
+//         my_ob[tracker] += 1;
+//     }
+//     else {
+//         my_ob[tracker] = 1;
+//     }
+// };
+// ​
+// var sortable = {};
+// for (var number in my_ob) {
+//     var flipper = my_ob[number]
+//     sortable[flipper] = number;
+// };
+// ​
+// var sort_array = [];
+// for (var count in sortable) {
+//     sort_array.push(count)
+// };
+// ​
+// sort_array.sort(function(a, b){return a-b});
+// var final_number = sort_array[0];
+// console.log(sortable[final_number]);

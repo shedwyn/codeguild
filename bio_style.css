@@ -1,91 +1,8 @@
-
-
-/*DAVID:  Sorry, but I could not figure out how to make a float work
-in the flex box and it seemed like a duplication of effort anyway.  
-I really struggled with the css stuff, not just because it was new
-but I really could not stay focused on it.  I found it incredibly
-nitpicky and dull.  Sorry, but that is how I feel and I decided
-to cut it short and work on my capstone or other programming stuff
-instead.  I looked at the media thing, but the instructions I could
-find were really eye-crossingly dull and infuriatingly unhelpful*/
-
-
-/* http://meyerweb.com/eric/tools/css/reset/ 
-   v2.0 | 20110126
-   License: none (public domain)
-*/
-
-/*NOTE:  Erin remove h1-h6, ul, p and strong from list below*/
-
-html, body, div, span, applet, object, iframe, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed, 
-figure, figcaption, footer, header, hgroup, 
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
-    margin: 0;
-    padding: 0;
-    border: 0;
-    font-size: 100%;
-    font: inherit;
-    vertical-align: baseline;
-}
-/* HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure, 
-footer, header, hgroup, menu, nav, section {
-    display: block;
-}
-body {
-    line-height: 1;
-}
-ol, ul {
-    list-style: none;
-}
-blockquote, q {
-    quotes: none;
-}
-blockquote:before, blockquote:after,
-q:before, q:after {
-    content: '';
-    content: none;
-}
-table {
-    border-collapse: collapse;
-    border-spacing: 0;
-}
 *:before,
 *:after {
   -webkit-box-sizing: border-box;
      -moz-box-sizing: border-box;
           box-sizing: border-box;
-}
-body.flex-container{
-    display:flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    /*flex-wrap: nowrap;
-    justify-content: center;
-    align-content: center;
-    align-items: center;*/
-}
-
-section.flex-container{
-    display:flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    justify-content: flex-start;
-    align-content: flex-start;
-    align-items: baseline;
-}
-.flex-container div{
-    margin: auto 10px;    
 }
 header{
     display: flex;
@@ -93,26 +10,24 @@ header{
     flex-wrap: nowrap;
     justify-content: flex-start;
     align-content: flex-start;
-    align-items: baseline;
-    width: 100%;
-    margin: 1px auto;
-    text-align: center;
+    align-items: flex-start;
     background: linear-gradient(to bottom right, #FF6200, #FCF805)
 }
 /*header image distortion is as a result of the camera used (the front facing
 camera available on my smartphone) and not the result of code*/
-header img{
-    margin-right: 0.5em
-}
 body{
     background: linear-gradient(to top right, #FCF805, #FF6200); /*#FCF805;*/
     font-family:"Candara", sans-serif;
-    /*width: 90%;*/
-/*    margin: 0px auto;
-    text-align: center*/
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 section{
     /*width: 90%;*/
+}
+header section{
+    flex: 4;
 }
 a{
     color:#30F;
@@ -123,10 +38,16 @@ img{
     width: 200px;
     max-width:30%;
     height: auto;
-    /*border-bottom-left-radius: 0.5em;
+    /* to round just the corners do this:
+    border-bottom-left-radius: 0.5em;
     border-bottom-right-radius: 0.5em;
     border-top-left-radius: 0.5em;
     border-top-right-radius: 0.5em;*/
+}
+header img{
+    display: block;
+    flex: 1;
+    margin: 0.5em;
 }
 footer {
     display:flex;
@@ -134,11 +55,6 @@ footer {
     flex-wrap: nowrap;
     width: 100%;
     justify-content: space-around;
-    /*align-content: flex-start;
-    align-items: center;*/
-}
-footer p{
-    /*display:inherit;*/
 }
 ul > li{
     list-style: square inside;
@@ -153,17 +69,29 @@ h3{
     text-align: center;
     clear: both;
 }
+header h3 p {
+    text-align: justify;
+    padding-right: 1em;
+    padding-left: 1em;
+    font-style: italic;
+}
+section.flex-container{
+    display:flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-content: flex-start;
+    align-items: baseline;
+}
+.flex-container div{
+    margin: auto 10px;    
+}
 .biotext p{
     text-align: justify;
 }
-.quotes{
-    font-style: italic;
-}
-
 .bioclear{
     clear: both;
 }
-
 .left-half {
     /*position: absolute;*/
     margin: 10px 10px;
@@ -190,12 +118,10 @@ h3{
 #float-self{
     float: right;
 }
-#vanphoto{
-    /*margin-top: 50%*/
-}
 #early-yrs{
     align-items: center
 }
+
 /*up vote
 2
 down vote
