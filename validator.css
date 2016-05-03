@@ -1,5 +1,9 @@
+body {
+    font-family: Tahoma, Geneva, sans-serif
+}
+
 input {
-    background-color: #ABE6FF;
+    background-color: lightblue;
     
 }
 #submitButton {

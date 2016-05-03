@@ -32,7 +32,6 @@ function checkFullName(){
         checkNameCapital(fullName)
     ]
     console.log(nameConditions)
-    console.log("checkFullName was run")
     if (nameConditions[0] === true){
         return true
     }
@@ -48,16 +47,26 @@ function checkFullName(){
     }
     console.log("if statements were skipped")
 }
+function formatWarningNotice(){
+    var warningNotice = $("<p></p>").text("WARNING!  You are in danger! The field " +
+        "you have been editing is incorrect.  Take a look at the fields highlighted " +
+        "in YELLOW and try to correct them.  We STRONGLY recommend you do so..." +
+        "immediately.")
+        .css("background-color", "yellow")
+    return warningNotice
+
+}
 function checkNameOnChange() {
     $("#fullName").on("change", function(event){
         event.preventDefault();
         if (checkFullName() === false) {
-            $("#fullName").css("background-color", "red")
+            $("#fullName").css("background-color", "yellow");
+            $("#warnings").append(formatWarningNotice());
         }
         else {
-            $("#fullName").css("background-color", "#ABE6FF")
+            $("#fullName").css("background-color", "lightblue");
+            $("#warnings").empty()
         }
-        console.log("Ran the stuff")
     })
 }
 function checkBirthDate(){
@@ -73,6 +82,8 @@ function formatApprovalNotice(){
         "accepted.  Unfortunately, you are now above the age of mandatory death.  " +
         "A team of mutant giraffes has been deployed to your present location to " +
         "terminate you.  Have a nice day.")
+        .css("background-color", "green")
+    return approvalNotice
     //approvalNotice.css("background-color", "green")
 }
 function formatMalformNotice(){
@@ -81,6 +92,8 @@ function formatMalformNotice(){
         "cannot be ignored.  A team of ninjas ('assassin' being redundant) is now " +
        "being deployed to your location and death will come on swift sword, or" +
         "nunchucks, we do not like to micro-manage.  END OF WARNING STATEMENT.")
+        .css("background-color", "red")
+    return malformNotice
     //malformNotice.css("background-color", "red")
 }
 function formatSubmitButton(){
@@ -88,13 +101,13 @@ function formatSubmitButton(){
 }
 function validateForm(){
     // posts a success or error notice
-    if (checkFullName === false) {
-
+    if (checkFullName() === false) {
+        $("#warnings").append(formatMalformNotice())
     }
-    else if (checkBirthDate === false) {
-
+    else if (checkBirthDate() === false) {
+        $("#warnings").append(formatMalformNotice())
     }
-    else if (checkPhoneNum === false) {
+    else if (checkPhoneNum() === false) {
         $("#warnings").append(formatMalformNotice())
     }
     else {
