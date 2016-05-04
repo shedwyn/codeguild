@@ -55,7 +55,7 @@ function checkNameCapital(namesList){
 function checkFullName(){
     var fullName = $("#fullName").val();
     var namesList = fullName.split(" ");
-    var fieldName = "Full Name (First Last)"
+    var fieldName = "Full Name"
     if (checkFieldEmpty(fullName) === true){
         $("#warnings").empty();
         return true
@@ -81,12 +81,22 @@ function checkFullName(){
     }
 }
 function checkBirthDate(){
-    var regexLayout = "^(\d{4})(\-)(\d{2})(\-)(\d{2})$"
+    var regexLayout = /^(\d{4})(\-)(\d{2})(\-)(\d{2})$/
+    var birthDate = $("#birthDate").val()
+    var fieldName = "Birth Date"
+    console.log(birthDate.match(regexLayout))
+    if (!(birthDate.match(regexLayout))) {
+        $("#birthDate").css("background-color", "yellow");
+        $("#warnings").append(formatWarningNotice(fieldName));
+        return false
+    }
+    else {
+        return true
+    }
 }
-
 function checkPhoneNum(){
     // 555-555-5555
-    //return true or false
+    //^(\d{3})(\-)(\d{3})(\-)(\d{4})$
 }
 function formatWarningNotice(fieldName){
     var warningNotice = $("<p></p>").text("WARNING!  You are in danger! The " + fieldName +
@@ -95,11 +105,11 @@ function formatWarningNotice(fieldName){
         .css("background-color", "yellow")
     return warningNotice
 }
-function onNameFieldChange() {
-    $("#fullName").on("change", function(event){
+function onFieldBlur(id, fieldCheck) {
+    $("#id").on("blur", function(event){
         event.preventDefault();
         $("#warnings").empty();
-        checkFullName();
+        fieldCheck;
     })
 }
 function formatApprovalNotice(){
@@ -140,7 +150,6 @@ function checkFieldsNotEmpty(){
         return true
     }
 }
-    
 function validateForm(){
     // posts a success or error notice
     $("#warnings").empty();
@@ -161,10 +170,9 @@ function validateForm(){
     }
 }
 function mainFunction(){
-    checkFullName();
-    onNameFieldChange();
-    checkBirthDate();
-
+    $("#fullName").on("change", onFieldBlur(fullName, checkFullName()));
+    $("#birthDate").on("change", onFieldBlur(birthDate, checkBirthDate()));
+    $("phoneNum").on("change", onFieldBlur(phoneNum, checkPhoneNum()));
     $("form").on("submit", function (event){
         event.preventDefault();
         validateForm();
