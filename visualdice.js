@@ -6,25 +6,31 @@ function getNumberToRoll(){
 function rollSingleDie(){
     return _.random(1, 6)
 }
-function createDieImage(dieValue){
-    var dieImageLocation = diceImages[dieValue];
-    var rawImage = $("<img>").attr("src", dieImageLocation);
-    return $("<a></a>").append(rawImage).attr("href", "")
+function fetchDieImageURL(dieValue) {
+    return diceImages[dieValue]
 }
-function addDieToDiceArea(){
-    //May need to move some things into sep functions
-    // in order to get click single die to work because
-    // the tally is being run on a list.  Might need to
-    //change how the tally is being run
+function makeDieImage(dieValue){
+    return $("<img>").attr("src", fetchDieImageURL(dieValue))   
+}
+function createSingleDie(dieValue, idNum){
+    return $("<a></a>").append(makeDieImage(dieValue)).attr("href", "").attr("id", "dice-" + idNum)
+}
+function createDieRollsArray(){
     var numberOfRolls = getNumberToRoll();
     var dieRolls = [];
     for (var i = 0; i < numberOfRolls; i += 1) {
         var dieValue = rollSingleDie();
         dieRolls.push(dieValue);
-        $("#diceArea").append(createDieImage(dieValue));
+        // $("#diceArea").append(createSingleDie(dieValue, i))
     };
-    //Adding children to parent section
     return dieRolls
+}
+function addDieToDiceArea(dieRolls) {
+    //Adding children to parent section
+    for (var i = 0; i < dieRolls.length; i += 1) {
+        var dieValue = dieRolls[i];
+        createSingleDie(dieValue, i);
+    }
 }
 function tallyHand(dieRolls){
     var diceTally = _.reduce(
@@ -39,18 +45,39 @@ function initiateFullRoll(){
     $("form").on("submit", function (event){
         event.preventDefault();
         $("#diceArea").empty();
-        var dieRolls = addDieToDiceArea();
+        var dieRolls = createDieRollsArray;
+        addDieToDiceArea(dieRolls);
         tallyHand(dieRolls);
+
     })
 }
-function deleteSingleDie(){
-    $("a").on("click", function (event){
-        event.preventDefault();
-        //presently, this code is removing ALL anchors and their data, 
-        //not just the one clicked
-        this.remove("a");//not sure, #diceArea in first paren did not work
-    })
+function getIndexOfDice() {
+    var diceIndex;
+    return diceIndex 
 }
+function addSingleDiceToDiceArea(dieValue, indexNum) {
+    return $("#diceArea").append(createSingleDie(dieValue,indexNum))
+}
+function getNewDiceValue() {
+    var newDiceValue = rollSingleDie();
+}
+function replaceDiceInDieRolls(dieRolls, indexNum, newDiceValue) {
+    return dieRolls[indexNum] = newDiceValue
+}
+// function clickChangeSingleDie() {
+//     $("a").on("click", "img", function (event){
+//         console.log("yes, clicked")
+//         event.preventDefault();
+//         // UNNAMEDFUNCTION HERE
+// })
+// function changeSingleDie(){
+//     $("a").on("click", "img", function (event){
+//         console.log("yes, clicked")
+//         event.preventDefault();
+//         // var anchorAttributes = this.attr();
+//         // console.log(anchorAttributes);//not sure, #diceArea in first paren did not work
+//     } )
+// }
 var diceImages = {
     "1":"http://www.wpclipart.com/recreation/games/dice/.cache/die_face_1.png",
     "2":"http://www.wpclipart.com/recreation/games/dice/.cache/die_face_2.png",
@@ -61,12 +88,9 @@ var diceImages = {
 };
 $(document).ready(function(){
     //this could be the equivalent of jquery main
+    var dieRolls = createDieRollsArray();
     initiateFullRoll();
-});
-// Give the user a number input box with a button "roll". When they click that 
-    // button, make that many 6-sided dice appear on the screen.
-// The dice should appear visually as dice, although for testing you can just 
-    // start with numbers. Come up with any reasonable way to display the visual dice.
-// If the user clicks any of the dice, it re-rolls just that one. If they re-click 
-    // the roll button, erase the dice and roll new ones.
-// At the bottom of the screen, show the sum of all the dice currently out.
+    // clickChangeSingleDie();
+})
+// $(document).on("click", ".pageNumControl", function(){
+//     var pageNum=$(".pageNumControl").html();
