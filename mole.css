@@ -1,0 +1,32 @@
+*:before,
+*:after {
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+}
+body {
+    font-family: "Trebuchet MS", Helvetica, sans-serif;
+}
+header {
+    border: 1px solid black;
+    background-color: "green"
+}
+footer {
+    border: 1px solid black;
+    background-color: "green"
+}
+section {
+    border: 1px solid black;
+}
+.row {
+    display: flex;
+}
+.row section{
+    width: 20%;
+}
+#playArea {
+    /*border: 1px solid black;*/
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
