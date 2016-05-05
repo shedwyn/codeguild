@@ -1,5 +1,15 @@
 "use strict";
-
+//inputs
+function fetchFullNameInput(){
+    return $("#fullName").val()
+}
+function fetchBirthDateInput(){
+    return $("#birthDate").val()
+}
+function fetchPhoneNumInput(){
+    return $("#phoneNum").val()
+}
+//transform
 function checkFieldEmpty(anyObject){
     if (anyObject !== "") {
         return false
@@ -33,6 +43,7 @@ function checkNameCapital(namesList){
     }
 }
 function checkFullName(fullName){
+    // needs check for alpha characters
     var namesList = fullName.split(" ");
     var fieldName = "Full Name"
     if (checkFieldEmpty(fullName) === false && checkNameCount(namesList) === false || 
@@ -43,73 +54,97 @@ function checkFullName(fullName){
         return true
     }
 }
-function updateFullNameWarning(boolVal){
-    if (boolVal === false) {
-        $("#fullName").css("background-color", "yellow");
-        // $("#warnings").append(formatWarningNotice(fieldName));
-    }
-    else {
-        $("#warnings").empty();
-        $("#fullName").css("background-color", "initial")
-    }
-}
-function fetchFullNameInput(){
-    return $("#fullName").val()
-}
-function runNameCheckMain(){
-    var fullName = fetchFullNameInput();
-    var nameCheckResult = checkFullName(fullName);
-    updateFullNameWarning(nameCheckResult)
-}
-function updateBirthDateWarning(boolVal){
-    if (boolVal === false) {
-        $("#birthDate").css("background-color", "yellow");
-        // $("#warnings").append(formatWarningNotice(fieldName));
-    }
-    else {
-        $("#warnings").empty();
-        $("#birthDate").css("background-color", "initial")
-    }
-}
-function fetchBirthDateInput(){
-    return $("#birthDate").val()
-}    
 function checkBirthDate(){
     var regexLayout = /^(\d{4})(\-)(\d{2})(\-)(\d{2})$/
     var birthDate = fetchBirthDateInput()
     // var regexLayout = /(\d{4})-(\d{2})-(\d{2})/
-    if (checkFieldEmpty(birthDate) === true || 
-        !(birthDate.match(regexLayout))){
+    if (checkFieldEmpty(birthDate) === false && !(birthDate.match(regexLayout))){
         return false
     }
     else {
         return true
     }
 }
+function checkPhoneNum(){
+    var regexLayout = /^(\d{3})(\-)(\d{3})(\-)(\d{4})$/
+    var phoneNum = fetchPhoneNumInput()
+    if (checkFieldEmpty(phoneNum) === false && !(phoneNum.match(regexLayout))){
+        return false
+    }
+    else {
+        return true
+    }
+}
+function createWarningIDTag(fieldName){
+    var fieldNameParts = fieldName.split(" ");
+    // fieldNameParts[1] = fieldNameParts[1].toUpperCase()
+    return fieldNameParts.join("")
+}
+//create
+function updateFullNameWarning(boolVal){
+    if (boolVal === false) {
+        $("#fullName").css("background-color", "yellow");
+        $("#warnings").append(formatWarningNotice("full name"));
+    }
+    else {
+        $("#warnings").empty();
+        $("#fullName").css("background-color", "initial")
+    }
+}
+function formatWarningNotice(fieldName){
+    var idTagForNotice = createWarningIDTag(fieldName);
+    var warningNotice = $("<p></p>").text("WARNING!  You are in danger! The " + fieldName +
+        " field you have been editing is incorrect.  Take a look at the example given " +
+        "and try again, mmm-Kay?  What are you waiting for?  GO NOW!")
+        .css("background-color", "yellow")
+        .attr("id", idTagForNotice)
+    return warningNotice
+}
+function updateBirthDateWarning(boolVal){
+    if (boolVal === false) {
+        $("#birthDate").css("background-color", "yellow");
+        $("#warnings").append(formatWarningNotice("birth date"));
+    }
+    else {
+        $("#warnings").empty();
+        $("#birthDate").css("background-color", "initial")
+    }
+}
+function updatePhoneNumWarning(boolVal){
+    if (boolVal === false) {
+        $("#phoneNum").css("background-color", "yellow");
+        $("#warnings").append(formatWarningNotice("phone number"));
+    }
+    else {
+        $("#warnings").empty();
+        $("#phoneNum").css("background-color", "initial")
+    }
+}
+//mains
+function runNameCheckMain(){
+    var fullName = fetchFullNameInput();
+    var nameCheckResult = checkFullName(fullName);
+    updateFullNameWarning(nameCheckResult)
+}
 function runBirthDateCheckMain(){
     var birthDate = fetchBirthDateInput();
     var birthDateCheckResult = checkBirthDate();
     updateBirthDateWarning(birthDateCheckResult)
 }
+function runPhoneNumCheckMain(){
+    var phoneNum = fetchBirthDateInput();
+    var phoneNumCheckResult = checkPhoneNum();
+    updatePhoneNumWarning(phoneNumCheckResult)
+}
+//registration
 function registerInitialCallback(){
     $("#fullName").on("change", runNameCheckMain);
     $("#birthDate").on("change", runBirthDateCheckMain);
+    $("#phoneNum").on("change", runPhoneNumCheckMain);
 }
 registerInitialCallback()
 
 
-
-// function checkPhoneNum(){
-//     // 555-555-5555
-//     //^(\d{3})(\-)(\d{3})(\-)(\d{4})$
-// }
-// function formatWarningNotice(fieldName){
-//     var warningNotice = $("<p></p>").text("WARNING!  You are in danger! The " + fieldName +
-//         " field you have been editing is incorrect.  Take a look at the example given " +
-//         "and try again, mmm-Kay?  What are you waiting for?  GO NOW!")
-//         .css("background-color", "yellow")
-//     return warningNotice
-// }
 // function formatApprovalNotice(){
 //     var approvalNotice = $("<p></p>").text("CONGRATULATIONS!  Your data has been " +
 //         "accepted.  Unfortunately, you are now above the age of mandatory death.  " +
