@@ -43,7 +43,7 @@ function checkFullName(fullName){
         return true
     }
 }
-function updateWarningArea(boolVal){
+function updateFullNameWarning(boolVal){
     if (boolVal === false) {
         $("#fullName").css("background-color", "yellow");
         // $("#warnings").append(formatWarningNotice(fieldName));
@@ -59,34 +59,43 @@ function fetchFullNameInput(){
 function runNameCheckMain(){
     var fullName = fetchFullNameInput();
     var nameCheckResult = checkFullName(fullName);
-    updateWarningArea(nameCheckResult)
+    updateFullNameWarning(nameCheckResult)
 }
-
+function updateBirthDateWarning(boolVal){
+    if (boolVal === false) {
+        $("#birthDate").css("background-color", "yellow");
+        // $("#warnings").append(formatWarningNotice(fieldName));
+    }
+    else {
+        $("#warnings").empty();
+        $("#birthDate").css("background-color", "initial")
+    }
+}
 function fetchBirthDateInput(){
     return $("#birthDate").val()
 }    
 function checkBirthDate(){
     var regexLayout = /^(\d{4})(\-)(\d{2})(\-)(\d{2})$/
     var birthDate = fetchBirthDateInput()
-    console.log(birthDate)
     // var regexLayout = /(\d{4})-(\d{2})-(\d{2})/
-    if (!(birthDate.match(regexLayout)) && checkFieldEmpty(birthDate) === false) {
+    if (checkFieldEmpty(birthDate) === true || 
+        !(birthDate.match(regexLayout))){
         return false
     }
     else {
         return true
-    } // &&
+    }
 }
-// function runBirthDateCheckMain(){
-//     var birthDate = fetchBirthDateInput();
-//     var birthDateCheckResult = checkBirthDate();
-//     updateWarningArea(birthDateCheckResult)
-// }
-// function registerInitialCallback(){
-//     $("#fullName").on("change", runNameCheckMain);
-//     $("#birthDate").on("change", runBirthDateCheckMain);
-// }
-// registerInitialCallback()
+function runBirthDateCheckMain(){
+    var birthDate = fetchBirthDateInput();
+    var birthDateCheckResult = checkBirthDate();
+    updateBirthDateWarning(birthDateCheckResult)
+}
+function registerInitialCallback(){
+    $("#fullName").on("change", runNameCheckMain);
+    $("#birthDate").on("change", runBirthDateCheckMain);
+}
+registerInitialCallback()
 
 
 
