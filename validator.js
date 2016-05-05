@@ -33,7 +33,6 @@ function checkNameCapital(namesList){
     }
 }
 function checkFullName(fullName){
-    
     var namesList = fullName.split(" ");
     var fieldName = "Full Name"
     if (checkFieldEmpty(fullName) === false && checkNameCount(namesList) === false || 
@@ -54,29 +53,43 @@ function updateWarningArea(boolVal){
         $("#fullName").css("background-color", "initial")
     }
 }
+function fetchFullNameInput(){
+    return $("#fullName").val()
+}
 function runNameCheckMain(){
-    var fullName = $("#fullName").val();
-    var booleanName = checkFullName(fullName);
-    updateWarningArea(booleanName)
+    var fullName = fetchFullNameInput();
+    var nameCheckResult = checkFullName(fullName);
+    updateWarningArea(nameCheckResult)
 }
-function registerInitialCallback(){
-    $("#fullName").on("change", runNameCheckMain)
+
+function fetchBirthDateInput(){
+    return $("#birthDate").val()
+}    
+function checkBirthDate(){
+    var regexLayout = /^(\d{4})(\-)(\d{2})(\-)(\d{2})$/
+    var birthDate = fetchBirthDateInput()
+    console.log(birthDate)
+    // var regexLayout = /(\d{4})-(\d{2})-(\d{2})/
+    if (!(birthDate.match(regexLayout)) && checkFieldEmpty(birthDate) === false) {
+        return false
+    }
+    else {
+        return true
+    } // &&
 }
-registerInitialCallback()
-// function checkBirthDate(){
-//     var regexLayout = /^(\d{4})(\-)(\d{2})(\-)(\d{2})$/
-//     var birthDate = $("#birthDate").val()
-//     var fieldName = "Birth Date"
-//     console.log(birthDate.match(regexLayout))
-//     if (!(birthDate.match(regexLayout))) {
-//         $("#birthDate").css("background-color", "yellow");
-//         $("#warnings").append(formatWarningNotice(fieldName));
-//         return false
-//     }
-//     else {
-//         return true
-//     }
+// function runBirthDateCheckMain(){
+//     var birthDate = fetchBirthDateInput();
+//     var birthDateCheckResult = checkBirthDate();
+//     updateWarningArea(birthDateCheckResult)
 // }
+// function registerInitialCallback(){
+//     $("#fullName").on("change", runNameCheckMain);
+//     $("#birthDate").on("change", runBirthDateCheckMain);
+// }
+// registerInitialCallback()
+
+
+
 // function checkPhoneNum(){
 //     // 555-555-5555
 //     //^(\d{3})(\-)(\d{3})(\-)(\d{4})$
@@ -87,13 +100,6 @@ registerInitialCallback()
 //         "and try again, mmm-Kay?  What are you waiting for?  GO NOW!")
 //         .css("background-color", "yellow")
 //     return warningNotice
-// }
-// function onFieldBlur(id, fieldCheck) {
-//     $("#id").on("blur", function(event){
-//         event.preventDefault();
-//         $("#warnings").empty();
-//         fieldCheck;
-//     })
 // }
 // function formatApprovalNotice(){
 //     var approvalNotice = $("<p></p>").text("CONGRATULATIONS!  Your data has been " +
@@ -115,24 +121,6 @@ registerInitialCallback()
 //     return malformNotice
 //     //malformNotice.css("background-color", "red")
 // }
-// function checkFieldsNotEmpty(){
-//     var fullName = $("#fullName").val()
-//     var birthDate = $("#birthDate").val()
-//     var phoneNum = $("#phoneNum").val()
-
-//     if (fullName === "") {
-//         return false
-//     }
-//     else if (birthDate === "") {
-//         return false
-//     }
-//     else if (phoneNum === "") {
-//         return false
-//     }
-//     else {
-//         return true
-//     }
-// }
 // function validateForm(){
 //     // posts a success or error notice
 //     $("#warnings").empty();
@@ -152,14 +140,3 @@ registerInitialCallback()
 //         $("#warnings").append(formatApprovalNotice())
 //     }
 // }
-// function mainFunction(){
-//     $("#fullName").on("change", onFieldBlur(fullName, checkFullName()));
-//     // $("#birthDate").on("change", onFieldBlur(birthDate, checkBirthDate()));
-//     // $("phoneNum").on("change", onFieldBlur(phoneNum, checkPhoneNum()));
-//     $("form").on("submit", function (event){
-//         event.preventDefault();
-//         validateForm();
-//     });
-// }
-// mainFunction();
-
