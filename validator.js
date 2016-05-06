@@ -143,8 +143,6 @@ function registerInitialCallback(){
     $("#phoneNum").on("change", runPhoneNumCheckMain);
 }
 registerInitialCallback()
-
-
 // function formatApprovalNotice(){
 //     var approvalNotice = $("<p></p>").text("CONGRATULATIONS!  Your data has been " +
 //         "accepted.  Unfortunately, you are now above the age of mandatory death.  " +
