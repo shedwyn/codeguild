@@ -21,6 +21,12 @@ section {
 p {
     font-size: 0.75em;
 }
+.trumpImage {
+    display: none;
+}
+.holeImage {
+    display: block;
+}
 .row {
     display: flex;
     justify-content: center;
