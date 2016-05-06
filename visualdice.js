@@ -7,13 +7,15 @@ function rollSingleDie(){
     return _.random(1, 6)
 }
 function fetchDieImageURL(dieValue) {
+    var diceImages = {
+    "1":"http://www.wpclipart.com/recreation/games/dice/.cache/die_face_1.png",
+    "2":"http://www.wpclipart.com/recreation/games/dice/.cache/die_face_2.png",
+    "3":"http://www.wpclipart.com/recreation/games/dice/.cache/die_face_3.png",
+    "4":"http://www.wpclipart.com/recreation/games/dice/.cache/die_face_4.png",
+    "5":"http://www.wpclipart.com/recreation/games/dice/.cache/die_face_5.png",
+    "6":"http://www.wpclipart.com/recreation/games/dice/.cache/die_face_6.png",
+    };
     return diceImages[dieValue]
-}
-function makeDieImage(dieValue){
-    return $("<img>").attr("src", fetchDieImageURL(dieValue))   
-}
-function createSingleDie(dieValue, idNum){
-    return $("<a></a>").append(makeDieImage(dieValue)).attr("href", "").attr("id", "dice-" + idNum)
 }
 function createDieRollsArray(){
     var numberOfRolls = getNumberToRoll();
@@ -25,13 +27,6 @@ function createDieRollsArray(){
     };
     return dieRolls
 }
-function addDieToDiceArea(dieRolls) {
-    //Adding children to parent section
-    for (var i = 0; i < dieRolls.length; i += 1) {
-        var dieValue = dieRolls[i];
-        createSingleDie(dieValue, i);
-    }
-}
 function tallyHand(dieRolls){
     var diceTally = _.reduce(
         dieRolls,
@@ -41,29 +36,88 @@ function tallyHand(dieRolls){
         0);
     $("#handTally").text("Simple Dice Score:  " + diceTally);
 }
+function makeDieImage(dieValue){
+    return $("<img>").attr("src", fetchDieImageURL(dieValue))   
+}
+function formatSingleDie(dieValue, idNum){
+    return $("<a></a>").append(makeDieImage(dieValue)).attr("href", "").attr("id", "dice-" + idNum)
+}
+function addSingleDiceToDiceArea(singleDie) {
+    return $("#diceArea").append(singleDie)
+}
+function addDieToDiceArea(dieRolls) {
+    //Adding children to parent section
+    for (var i = 0; i< dieRolls.length; i+= 1) {
+        var dieValue = dieRolls[i];
+        var singleDie = formatSingleDie(dieValue, i);
+        addSingleDiceToDiceArea(singleDie);
+    }
+}
 function initiateFullRoll(){
-    $("form").on("submit", function (event){
-        event.preventDefault();
-        $("#diceArea").empty();
-        var dieRolls = createDieRollsArray;
-        addDieToDiceArea(dieRolls);
-        tallyHand(dieRolls);
+    var dieRolls = createDieRollsArray();
+    addDieToDiceArea(dieRolls);
+    tallyHand(dieRolls);
+}
+$("form").on("submit", function (event){
+    event.preventDefault();
+    $("#diceArea").empty();
+    initiateFullRoll()
+})
+$("a").on("click", function (event){
+    event.preventDefault();
+    // $("a").remove();
+    //add new image
+})
 
-    })
-}
-function getIndexOfDice() {
-    var diceIndex;
-    return diceIndex 
-}
-function addSingleDiceToDiceArea(dieValue, indexNum) {
-    return $("#diceArea").append(createSingleDie(dieValue,indexNum))
-}
-function getNewDiceValue() {
-    var newDiceValue = rollSingleDie();
-}
-function replaceDiceInDieRolls(dieRolls, indexNum, newDiceValue) {
-    return dieRolls[indexNum] = newDiceValue
-}
+
+
+
+
+
+
+// function replaceDiceInDieRolls(dieRolls, indexNum, newDiceValue) {
+//     return dieRolls[indexNum] = newDiceValue
+// }
+// function getIndexOfDice() {
+//     var diceIndex;
+//     return diceIndex 
+// }
+// function getNewDiceValue() {
+//     var newDiceValue = rollSingleDie();
+// }
+// var diceImages = {
+//     "1":"http://www.wpclipart.com/recreation/games/dice/.cache/die_face_1.png",
+//     "2":"http://www.wpclipart.com/recreation/games/dice/.cache/die_face_2.png",
+//     "3":"http://www.wpclipart.com/recreation/games/dice/.cache/die_face_3.png",
+//     "4":"http://www.wpclipart.com/recreation/games/dice/.cache/die_face_4.png",
+//     "5":"http://www.wpclipart.com/recreation/games/dice/.cache/die_face_5.png",
+//     "6":"http://www.wpclipart.com/recreation/games/dice/.cache/die_face_6.png",
+// };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// $(document).ready(function(){
+//     //this could be the equivalent of jquery main
+//     var dieRolls = createDieRollsArray();
+//     initiateFullRoll();
+//     // clickChangeSingleDie();
+// })
 // function clickChangeSingleDie() {
 //     $("a").on("click", "img", function (event){
 //         console.log("yes, clicked")
@@ -78,19 +132,5 @@ function replaceDiceInDieRolls(dieRolls, indexNum, newDiceValue) {
 //         // console.log(anchorAttributes);//not sure, #diceArea in first paren did not work
 //     } )
 // }
-var diceImages = {
-    "1":"http://www.wpclipart.com/recreation/games/dice/.cache/die_face_1.png",
-    "2":"http://www.wpclipart.com/recreation/games/dice/.cache/die_face_2.png",
-    "3":"http://www.wpclipart.com/recreation/games/dice/.cache/die_face_3.png",
-    "4":"http://www.wpclipart.com/recreation/games/dice/.cache/die_face_4.png",
-    "5":"http://www.wpclipart.com/recreation/games/dice/.cache/die_face_5.png",
-    "6":"http://www.wpclipart.com/recreation/games/dice/.cache/die_face_6.png",
-};
-$(document).ready(function(){
-    //this could be the equivalent of jquery main
-    var dieRolls = createDieRollsArray();
-    initiateFullRoll();
-    // clickChangeSingleDie();
-})
 // $(document).on("click", ".pageNumControl", function(){
 //     var pageNum=$(".pageNumControl").html();

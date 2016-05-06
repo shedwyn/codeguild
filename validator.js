@@ -42,8 +42,9 @@ function checkNameCapital(namesList){
         return true
     }
 }
-function checkFullName(fullName){
+function checkFullName(){
     // needs check for alpha characters
+    var fullName = fetchFullNameInput()
     var namesList = fullName.split(" ");
     var fieldName = "Full Name"
     if (checkFieldEmpty(fullName) === false && checkNameCount(namesList) === false || 
@@ -79,6 +80,14 @@ function createWarningIDTag(fieldName){
     var fieldNameParts = fieldName.split(" ");
     // fieldNameParts[1] = fieldNameParts[1].toUpperCase()
     return fieldNameParts.join("")
+}
+function runFinalCheck(){
+    if (checkFieldEmpty() === false && checkFullName() === true && checkBirthDate() === true && checkPhoneNum() === true) {
+        return true
+    }
+    else {
+        return false
+    }
 }
 //create
 function updateFullNameWarning(boolVal){
@@ -120,10 +129,40 @@ function updatePhoneNumWarning(boolVal){
         $("#phoneNum").css("background-color", "initial")
     }
 }
+function formatApprovalNotice(){
+    var approvalNotice = $("<p></p>").text("CONGRATULATIONS!  Your data has been " +
+        "accepted.  Unfortunately, you are now above the age of mandatory death.  " +
+        "A team of mutant giraffes has been deployed to your present location to " +
+        "terminate you.  Have a nice day.")
+        .css("background-color", "green")
+    return approvalNotice
+    //approvalNotice.css("background-color", "green")
+}
+function formatMalformNotice(){
+    var malformNotice = $("<p></p>").text("WARNING!  Malformed information has " +
+        "been presented to your evil overlords!  This kind of egregious mistake " +
+        "cannot be ignored.  A team of ninjas ('assassin' being redundant) is now " +
+       "being deployed to your location and death will come on swift sword, or " +
+        "nunchucks, we do not like to micro-manage.  END OF WARNING STATEMENT." +
+        " Oh, and please take a few moments to fill out the exit survey before dying.")
+        .css("background-color", "red")
+    return malformNotice
+    //malformNotice.css("background-color", "red")
+}
+function submitButtonEvent(){
+    if (runFinalCheck() === true) {
+        $("#warnings").empty();
+        $("#warnings").append(formatApprovalNotice())
+    }
+    else {
+        $("#warnings").empty();
+        $("#warnings").append(formatMalformNotice())
+    }
+}    
 //mains
 function runNameCheckMain(){
     var fullName = fetchFullNameInput();
-    var nameCheckResult = checkFullName(fullName);
+    var nameCheckResult = checkFullName();
     updateFullNameWarning(nameCheckResult)
 }
 function runBirthDateCheckMain(){
@@ -141,44 +180,10 @@ function registerInitialCallback(){
     $("#fullName").on("change", runNameCheckMain);
     $("#birthDate").on("change", runBirthDateCheckMain);
     $("#phoneNum").on("change", runPhoneNumCheckMain);
+    // how do i write the item below with a prevent default action?
+    $("#submitButton").on("submit", function(event){
+        event.preventDefault();
+        submitButtonEvent
+    })
 }
 registerInitialCallback()
-// function formatApprovalNotice(){
-//     var approvalNotice = $("<p></p>").text("CONGRATULATIONS!  Your data has been " +
-//         "accepted.  Unfortunately, you are now above the age of mandatory death.  " +
-//         "A team of mutant giraffes has been deployed to your present location to " +
-//         "terminate you.  Have a nice day.")
-//         .css("background-color", "green")
-//     return approvalNotice
-//     //approvalNotice.css("background-color", "green")
-// }
-// function formatMalformNotice(){
-//     var malformNotice = $("<p></p>").text("WARNING!  Malformed information has " +
-//         "been presented to your evil overlords!  This kind of egregious mistake " +
-//         "cannot be ignored.  A team of ninjas ('assassin' being redundant) is now " +
-//        "being deployed to your location and death will come on swift sword, or " +
-//         "nunchucks, we do not like to micro-manage.  END OF WARNING STATEMENT." +
-//         " Oh, and please take a few moments to fill out the exit survey before dying.")
-//         .css("background-color", "red")
-//     return malformNotice
-//     //malformNotice.css("background-color", "red")
-// }
-// function validateForm(){
-//     // posts a success or error notice
-//     $("#warnings").empty();
-//     if (checkFieldsNotEmpty() === false) {
-//         $("#warnings").append(formatMalformNotice())
-//     }
-//     else if (checkFullName() === false) {
-//         $("#warnings").append(formatMalformNotice())
-//     }
-//     // else if (checkBirthDate() === false) {
-//     //     $("#warnings").append(formatMalformNotice())
-//     // }
-//     // else if (checkPhoneNum() === false) {
-//     //     $("#warnings").append(formatMalformNotice())
-//     // }
-//     else {
-//         $("#warnings").append(formatApprovalNotice())
-//     }
-// }
