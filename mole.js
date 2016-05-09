@@ -1,81 +1,49 @@
 "use strict";
 
 //inputs
-
-var holeImage = $("<img>").attr("src", "hole.png").attr("id", "holeImage";)
-var trumpImage =  $("<img>").attr("src", "trump_head.jpg").attr("id", "trumpImage";)
-
 //transform
-
 function pickRandomNum(){return _.random(1, 20)}
 
-function assembleHoleID(){
+function selectRandomHoleID(){
     var randomNum = pickRandomNum();
     return "#hole" + randomNum
 }
-
 //create
-
-function toggleOffHoleImage(holeID){
-    return $(holeID).children(".holeImage").css("display", "none")
-}
-function toggleOffTrumpImage(holeID){
-    return $(holeID).children(".trumpImage").css("display", "none")
-}
-function toggleOnHoleImage(holeID){
-    return $(holeID).children(".holeImage").css("display", "block")
-}
-function toggleOnTrumpImage(holeID) {
-    return $(holeID).children(".trumpImage").css("display", "block")
-}
 function changeImageToTrump(holeID) {
-    return $(holeID).children("<img>").attr("src", "trump_head.jpg")
+    return $(holeID).children("img").attr("src", "trump_head.jpg")
 }
 function changeImageToHole(holeID){
-    return $(holeID).children(".holeImage").css("src", "hole.png")
+    return $(holeID).children("img").attr("src", "hole.png")
 }
-function toggleTrumpToHole(holeID){
-    console.log("yes, we got here");
-    toggleOffTrumpImage(holeID);
-    toggleOnHoleImage(holeID)
-}
-
 function launchTrumpIntervals() {
     setInterval(function(){
-        var holeID = assembleHoleID();
-        console.log(holeID);
-        toggleOffHoleImage(holeID);
-        toggleOnTrumpImage(holeID);
+        var holeID = selectRandomHoleID();
+        changeImageToTrump(holeID);
     }, 1000);
 }
-function stopTrumpIntervals() {
-    clearInterval(launchTrumpIntervals);
-}
-
-function clickImageOff(){
-    getHoleID()
-    toggleOffTrumpImage()
-    toggleOnHoleImage()
-}
-
-
+// function stopTrumpIntervals() {
+//     clearInterval(launchTrumpIntervals());
+//     console.log("stopintervals")
+// }
 
 //mains
 
-
-
 // register
 
-// $("#playArea").on("click", function (event){
-//     event.preventDefault();
-//     launchTrumpIntervals;
-// });
+$("#startGame").on("click", function (event){
+    event.preventDefault();
+    launchTrumpIntervals();
+});
 $(".moleHole").on("click", function (event){
     event.preventDefault();
-    var holeID = this.getAttribute("id")
-    console.log(holeID)
-    toggleTrumpToHole(holeID)
-})
+    var holeID = this.getAttribute("id");
+    holeID = "#" + holeID;
+    changeImageToHole(holeID);
+});
+// $("#stopGame").on("click", function (event){
+//     event.preventDefault();
+//     stopTrumpIntervals();
+// });
 
 
 
