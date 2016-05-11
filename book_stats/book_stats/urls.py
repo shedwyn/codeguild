@@ -20,6 +20,5 @@ from django.contrib import admin
 from . import views
 
 urlpatterns = [
-    url(r'^run', views.render_word_intake_page),  # , name='index'),
-    url(r'^count', views.render_word_count_page)  # name='form_page')
+    url(r'^start', views.render_word_count_page)
 ]

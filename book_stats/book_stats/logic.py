@@ -75,6 +75,7 @@ def create_counting_dictionary():
 
 
 def find_count_for_word_in_book(word_to_find, word_to_counts):
+    word_to_find = word_to_find.upper()
     if word_to_find not in word_to_counts:
         return 0
     else:
