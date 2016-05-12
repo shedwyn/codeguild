@@ -1,0 +1,15 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Joke Accepted</title>
+        <link rel="stylesheet" href="{% static 'jokes/style.css' %}">
+    </head>
+    <body>
+        <h1>Your joke was submitted!</h1>
+        <a href="{% url 'list' %}">See The List of Jokes</a>
+        <blockquote>{{ joke_setup }}</blockquote>
+        <blockquote>{{ joke_punchline }}</blockquote>
+    </body>
+</html>

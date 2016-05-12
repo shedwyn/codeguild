@@ -1,0 +1,20 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Joke Submission Form</title>
+        <link rel="stylesheet" href="{% static 'jokes/style.css' %}">
+    </head>
+    <body>
+        <h1>Submit Joke Here</h1>
+        <form action="{% url 'acceptance' %}" method="post">
+            {% csrf_token %}
+            <label for="setup">Story</label>
+            <textarea name="joke_setup" placeholder="Joke Setup" id="setup"></textarea>
+            <label for="punchline">Punchline</label>
+            <textarea name="joke_punchline" placeholder="Joke Punchline" id="punchline"></textarea>
+            <input type="submit" value="Submit Joke">
+        </form>
+    </body>
+</html>
