@@ -1,3 +1,10 @@
 body {
     font-family: sans-serif;
 }
+blockquote {
+    color: darkgreen;
+}
+.punchline {
+    visibility: hidden;
+    color: orangered;
+}

@@ -8,12 +8,27 @@
     </head>
     <body>
         <h1>List of Jokes Submitted</h1>
-        <a href="{% url 'form' %}">Submit A New Joke</a>
+        <a href="{% url 'form' %}">Click Here to Submit A New Joke</a>
+        <h3>To see the punchline, click on the joke</h3>
         {% for joke in jokes %}
-        <section>
-            <blockquote>{{ joke.setup }}</blockquote>
-            <blockquote>{{ joke.punchline }}</blockquote>
+        <section class="container">
+            <blockquote onclick="revealPunchLine()" class="setup">{{ joke.setup }}</blockquote>
+            <blockquote class="punchline">{{ joke.punchline }}</blockquote>
         </section>
         {% endfor %}
+        <script src="https://cdn.jsdelivr.net/lodash/4.11.2/lodash.js"></script>
+        <script src="http://code.jquery.com/jquery-2.2.3.js"></script>
+        <script>
+            function revealPunchLine(){
+                $(this).parent().next().toggle();
+                console.log("i tried")
+                // $(this).parent().next().css("visibility", "visible");
+                // $(this).children().css("visibility", "visible");
+                // $(".setup").next(".punchline").css("visibility", "visible")
+                // $(this).next(".punchline").css("visibility", "visible");
+                // $(this).closest("section").find(".punchline").css("visibility", "visible")
+                // $(this).siblings(".punchline").toggle();
+            }
+        </script>
     </body>
 </html>
