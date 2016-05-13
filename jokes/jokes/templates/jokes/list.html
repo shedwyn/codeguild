@@ -12,16 +12,15 @@
         <h3>To see the punchline, click on the joke</h3>
         {% for joke in jokes %}
         <section class="container">
-            <blockquote onclick="revealPunchLine()" class="setup">{{ joke.setup }}</blockquote>
+            <blockquote onclick="revealPunchLine(event)" class="setup">{{ joke.setup }}</blockquote>
             <blockquote class="punchline">{{ joke.punchline }}</blockquote>
         </section>
         {% endfor %}
         <script src="https://cdn.jsdelivr.net/lodash/4.11.2/lodash.js"></script>
         <script src="http://code.jquery.com/jquery-2.2.3.js"></script>
         <script>
-            function revealPunchLine(){
-                $(this).parent().next().toggle();
-                console.log("i tried")
+            function revealPunchLine(event){
+                $(event.target).siblings().css("visibility", "visible");
                 // $(this).parent().next().css("visibility", "visible");
                 // $(this).children().css("visibility", "visible");
                 // $(".setup").next(".punchline").css("visibility", "visible")
