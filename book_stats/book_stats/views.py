@@ -16,5 +16,5 @@ def render_word_count_page(request):
     #     word_to_find + ' occurs ' + str(count_of_word) +
     #     ' times in A Modest Proposal by Jonathan Swift'
     # )
-
+# move this into logic:
 word_to_counts = logic.create_counting_dictionary()
