@@ -1,0 +1,23 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>ToDo App</title>
+  </head>
+  <body>
+    <h1>ToDo List Generator</h1>
+    <h4>Make super user and then start plugging in data to play with. test functionality of the function nested in the views.py template_args</h4>
+    <ul>
+      {% for task in tasks %}
+      <li><a href="">{{ task.task_name }}</a></li>
+        <ul>
+          {% for item in items %}
+          <li><a href="">{{ item.item_name }}</a></li>
+          {% endfor %}
+        </ul>
+      {% endfor %}
+    </ul>
+  </body>
+</html>
