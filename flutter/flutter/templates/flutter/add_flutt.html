@@ -1,0 +1,35 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Flutter - Add-A-Flutt_Kit</title>
+        <link rel="stylesheet" type="text/css" href="{% static 'flutter/style.css' %}">
+    </head>
+    <body>
+        <!-- return home header -->
+        <header>
+        <h3> Let Your Opinion Fly!</h3>
+        <h6> in 140 characters or less  </h6>
+            <p>
+                <a href="{% url 'index' %}">
+                    'Whoopsie, clicked in error, please take me HOME!'
+                </a>
+            </p>
+        </header>
+        <!-- /return home header -->
+        <!-- flutt inputs -->
+        <form>
+            <p>
+                Date and time will be automatically assigned when you click 'submit'
+            </p>
+            <label>User Name: <input type='text' name></label>
+            <label>Flutt text: <input type='text'></label>
+        </form>
+        <!-- /individual flutt -->
+        {% endfor %}
+        <!-- /flutt list -->
+        <script src="https://cdn.jsdelivr.net/lodash/4.11.2/lodash.js"></script>
+        <script src="http://code.jquery.com/jquery-2.2.3.js"></script>
+    </body>
+</html>

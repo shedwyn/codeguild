@@ -1,0 +1,34 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Flutter - Thoughts that Fly</title>
+        <link rel="stylesheet" type="text/css" href="{% static 'flutter/style.css' %}">
+    </head>
+    <body>
+        <!-- add new header -->
+        <header>
+        <h1> Most Recent Flutts </h1>
+        <h3> 10 shown </h3>
+            <p>
+                <a href="{% url 'add_flutt' %}">'Make flutt.  Flutt good.'</a>
+            </p>
+        </header>
+        <!-- /add new header -->
+        <!-- flutt list -->
+        {% for flutt in flutts %}
+        <!-- individual flutt -->
+        <div>
+            <p>
+                <span>{{flutt.flutt_id}}</span>
+                {{flutt.date_n_time, flutt.flutt_user, flutt.flutt_text}}
+            </p>
+        </div>
+        <!-- /individual flutt -->
+        {% endfor %}
+        <!-- /flutt list -->
+        <script src="https://cdn.jsdelivr.net/lodash/4.11.2/lodash.js"></script>
+        <script src="http://code.jquery.com/jquery-2.2.3.js"></script>
+    </body>
+</html>
