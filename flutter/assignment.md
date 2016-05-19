@@ -3,7 +3,7 @@
 Let's make a mini Twitter clone called Flutter where people post Flutts.
 
 * `/` shows the last 10 Flutts.
-* `/q?=QUERY` shows the last 10 Flutts containing `QUERY` text.
+* `/search?search_text=QUERY` shows the last 10 Flutts containing `QUERY` text.
 * `/post` is a form to submit a Flutts. There is "user name" and "text".
 * `/post/submit` is the ack page. A new Flutt is given the timestamp of the acknowledgement.
 * `/USER_NAME` shows the last 10 Flutts by a user.

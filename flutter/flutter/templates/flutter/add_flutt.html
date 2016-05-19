@@ -19,12 +19,13 @@
         </header>
         <!-- /return home header -->
         <!-- flutt inputs -->
-        <form>
+        { url 'ack'}
+        <form action="">
             <p>
                 Date and time will be automatically assigned when you click 'submit'
             </p>
-            <label>User Name: <input type='text' name></label>
-            <label>Flutt text: <input type='text'></label>
+            <label>User Name: <input type='text' name='new_user'></label>
+            <label>Flutt text: <input type='text' name='new_text'></label>
         </form>
         <!-- /individual flutt -->
         {% endfor %}

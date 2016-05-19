@@ -12,7 +12,7 @@
         <h1> Most Recent Flutts </h1>
         <h3> 10 shown </h3>
             <p>
-                <a href="{% url 'add_flutt' %}">'Make flutt.  Flutt good.'</a>
+                <a href="{% url 'post_flutt' %}">'Make flutt.  Flutt good.'</a>
             </p>
         </header>
         <!-- /add new header -->
@@ -21,8 +21,9 @@
         <!-- individual flutt -->
         <div>
             <p>
-                <span>{{flutt.flutt_id}}</span>
-                {{flutt.date_n_time, flutt.flutt_user, flutt.flutt_text}}
+                <span>{{flutt.user}} - </span>
+                <span>{{flutt.text}} - </span>
+                <span>{{flutt.date_n_time}}</span>
             </p>
         </div>
         <!-- /individual flutt -->
