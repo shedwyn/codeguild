@@ -3,14 +3,13 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <title>Flutter - Thoughts that Fly</title>
+        <title>Ten User Flutts Page</title>
         <link rel="stylesheet" type="text/css" href="{% static 'flutter/style.css' %}">
     </head>
     <body>
         <!-- add new header -->
         <header>
-        <h1> Ten (10) Most Recent Flutts </h1>
-        <h2> Click on name to bring up flutts exclusive to that user</h2>dfs
+        <h1> Ten (10) Most Recent Flutts for " {{flutts.user}} "</h1>
         </header>
         <!-- /add new header -->
         <!-- flutt list -->
@@ -18,7 +17,6 @@
         <!-- individual flutt -->
         <div>
             <p>
-                <a href="{% url 'user_search' flutt.user %}">{{flutt.user}} - </a>
                 <span>{{flutt.text}} - </span>
                 <span>{{flutt.date_n_time}}</span>
             </p>
@@ -26,23 +24,9 @@
         <!-- /individual flutt -->
         {% endfor %}
         <!-- /flutt list -->
-        <!-- create new -->
         <div>
-            <a href="{% url 'post_flutt' %}">'Click here.  Make new flutt.  Flutt is good.'</a>
+            <a href="{% url 'index' %}">Go Home</a>
         </div>
-        <!-- /create new -->
-        <!-- search text -->
-        { url 'search_flutt' }
-        <form action="" method="get">
-            {% csrf_token %}
-            <h3>Find Flutt.  Feel Powerful</h3>
-            <label>
-                Enter your search word here:
-                <input placeholder="search" name="search_entry">
-            </label>
-            <input type="submit">
-        </form>
-        <!-- /search text-->
         <script src="https://cdn.jsdelivr.net/lodash/4.11.2/lodash.js"></script>
         <script src="http://code.jquery.com/jquery-2.2.3.js"></script>
     </body>

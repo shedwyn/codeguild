@@ -7,3 +7,11 @@ h6 {
 a {
     color: darkblue
 }
+form {
+    border-top: thick double blue;
+    margin-top: 1em
+}
+div a {
+    border-top: thick double blue;
+    padding-top: 1em
+}
