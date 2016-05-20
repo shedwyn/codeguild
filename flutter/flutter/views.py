@@ -19,9 +19,10 @@ def render_post_submit(request):
     """renders page flutt"""
     new_user = request.POST['new_user']
     new_text = request.POST['new_text']
-    logic.create_and_save_new_flutt(new_user, new_text)
+    new_flutt = logic.create_and_save_new_flutt(new_user, new_text)
     context = {
         'new_user': new_user,
-        'new_text': new_text
+        'new_text': new_text,
+        'new_flutt': new_flutt.date_n_time
     }
     return render(request, 'flutter/acceptance.html', context)

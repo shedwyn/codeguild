@@ -12,3 +12,8 @@ def create_and_save_new_flutt(user, text):
         text=text
     )
     new_flutt.save()
+    return new_flutt
+
+
+def fetch_date_():
+    pass
