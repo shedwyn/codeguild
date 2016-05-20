@@ -1,0 +1,17 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Post Submitted</title>
+        <link rel="stylesheet" href="{% static 'flutter/style.css' %}">
+    </head>
+    <body>
+        <h1>Your flutter is now public.</h1>
+        <a href="{% url 'index' %}">Go Home</a>
+        <p>{{ new_user }}</p>
+        <p>{{ new_text }}</p>
+        <script src="https://cdn.jsdelivr.net/lodash/4.11.2/lodash.js"></script>
+        <script src="http://code.jquery.com/jquery-2.2.3.js"></script>
+    </body>
+</html>

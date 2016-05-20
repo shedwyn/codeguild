@@ -19,16 +19,16 @@
         </header>
         <!-- /return home header -->
         <!-- flutt inputs -->
-        { url 'ack'}
-        <form action="">
+        <form <form action="{% url 'post_submit' %}" method="post">
+            {% csrf_token %}
             <p>
                 Date and time will be automatically assigned when you click 'submit'
             </p>
             <label>User Name: <input type='text' name='new_user'></label>
             <label>Flutt text: <input type='text' name='new_text'></label>
+            <input type="submit" value="FLY MONKEYS FLY!">
         </form>
         <!-- /individual flutt -->
-        {% endfor %}
         <!-- /flutt list -->
         <script src="https://cdn.jsdelivr.net/lodash/4.11.2/lodash.js"></script>
         <script src="http://code.jquery.com/jquery-2.2.3.js"></script>

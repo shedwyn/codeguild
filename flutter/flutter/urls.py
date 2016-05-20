@@ -20,5 +20,6 @@ from . import views
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', views.render_index, name='index'),
-    url(r'^post_flutt$', views.render_add_flutt, name='post_flutt')
+    url(r'^post_flutt$', views.render_add_flutt, name='post_flutt'),
+    url(r'^post_submit', views.render_post_submit, name='post_submit')
 ]
