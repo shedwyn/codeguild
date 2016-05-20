@@ -20,6 +20,7 @@ from . import views
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', views.render_index, name='index'),
-    url(r'^post_flutt$', views.render_add_flutt, name='post_flutt'),
-    url(r'^post_submit', views.render_post_submit, name='post_submit')
+    url(r'^post$', views.render_add_flutt, name='post_flutt'),
+    url(r'^post/submit', views.render_post_submit, name='post_submit')
+    # url(r'^search<?PVALUE>', views.render_search_page, name='search_flutt')
 ]

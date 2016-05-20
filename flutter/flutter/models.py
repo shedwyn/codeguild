@@ -2,8 +2,8 @@ from django.db import models
 
 
 class Flutt(models.Model):
-    user = models.TextField(default='elfough')
-    text = models.TextField(max_length=140, default='start typing')
+    user = models.CharField(max_length=25, default='elfough')
+    text = models.CharField(max_length=140, default='start typing')
     date_n_time = models.DateTimeField(
         auto_now_add=True
     )

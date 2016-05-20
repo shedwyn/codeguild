@@ -9,13 +9,24 @@
     <body>
         <!-- add new header -->
         <header>
-        <h1> Most Recent Flutts </h1>
-        <h3> 10 shown </h3>
+        <h1> Ten (10) Most Recent Flutts </h1>
             <p>
                 <a href="{% url 'post_flutt' %}">'Make flutt.  Flutt good.'</a>
             </p>
         </header>
         <!-- /add new header -->
+        <!-- search -->
+        { url 'search_flutt' }
+        <form action="" method="post">
+            {% csrf_token %}
+            <h3>Find Flutt.  Feel Powerful</h3>
+            <label>
+                Enter your search word here:
+                <input placeholder="search" name="search_entry">
+            </label>
+            <input type="submit">
+        </form>
+        <!-- /search -->
         <!-- flutt list -->
         {% for flutt in flutts %}
         <!-- individual flutt -->
