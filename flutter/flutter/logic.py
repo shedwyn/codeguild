@@ -26,3 +26,14 @@ def get_ten_user_flutts(user):
     flutts = get_all_flutts().filter(user=user)
     limited_flutts = flutts[0:10]
     return limited_flutts
+
+
+def find_search_text_flutts(text):
+    flutts = get_all_flutts()
+    print(text)
+    matches = []
+    print(matches)
+    for flutt in flutts:
+        if text in flutt.text:
+            matches.append(flutt)
+    return matches

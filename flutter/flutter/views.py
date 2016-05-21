@@ -32,9 +32,11 @@ def render_post_submit(request):
     return render(request, 'flutter/acceptance.html', context)
 
 
-def render_search_page(request):
+def render_search_page(request, text):
     """elbow grease"""
-    pass
+    print(text)
+    flutts = logic.find_search_text_flutts(text)
+    return render(request, 'flutter/index.html', context)
 
 
 def render_user_flutt_page(request, flutt_user):

@@ -8,10 +8,18 @@ a {
     color: darkblue
 }
 form {
-    border-top: thick double blue;
-    margin-top: 1em
+    border-top: 2px solid darkblue;
 }
-div a {
-    border-top: thick double blue;
-    padding-top: 1em
+p {
+    margin-top: 1px;
+    margin-bottom: 1px;
+    padding-top: 1px;
+    padding-bottom: 1px
+}
+.border {
+    border-top: 2px dotted salmon;
+    margin-top: 1px;
+    margin-bottom: 1px;
+    padding-top: 1px;
+    padding-bottom: 1px
 }

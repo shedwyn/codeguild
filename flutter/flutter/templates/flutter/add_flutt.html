@@ -10,24 +10,28 @@
         <!-- return home header -->
         <header>
         <h3> Let Your Opinion Fly!</h3>
-        <h6> in 140 characters or less  </h6>
-            <p>
-                <a href="{% url 'index' %}">
-                    'Whoopsie, clicked in error, please take me HOME!'
-                </a>
-            </p>
+        <h4> in 140 characters or less  </h4>
+            <div>
+                <p>
+                    <a href="{% url 'index' %}">
+                        'Whoopsie, clicked in error, please take me HOME!'
+                    </a>
+                </p>
+            </div>
         </header>
         <!-- /return home header -->
         <!-- flutt inputs -->
-        <form <form action="{% url 'post_submit' %}" method="post">
-            {% csrf_token %}
-            <p>
-                Date and time will be automatically assigned when you click 'submit'
-            </p>
-            <label>User Name: <input type='text' name='new_user'></label>
-            <label>Flutt text: <input type='text' name='new_text'></label>
-            <input type="submit" value="FLY MONKEYS FLY!">
-        </form>
+        <div>
+            <form <form action="{% url 'post_submit' %}" method="post">
+                {% csrf_token %}
+                <p>
+                    Date and time will be automatically assigned when you click 'submit'
+                </p>
+                <label>User Name: <input type='text' name='new_user'></label>
+                <label>Flutt text: <input type='text' name='new_text'></label>
+                <input type="submit" value="FLY MONKEYS FLY!">
+            </form>
+        </div>
         <!-- /individual flutt -->
         <!-- /flutt list -->
         <script src="https://cdn.jsdelivr.net/lodash/4.11.2/lodash.js"></script>
