@@ -34,7 +34,8 @@ def render_post_submit(request):
 
 def render_search_page(request, text):
     """elbow grease"""
-    print(text)
+    search_text = request.get('search_text')
+    print(search_text)
     flutts = logic.find_search_text_flutts(text)
     return render(request, 'flutter/index.html', context)
 

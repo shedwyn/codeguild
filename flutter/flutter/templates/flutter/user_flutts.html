@@ -9,7 +9,7 @@
     <body>
         <!-- add new header -->
         <header>
-        <h1> Ten (10) Most Recent Flutts for " {{flutts.user}} "</h1>
+        <h1> Ten (10) Most Recent Flutts for specific user</h1>
         </header>
         <!-- /add new header -->
         <!-- flutt list -->
@@ -17,6 +17,7 @@
         <!-- individual flutt -->
         <div>
             <p>
+                <span>{{flutt.user}}</span>
                 <span>{{flutt.text}} - </span>
                 <span>{{flutt.date_n_time}}</span>
             </p>

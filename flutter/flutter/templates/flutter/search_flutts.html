@@ -1,24 +1,37 @@
 {% load staticfiles %}
+<!-- text to paste into index.html later -->
+<form action="{% url 'search_flutt' search_entry %}" method="get">
+    {% csrf_token %}
+    <h3>Find Flutt.  Feel Powerful</h3>
+    <label>
+        Enter your search word here:
+        <input placeholder="search" name="search_entry">
+    </label>
+    <input type="submit">
+</form>
+<!-- /text to paste into index.html later -->
+
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <title>Flutter - Thoughts that Fly</title>
+        <title>Your search returned:
+        </title>
         <link rel="stylesheet" type="text/css" href="{% static 'flutter/style.css' %}">
     </head>
     <body>
         <!-- add new header -->
         <header>
-        <h1> Ten (10) Most Recent Flutts </h1>
-        <h2> Click on name to bring up flutts exclusive to that user</h2>
+        <h1> Ten (10) Most Recent Flutts for specific user</h1>
         </header>
         <!-- /add new header -->
         <!-- flutt list -->
         {% for flutt in flutts %}
         <!-- individual flutt -->
-        <div class="border">
+        <div>
             <p>
-                <a href="{% url 'user_search' flutt.user %}">{{flutt.user}} - </a>
+                <span>{{flutt.user}}</span>
                 <span>{{flutt.text}} - </span>
                 <span>{{flutt.date_n_time}}</span>
             </p>
@@ -26,16 +39,9 @@
         <!-- /individual flutt -->
         {% endfor %}
         <!-- /flutt list -->
-        <!-- create new -->
-        <div class="border">
-            <h3>Make New Flutt.  Flutt is Good.</h3>
-            <a type="submit" href="{% url 'post_flutt' %}">Clickity Button</a>
+        <div>
+            <a href="{% url 'index' %}">Go Home</a>
         </div>
-        <!-- /create new -->
-        <!-- search text -->
-        
-
-        <!-- /search text-->
         <script src="https://cdn.jsdelivr.net/lodash/4.11.2/lodash.js"></script>
         <script src="http://code.jquery.com/jquery-2.2.3.js"></script>
     </body>
