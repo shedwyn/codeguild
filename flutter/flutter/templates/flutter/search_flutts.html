@@ -1,17 +1,4 @@
 {% load staticfiles %}
-<!-- text to paste into index.html later -->
-<form action="{% url 'search_flutt' search_entry %}" method="get">
-    {% csrf_token %}
-    <h3>Find Flutt.  Feel Powerful</h3>
-    <label>
-        Enter your search word here:
-        <input placeholder="search" name="search_entry">
-    </label>
-    <input type="submit">
-</form>
-<!-- /text to paste into index.html later -->
-
-
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -23,7 +10,7 @@
     <body>
         <!-- add new header -->
         <header>
-        <h1> Ten (10) Most Recent Flutts for specific user</h1>
+        <h1> Ten (10) Most Recent Flutts for requested search word ' {{search_text}} '</h1>
         </header>
         <!-- /add new header -->
         <!-- flutt list -->

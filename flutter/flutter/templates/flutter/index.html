@@ -33,8 +33,15 @@
         </div>
         <!-- /create new -->
         <!-- search text -->
-        
-
+        <form action="{% url 'search_flutt' %}" method="get">
+            {% csrf_token %}
+            <h3>Find Flutt.  Feel Powerful</h3>
+            <label>
+                Enter your search word here:
+                <input placeholder="search" name="search_entry">
+            </label>
+            <input type="submit">
+        </form>
         <!-- /search text-->
         <script src="https://cdn.jsdelivr.net/lodash/4.11.2/lodash.js"></script>
         <script src="http://code.jquery.com/jquery-2.2.3.js"></script>

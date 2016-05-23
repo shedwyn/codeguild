@@ -22,7 +22,11 @@ urlpatterns = [
     url(r'^$', views.render_index, name='index'),
     url(r'^post$', views.render_add_flutt, name='post_flutt'),
     url(r'^post/submit', views.render_post_submit, name='post_submit'),
-    # url(r'^(?P<search_entry>.*)/$', views.render_search_page, name='search_flutt'),
+    url(
+        r'^search$',
+        views.render_search_page,
+        name='search_flutt'
+    ),
     url(
         r'^user/(?P<flutt_user>.*)/$',
         views.render_user_flutt_page,

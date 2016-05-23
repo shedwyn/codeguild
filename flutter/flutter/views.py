@@ -32,18 +32,17 @@ def render_post_submit(request):
     return render(request, 'flutter/acceptance.html', context)
 
 
-def render_search_page(request, text):
+def render_search_page(request):
     """elbow grease"""
-    search_text = request.get('search_text')
-    print(search_text)
-    flutts = logic.find_search_text_flutts(text)
-    return render(request, 'flutter/index.html', context)
+    search_text = request.GET['search_entry']
+    flutts = logic.find_search_text_flutts(search_text)
+    context = {'flutts': flutts, 'search_text': search_text}
+    return render(request, 'flutter/search_flutts.html', context)
 
 
 def render_user_flutt_page(request, flutt_user):
     """shows (up to) 10 flutts for indicated user"""
     flutts = logic.get_ten_user_flutts(flutt_user)
-    context = {
-        'flutts': flutts
-    }
+    context = {'flutts': flutts, 'user': flutt_user}
+    print(context)
     return render(request, 'flutter/user_flutts.html', context)
