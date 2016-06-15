@@ -1,4 +1,4 @@
-"use strict";
+ "use strict";
 
 function getNumberToRoll(){
     return $("#numberToRoll").val()
@@ -37,7 +37,7 @@ function tallyHand(dieRolls){
     $("#handTally").text("Simple Dice Score:  " + diceTally);
 }
 function makeDieImage(dieValue){
-    return $("<img>").attr("src", fetchDieImageURL(dieValue))   
+    return $("<img>").attr("src", fetchDieImageURL(dieValue))
 }
 function formatSingleDie(dieValue, idNum){
     return $("<a></a>").append(makeDieImage(dieValue)).attr("href", "").attr("id", "dice-" + idNum)
@@ -80,7 +80,7 @@ $("a").on("click", function (event){
 // }
 // function getIndexOfDice() {
 //     var diceIndex;
-//     return diceIndex 
+//     return diceIndex
 // }
 // function getNewDiceValue() {
 //     var newDiceValue = rollSingleDie();

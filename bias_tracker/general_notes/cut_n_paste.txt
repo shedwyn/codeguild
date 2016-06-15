@@ -1,0 +1,45 @@
+help_text¶
+
+Field.help_text¶
+Extra “help” text to be displayed with the form widget. It’s useful for documentation even if your field isn’t used on a form.
+
+Note that this value is not HTML-escaped in automatically-generated forms. This lets you include HTML in help_text if you so desire. For example:
+
+help_text="Please use the following format: <em>YYYY-MM-DD</em>."
+Alternatively you can use plain text and django.utils.html.escape() to escape any HTML special characters. Ensure that you escape any help text that may come from untrusted users to avoid a cross-site scripting attack.
+---------
+validators¶
+
+Field.validators¶
+A list of validators to run for this field. See the validators documentation for more information.
+https://docs.djangoproject.com/en/1.9/ref/validators/
+
+Registering and fetching lookups¶
+
+Field implements the lookup registration API. The API can be used to customize which lookups are available for a field class, and how lookups are fetched from a field.
+----
+
+User objects have two many-to-many fields: groups and user_permissions. User objects can access their related objects in the same way as any other Django model:
+
+myuser.groups = [group_list]
+myuser.groups.add(group, group, ...)
+myuser.groups.remove(group, group, ...)
+myuser.groups.clear()
+myuser.user_permissions = [permission_list]
+myuser.user_permissions.add(permission, permission, ...)
+myuser.user_permissions.remove(permission, permission, ...)
+myuser.user_permissions.clear()
+----
+session cache clearing
+
+Clearing the session store¶
+
+As users create new sessions on your website, session data can accumulate in your session store. If you’re using the database backend, the django_session database table will grow. If you’re using the file backend, your temporary directory will contain an increasing number of files.
+
+To understand this problem, consider what happens with the database backend. When a user logs in, Django adds a row to the django_session database table. Django updates this row each time the session data changes. If the user logs out manually, Django deletes the row. But if the user does not log out, the row never gets deleted. A similar process happens with the file backend.
+
+Django does not provide automatic purging of expired sessions. Therefore, it’s your job to purge expired sessions on a regular basis. Django provides a clean-up management command for this purpose: clearsessions. It’s recommended to call this command on a regular basis, for example as a daily cron job.
+
+Note that the cache backend isn’t vulnerable to this problem, because caches automatically delete stale data. Neither is the cookie backend, because the session data is stored by the users’ browsers.
+
+ _________________
