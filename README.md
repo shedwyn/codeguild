@@ -3,6 +3,7 @@
 This document will help order the work contained.  
 
 ###Early Python Work
+*[Early Python Folder](early_python)*
 *The Python work was started before we learned about importing modules and using Git and I had to rename the first dozen or more because they began with numbers.  Therefore, some may be out of order right now.)*
 
 * Madlib - first project committed
