@@ -1,19 +1,7 @@
-#make a madlib
-#ask for 3 words
-#fill in the madlib
-#print it out
-
-#adjective, noun, plural noun
-
-#adjective = input("Enter an adjective: ")
-#noun = input("Enter a noun:")
-#plural_noun = input("Enter a plural noun: ")
-#print('- ' * 20)
-
-#print('There are many ' + adjective +
-#    ' ways to choose a ' + noun +
-#    ' to read.  \nFirst you could ask for recommendations\
-#    from your friends and ' + plural_noun)
+"""
+The assignment:  Print out the madlib results after asking for 3 user inputs and
+filling in the pre-written text.
+"""
 
 
 def prompt_for_adj():
@@ -48,3 +36,15 @@ noun1 = prompt_for_noun()
 pl_noun1 = prompt_for_pl_noun()
 
 build_madlib(adject1, noun1, pl_noun1)
+
+# ************ CODE SCRAP HEAP **********************
+
+#adjective = input("Enter an adjective: ")
+#noun = input("Enter a noun:")
+#plural_noun = input("Enter a plural noun: ")
+#print('- ' * 20)
+
+#print('There are many ' + adjective +
+#    ' ways to choose a ' + noun +
+#    ' to read.  \nFirst you could ask for recommendations\
+#    from your friends and ' + plural_noun)
